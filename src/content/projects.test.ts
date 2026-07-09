@@ -26,7 +26,7 @@ describe("projects", () => {
       expect(project.links.length).toBeGreaterThan(0)
       for (const link of project.links) {
         expect(link.label.length).toBeGreaterThan(0)
-        expect(link.href).toMatch(/^https:\/\/|apps\.apple\.com/)
+        expect(link.href).toMatch(/^https:\/\//)
       }
     }
   })
