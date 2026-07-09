@@ -16,7 +16,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Project Showcase
 
-- [ ] **SHOW-01**: Visitor can browse 3-4 flagship projects (footballAlpha, MetaMask, Keggy/mobile apps) each with live and/or source links
+- [x] **SHOW-01**: Visitor can browse 3-4 flagship projects (footballAlpha, MetaMask, Keggy/mobile apps) each with live and/or source links
 - [ ] **SHOW-02**: Visitor can read a footballAlpha case study structured around architecture decisions and tradeoffs
 - [ ] **SHOW-03**: Visitor can read a MetaMask case study framed from public knowledge (NDA-safe)
 - [ ] **SHOW-04**: Visitor can read a mobile app case study (Keggy or equivalent)
@@ -80,7 +80,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | IDENT-02 | Phase 1 | Pending |
 | IDENT-03 | Phase 1 | Pending |
 | IDENT-04 | Phase 1 | Complete |
-| SHOW-01 | Phase 1 | Pending |
+| SHOW-01 | Phase 1 | Complete |
 | CONV-01 | Phase 1 | Pending |
 | SITE-01 | Phase 1 | Pending |
 | SITE-02 | Phase 1 | Complete |
