@@ -31,7 +31,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Visitor can browse 3-4 flagship projects (footballAlpha, MetaMask, Keggy) each with live and/or source links, and see a compact social proof row (ex-MetaMask, Evo Nordics podcast, Football Ramble / App Store)
   4. Visitor can contact Daniel directly and see availability for both contract and full-time engagements
   5. Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop
-**Plans**: TBD
+**Plans**: 5 plans
+- [ ] 01-01-PLAN.md — Scaffold, Vitest harness & dark design-token system
+- [ ] 01-02-PLAN.md — Identity slice: sticky header + above-the-fold hero
+- [ ] 01-03-PLAN.md — Proof slice: featured-stack project showcase
+- [ ] 01-04-PLAN.md — Narrative + conversion: about, skills, social proof, contact, footer
+- [ ] 01-05-PLAN.md — Go live: Vercel deploy, custom domain, HTTPS
 **UI hint**: yes
 
 ### Phase 2: Decision-Driven Case Studies
@@ -90,7 +95,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Portfolio Shell, Live | 0/TBD | Not started | - |
+| 1. Portfolio Shell, Live | 0/5 | Not started | - |
 | 2. Decision-Driven Case Studies | 0/TBD | Not started | - |
 | 3. Live Solana Wallet Demo | 0/TBD | Not started | - |
 | 4. Mobile Work, Made Tangible | 0/TBD | Not started | - |
