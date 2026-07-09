@@ -203,6 +203,22 @@ None beyond the plan's own threat model (T-01-04 GitHub `target="_blank"` revers
 - Header/nav spine established; `#about`, `#projects`, `#contact` anchors will resolve once Plans 03–05 add those sections
 - **Action before public launch:** confirm the real GitHub and LinkedIn profile URLs in `src/content/site.ts` (currently inferred/placeholder, marked with a `TODO` comment)
 
+## Self-Check: PASSED
+
+- src/content/site.ts — FOUND
+- src/components/layout/Header.tsx — FOUND
+- src/components/layout/MobileNav.tsx — FOUND
+- src/components/sections/Hero.tsx — FOUND
+- src/components/layout/Header.test.tsx — FOUND
+- src/components/sections/Hero.test.tsx — FOUND
+- src/components/icons/github.tsx — FOUND
+- src/app/page.tsx — FOUND
+- Commit 15ae093 — FOUND
+- Commit 321a584 — FOUND
+- Commit 82b6168 — FOUND
+- Commit cd5175d — FOUND
+- Commit dd442bb — FOUND
+
 ---
 *Phase: 01-portfolio-shell-live*
 *Completed: 2026-07-09*
