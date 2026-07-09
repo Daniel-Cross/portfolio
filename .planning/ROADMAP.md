@@ -13,7 +13,7 @@ A dark, restrained portfolio at danielcross.dev that convinces a crypto hiring m
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Portfolio Shell, Live** - Credible dark-themed site live at danielcross.dev with identity, showcase, and contact
+- [x] **Phase 1: Portfolio Shell, Live** - Credible dark-themed site live at danielcross.dev with identity, showcase, and contact (completed 2026-07-09)
 - [ ] **Phase 2: Decision-Driven Case Studies** - Deep, NDA-safe case studies proving engineering judgment
 - [ ] **Phase 3: Live Solana Wallet Demo** - Real devnet interaction with bulletproof feedback and recorded fallback
 - [ ] **Phase 4: Mobile Work, Made Tangible** - Device-frame and live react-native-web demos of mobile work
@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Visitor can contact Daniel directly and see availability for both contract and full-time engagements
   5. Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop
 
-**Plans**: 5 plans executed + 1 gap-closure plan (01-06) pending
+**Plans**: 6/6 plans complete
 **Wave 1**
 
 - [x] 01-01-PLAN.md — Scaffold, Vitest harness & dark design-token system
@@ -54,11 +54,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 01-05-PLAN.md — Go live: Vercel deploy, custom domain, HTTPS
+- [x] 01-05-PLAN.md — Go live: Vercel deploy, custom domain, HTTPS
 
 **Gap Closure** *(from 01-VERIFICATION.md — 2 of 7 must-haves failed: broken screenshots, dead flagship links)*
 
-- [ ] 01-06-PLAN.md — Repair Projects proof: real screenshots, owner-confirmed working links, validating safety net (SHOW-01, IDENT-03)
+- [x] 01-06-PLAN.md — Repair Projects proof: real screenshots, owner-confirmed working links, validating safety net (SHOW-01, IDENT-03)
 
 **UI hint**: yes
 
@@ -130,7 +130,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Portfolio Shell, Live | 4/5 | In Progress|  |
+| 1. Portfolio Shell, Live | 6/6 | Complete   | 2026-07-09 |
 | 2. Decision-Driven Case Studies | 0/TBD | Not started | - |
 | 3. Live Solana Wallet Demo | 0/TBD | Not started | - |
 | 4. Mobile Work, Made Tangible | 0/TBD | Not started | - |

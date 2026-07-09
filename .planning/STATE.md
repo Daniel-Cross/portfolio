@@ -3,18 +3,18 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_phase: 01
-current_phase_name: Portfolio Shell, Live
+current_phase_name: portfolio-shell-live
 status: executing
 stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-07-09T20:33:55.920Z"
+last_updated: "2026-07-09T20:54:22.229Z"
 last_activity: 2026-07-09
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 5
-  completed_phases: 0
-  total_plans: 5
-  completed_plans: 4
-  percent: 0
+  completed_phases: 1
+  total_plans: 6
+  completed_plans: 6
+  percent: 20
 ---
 
 # Project State
@@ -24,12 +24,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-09)
 
 **Core value:** A crypto hiring manager or founder lands on the site and within a minute believes "this person has shipped serious Web3 products" — proven through live, touchable demos rather than claims.
-**Current focus:** Phase 01 — Portfolio Shell, Live
+**Current focus:** Phase 01 — portfolio-shell-live
 
 ## Current Position
 
-Phase: 01 (Portfolio Shell, Live) — EXECUTING
-Plan: 5 of 5
+Phase: 01 (portfolio-shell-live) — EXECUTING
+Plan: 2 of 6
 Status: Ready to execute
 Last activity: 2026-07-09 — Phase 01 execution started
 
@@ -59,6 +59,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P03 | 2min | 3 tasks | 6 files |
 | Phase 01 P04 | 4min | 3 tasks | 12 files |
 | Phase 01 P05 | ~6min | 3 tasks | 2 files |
+| Phase 01-portfolio-shell-live P06 | 25min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,9 @@ Recent decisions affecting current work:
 - [Phase 01]: Email affordance split into CopyEmailButton (copies) plus a separate always-present mailto icon-link, per D-15
 - [Phase 01]: www.danielcross.dev is the Vercel primary domain; apex danielcross.dev 308-redirects to www with HSTS — later phases should treat https://www.danielcross.dev as the canonical serving URL
 - [Phase 01]: Portfolio repo is public at github.com/Daniel-Cross/portfolio; Vercel Git integration deploys production on every push to main
+- [Phase ?]: Generated neutral dark placeholder screenshots (Pillow-based) for football-alpha/metamask/keggy per owner's Task 1 checkpoint approval; real screenshots deferred
+- [Phase ?]: Dropped Keggy's dead App Store link per owner's Task 1 fallback; kept only the working GitHub View source link
+- [Phase ?]: Applied footballAlpha's owner-locked URL https://footballalpha.org directly in Task 3
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-09T16:31:18.136Z
+Last session: 2026-07-09T20:53:22.930Z
 Stopped at: Completed 01-04-PLAN.md
 Resume file: None
