@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Visitor can contact Daniel directly and see availability for both contract and full-time engagements
   5. Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop
 
-**Plans**: 4/5 plans executed
+**Plans**: 5 plans executed + 1 gap-closure plan (01-06) pending
 **Wave 1**
 
 - [x] 01-01-PLAN.md — Scaffold, Vitest harness & dark design-token system
@@ -55,6 +55,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 5** *(blocked on Wave 4 completion)*
 
 - [ ] 01-05-PLAN.md — Go live: Vercel deploy, custom domain, HTTPS
+
+**Gap Closure** *(from 01-VERIFICATION.md — 2 of 7 must-haves failed: broken screenshots, dead flagship links)*
+
+- [ ] 01-06-PLAN.md — Repair Projects proof: real screenshots, owner-confirmed working links, validating safety net (SHOW-01, IDENT-03)
 
 **UI hint**: yes
 
