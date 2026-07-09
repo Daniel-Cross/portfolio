@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, within } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 
 import { projects } from "@/content/projects"
@@ -18,10 +18,12 @@ describe("Projects", () => {
   it("renders at least one accessibly-labelled link per card", () => {
     render(<Projects />)
     for (const project of projects) {
-      const firstLink = project.links[0]
-      expect(
-        screen.getByRole("link", { name: new RegExp(firstLink.label, "i") })
-      ).toHaveAccessibleName()
+      const heading = screen.getByRole("heading", { name: project.name })
+      const card = heading.closest("article")
+      expect(card).not.toBeNull()
+      const links = within(card as HTMLElement).getAllByRole("link")
+      expect(links.length).toBeGreaterThan(0)
+      expect(links[0]).toHaveAccessibleName()
     }
   })
 
