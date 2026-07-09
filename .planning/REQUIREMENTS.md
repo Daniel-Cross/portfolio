@@ -76,13 +76,31 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated during roadmap creation) | | |
+| IDENT-01 | Phase 1 | Pending |
+| IDENT-02 | Phase 1 | Pending |
+| IDENT-03 | Phase 1 | Pending |
+| IDENT-04 | Phase 1 | Pending |
+| SHOW-01 | Phase 1 | Pending |
+| CONV-01 | Phase 1 | Pending |
+| SITE-01 | Phase 1 | Pending |
+| SITE-02 | Phase 1 | Pending |
+| SHOW-02 | Phase 2 | Pending |
+| SHOW-03 | Phase 2 | Pending |
+| SHOW-04 | Phase 2 | Pending |
+| DEMO-01 | Phase 3 | Pending |
+| DEMO-02 | Phase 3 | Pending |
+| DEMO-03 | Phase 3 | Pending |
+| DEMO-04 | Phase 4 | Pending |
+| DEMO-05 | Phase 4 | Pending |
+| CONV-02 | Phase 5 | Pending |
+| SITE-03 | Phase 5 | Pending |
+| SITE-04 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 19 total
-- Mapped to phases: 0
-- Unmapped: 19 ⚠️ (roadmap pending)
+- Mapped to phases: 19
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-07-09*
-*Last updated: 2026-07-09 after initial definition*
+*Last updated: 2026-07-09 after roadmap creation*
