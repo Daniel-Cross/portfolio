@@ -10,8 +10,8 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Identity & Proof
 
 - [x] **IDENT-01**: Visitor sees name, senior React Native/Web3 role, and ex-MetaMask credibility hook above the fold without scrolling
-- [ ] **IDENT-02**: Visitor can read an about/experience section naming real employers (MetaMask, The App Forge, Hackberry, Yomento, BookingGo)
-- [ ] **IDENT-03**: Visitor sees a compact social proof row (ex-MetaMask, Evo Nordics podcast, Football Ramble / App Store mentions)
+- [x] **IDENT-02**: Visitor can read an about/experience section naming real employers (MetaMask, The App Forge, Hackberry, Yomento, BookingGo)
+- [x] **IDENT-03**: Visitor sees a compact social proof row (ex-MetaMask, Evo Nordics podcast, Football Ramble / App Store mentions)
 - [x] **IDENT-04**: Visitor can scan a plain grouped skills list (no percentage bars) and reach GitHub from the header or hero
 
 ### Project Showcase
@@ -31,7 +31,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Contact & Conversion
 
-- [ ] **CONV-01**: Visitor can contact Daniel directly and see availability for both contract and full-time engagements
+- [x] **CONV-01**: Visitor can contact Daniel directly and see availability for both contract and full-time engagements
 - [ ] **CONV-02**: Site includes a subtle crypto-native identity touch (e.g. ENS mention or easter egg) without degen aesthetics
 
 ### Site Quality
@@ -77,11 +77,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | IDENT-01 | Phase 1 | Complete |
-| IDENT-02 | Phase 1 | Pending |
-| IDENT-03 | Phase 1 | Pending |
+| IDENT-02 | Phase 1 | Complete |
+| IDENT-03 | Phase 1 | Complete |
 | IDENT-04 | Phase 1 | Complete |
 | SHOW-01 | Phase 1 | Complete |
-| CONV-01 | Phase 1 | Pending |
+| CONV-01 | Phase 1 | Complete |
 | SITE-01 | Phase 1 | Pending |
 | SITE-02 | Phase 1 | Complete |
 | SHOW-02 | Phase 2 | Pending |

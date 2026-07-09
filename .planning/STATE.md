@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 01
 current_phase_name: Portfolio Shell, Live
 status: executing
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-07-09T13:59:20.647Z"
+stopped_at: Completed 01-04-PLAN.md
+last_updated: "2026-07-09T14:10:50.780Z"
 last_activity: 2026-07-09
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -29,7 +29,7 @@ See: .planning/PROJECT.md (updated 2026-07-09)
 ## Current Position
 
 Phase: 01 (Portfolio Shell, Live) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 Status: Ready to execute
 Last activity: 2026-07-09 — Phase 01 execution started
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01 P02 | 4min | 3 tasks | 10 files |
 | Phase 01 P03 | 2min | 3 tasks | 6 files |
+| Phase 01 P04 | 4min | 3 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,9 @@ Recent decisions affecting current work:
 - [Phase 01]: site.github/site.linkedin are best-effort placeholders pending confirmation before launch
 - [Phase 01]: footballAlpha/Keggy project links are best-effort placeholder URLs flagged TODO pending confirmation before launch (no web-fetch tool available in execution environment)
 - [Phase 01]: MetaMask project link points to metamask.io (stable public site) rather than a specific App Store listing ID, keeping the link NDA-safe and verifiable
+- [Phase 01]: Employers ordered reverse-chronologically; BookingGo role left undefined rather than invented (content-honesty)
+- [Phase 01]: Skills grouped into 4 areas with no proficiency/percentage field anywhere in the SkillGroup type
+- [Phase 01]: Email affordance split into CopyEmailButton (copies) plus a separate always-present mailto icon-link, per D-15
 
 ### Pending Todos
 
@@ -86,6 +90,7 @@ None yet.
 
 - Phase 1 (from research): Confirm footballAlpha's live URL/status before finalizing content; phrase case-study copy to age gracefully.
 - Phase 3 (from research): Highest-risk phase — run `/gsd-plan-phase --research-phase 3` for wallet-connect state machine, dedicated-RPC rate-limit handling, and recorded-demo UX before implementation.
+- Phase 1: Confirm Evo Nordics podcast episode URL before launch (src/content/social-proof.ts item currently unlinked text)
 
 ## Deferred Items
 
@@ -97,6 +102,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-09T13:58:44.024Z
-Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-portfolio-shell-live/01-UI-SPEC.md
+Last session: 2026-07-09T14:10:28.256Z
+Stopped at: Completed 01-04-PLAN.md
+Resume file: None
