@@ -1,6 +1,11 @@
+import { existsSync } from "node:fs"
+import path from "node:path"
+
 import { describe, expect, it } from "vitest"
 
 import { projects } from "./projects"
+
+const publicDir = path.resolve(import.meta.dirname, "../../public")
 
 describe("projects", () => {
   it("contains 3 or 4 entries", () => {
@@ -23,6 +28,16 @@ describe("projects", () => {
         expect(link.label.length).toBeGreaterThan(0)
         expect(link.href).toMatch(/^https:\/\/|apps\.apple\.com/)
       }
+    }
+  })
+
+  it("every project screenshot exists in public/", () => {
+    for (const project of projects) {
+      const screenshotPath = path.join(publicDir, project.screenshot)
+      expect(
+        existsSync(screenshotPath),
+        `expected screenshot to exist at ${screenshotPath} (project.screenshot: ${project.screenshot})`
+      ).toBe(true)
     }
   })
 })

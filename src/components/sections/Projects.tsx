@@ -19,7 +19,7 @@ export function Projects() {
               alt={`${project.name} screenshot`}
               width={640}
               height={400}
-              className="w-full shrink-0 rounded-md md:w-64"
+              className="h-auto w-full shrink-0 rounded-md md:w-64"
               {...(index === 0 ? { preload: true } : {})}
             />
             <div className="flex flex-col gap-3">
