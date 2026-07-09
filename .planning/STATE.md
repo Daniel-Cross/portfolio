@@ -4,9 +4,9 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 01
 current_phase_name: Portfolio Shell, Live
-status: executing
+status: verifying
 stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-07-09T14:15:26.083Z"
+last_updated: "2026-07-09T16:31:30.847Z"
 last_activity: 2026-07-09
 last_activity_desc: Phase 01 execution started
 progress:
@@ -30,7 +30,7 @@ See: .planning/PROJECT.md (updated 2026-07-09)
 
 Phase: 01 (Portfolio Shell, Live) — EXECUTING
 Plan: 5 of 5
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-07-09 — Phase 01 execution started
 
 Progress: [░░░░░░░░░░] 0%
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P02 | 4min | 3 tasks | 10 files |
 | Phase 01 P03 | 2min | 3 tasks | 6 files |
 | Phase 01 P04 | 4min | 3 tasks | 12 files |
+| Phase 01 P05 | ~6min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,8 @@ Recent decisions affecting current work:
 - [Phase 01]: Employers ordered reverse-chronologically; BookingGo role left undefined rather than invented (content-honesty)
 - [Phase 01]: Skills grouped into 4 areas with no proficiency/percentage field anywhere in the SkillGroup type
 - [Phase 01]: Email affordance split into CopyEmailButton (copies) plus a separate always-present mailto icon-link, per D-15
+- [Phase 01]: www.danielcross.dev is the Vercel primary domain; apex danielcross.dev 308-redirects to www with HSTS — later phases should treat https://www.danielcross.dev as the canonical serving URL
+- [Phase 01]: Portfolio repo is public at github.com/Daniel-Cross/portfolio; Vercel Git integration deploys production on every push to main
 
 ### Pending Todos
 
@@ -102,6 +105,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-09T14:10:28.256Z
+Last session: 2026-07-09T16:31:18.136Z
 Stopped at: Completed 01-04-PLAN.md
 Resume file: None

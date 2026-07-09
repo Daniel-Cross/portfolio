@@ -36,7 +36,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Site Quality
 
-- [ ] **SITE-01**: Site is live at danielcross.dev over HTTPS
+- [x] **SITE-01**: Site is live at danielcross.dev over HTTPS
 - [x] **SITE-02**: Site uses a dark-mode-first, restrained design system (professional foundation, subtle web3 flavor, ≤3 accent colors)
 - [ ] **SITE-03**: Site is mobile-responsive and fast (Lighthouse ≥90 mobile on all routes, including the wallet demo route)
 - [ ] **SITE-04**: All internal and external links resolve at launch (zero broken links)
@@ -82,7 +82,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | IDENT-04 | Phase 1 | Complete |
 | SHOW-01 | Phase 1 | Complete |
 | CONV-01 | Phase 1 | Complete |
-| SITE-01 | Phase 1 | Pending |
+| SITE-01 | Phase 1 | Complete |
 | SITE-02 | Phase 1 | Complete |
 | SHOW-02 | Phase 2 | Pending |
 | SHOW-03 | Phase 2 | Pending |
