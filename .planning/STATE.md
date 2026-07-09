@@ -6,14 +6,14 @@ current_phase: 01
 current_phase_name: Portfolio Shell, Live
 status: executing
 stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-07-09T11:57:48.589Z"
+last_updated: "2026-07-09T13:51:52.639Z"
 last_activity: 2026-07-09
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -29,7 +29,7 @@ See: .planning/PROJECT.md (updated 2026-07-09)
 ## Current Position
 
 Phase: 01 (Portfolio Shell, Live) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
 Last activity: 2026-07-09 — Phase 01 execution started
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P02 | 4min | 3 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - Roadmap: Vertical MVP structure — ship a credible live site in Phase 1, then deepen proof slice by slice.
 - Roadmap: Design system folded into Phase 1 (not a standalone phase) so the first live slice is already restrained and dark-mode-first.
 - Roadmap: Wallet demo isolated in Phase 3 so core credibility never depends on demo reliability; recorded fallback required.
+- [Phase 01]: CTAs use buttonVariants()-styled anchors instead of the base-ui Button render prop to preserve native link semantics
+- [Phase 01]: GitHub brand icon hand-rolled as inline SVG in src/components/icons/ since lucide-react ships no brand/logo icons
+- [Phase 01]: site.github/site.linkedin are best-effort placeholders pending confirmation before launch
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-09T11:57:48.577Z
+Last session: 2026-07-09T13:49:21.240Z
 Stopped at: Phase 1 UI-SPEC approved
 Resume file: .planning/phases/01-portfolio-shell-live/01-UI-SPEC.md
