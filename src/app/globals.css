@@ -79,6 +79,7 @@
   }
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background font-sans text-foreground;
