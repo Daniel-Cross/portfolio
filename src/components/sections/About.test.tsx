@@ -1,8 +1,11 @@
+import { render, screen, within } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 
 import { employers } from "@/content/employers"
 import { skillGroups } from "@/content/skills"
 import { socialProof } from "@/content/social-proof"
+
+import { About } from "./About"
 
 describe("About/Skills/SocialProof content", () => {
   it("employers includes MetaMask, The App Forge, Hackberry, Yomento, and BookingGo", () => {
@@ -31,5 +34,18 @@ describe("About/Skills/SocialProof content", () => {
     expect(labels).toMatch(/MetaMask/i)
     expect(labels).toMatch(/Evo Nordics/i)
     expect(labels).toMatch(/Football Ramble/i)
+  })
+})
+
+describe("About", () => {
+  it("renders all five employer names and has id=about", () => {
+    const { container } = render(<About />)
+    const list = screen.getByRole("list")
+    for (const employer of employers) {
+      expect(
+        within(list).getByText(new RegExp(employer.name))
+      ).toBeInTheDocument()
+    }
+    expect(container.querySelector("#about")).toBeInTheDocument()
   })
 })
