@@ -35,10 +35,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Visitor can contact Daniel directly and see availability for both contract and full-time engagements
   5. Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop
 
-**Plans**: 5 plans
+**Plans**: 1/5 plans executed
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Scaffold, Vitest harness & dark design-token system
+- [x] 01-01-PLAN.md — Scaffold, Vitest harness & dark design-token system
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Portfolio Shell, Live | 0/5 | Not started | - |
+| 1. Portfolio Shell, Live | 1/5 | In Progress|  |
 | 2. Decision-Driven Case Studies | 0/TBD | Not started | - |
 | 3. Live Solana Wallet Demo | 0/TBD | Not started | - |
 | 4. Mobile Work, Made Tangible | 0/TBD | Not started | - |
