@@ -1,9 +1,9 @@
-import { Mail } from "lucide-react"
+import { Mail } from "lucide-react";
 
-import { buttonVariants } from "@/components/ui/button"
-import { site } from "@/content/site"
+import { buttonVariants } from "@/components/ui/button";
+import { site } from "@/content/site";
 
-import { CopyEmailButton } from "./CopyEmailButton"
+import { CopyEmailButton } from "./CopyEmailButton";
 
 export function Contact() {
   return (
@@ -17,12 +17,8 @@ export function Contact() {
         Open to both contract and full-time crypto engineering roles.
       </p>
       <ul className="mt-4 flex flex-col gap-1 text-base text-muted-foreground">
-        <li>Contract: via The App Forge AB (outside IR35, UK/EU remote)</li>
+        <li>Contract: via The App Forge AB (outside IR35, UK/EU/US remote)</li>
         <li>Full-time: open to senior/staff crypto roles.</li>
-        <li>
-          US companies welcome: worked remotely with New York-based teams
-          including MetaMask, Use AI, and Fact Machine.
-        </li>
       </ul>
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2">
@@ -53,5 +49,5 @@ export function Contact() {
         </a>
       </div>
     </section>
-  )
+  );
 }

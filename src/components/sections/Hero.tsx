@@ -1,6 +1,6 @@
-import { buttonVariants } from "@/components/ui/button"
-import { SlotReadout } from "@/components/canvas/SlotReadout"
-import { site } from "@/content/site"
+import { buttonVariants } from "@/components/ui/button";
+import { SlotReadout } from "@/components/canvas/SlotReadout";
+import { site } from "@/content/site";
 
 export function Hero() {
   return (
@@ -15,10 +15,7 @@ export function Hero() {
         {site.heroSubhead}
       </p>
       <div className="mt-8 flex flex-wrap gap-4">
-        <a
-          href="#projects"
-          className={buttonVariants({ size: "lg" })}
-        >
+        <a href="#projects" className={buttonVariants({ size: "lg" })}>
           View work
         </a>
         <a
@@ -29,5 +26,5 @@ export function Hero() {
         </a>
       </div>
     </section>
-  )
+  );
 }
