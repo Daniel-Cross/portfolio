@@ -1,30 +1,25 @@
 ---
 phase: 01-portfolio-shell-live
-verified: 2026-07-10T08:05:00Z
-status: gaps_found
-score: 6/7 must-haves verified
+verified: 2026-07-10T08:20:00Z
+status: passed
+score: 7/7 must-haves verified
 behavior_unverified: 0
 overrides_applied: 0
 re_verification:
-  previous_status: human_needed
-  previous_score: 7/7
+  previous_status: gaps_found
+  previous_score: 6/7
   gaps_closed:
-    - "Mobile menu open/close on narrow viewport — confirmed via 01-UAT.md Test 2: pass"
-    - "CopyEmailButton clipboard copy + 'Copied!' label swap — confirmed via 01-UAT.md Test 3: pass"
-    - "Anchor nav scroll offset does not clip section headings on mobile — confirmed via 01-UAT.md Test 4: pass"
-    - "Placeholder screenshots read as intentional/undistorted on live site — confirmed via 01-UAT.md Test 5: pass"
-  gaps_remaining:
-    - "LinkedIn CTA correctness — code fix is correct (src/content/site.ts now has the user-confirmed hyphenated URL) but the fix is NOT deployed: 7 commits including the fix sit unpushed on local main, and the live production site still serves the wrong no-hyphen handle"
-  regressions:
-    - "Local main is 7 commits ahead of origin/main (git push never run after 01-07 gap closure) — the exact same deploy-gap failure mode this phase already hit once before in 01-06's first pass"
+    - "Deploy gap closed: all previously-unpushed commits are now on origin/main (HEAD 242180f), Vercel redeployed, and the live site serves the corrected LinkedIn URL — independently confirmed this pass: `git rev-list --count origin/main..HEAD` = 0; live HTML contains 4 occurrences of `linkedin.com/in/daniel-cross` (Contact anchor, Footer anchor, plus RSC payload) and 0 occurrences of the wrong no-hyphen handle"
+  gaps_remaining: []
+  regressions: []
 ---
 
 # Phase 01: Portfolio Shell Live Verification Report
 
 **Phase Goal:** A hiring manager can land on danielcross.dev and, within a minute, grasp who Daniel is, what he has shipped, and how to reach him — on a dark, restrained, fast design.
-**Verified:** 2026-07-10T08:05:00Z
-**Status:** gaps_found
-**Re-verification:** Yes — third pass, after 01-UAT.md (4 pass / 1 issue) and gap-closure plan 01-07 (LinkedIn handle fix)
+**Verified:** 2026-07-10T08:20:00Z
+**Status:** passed
+**Re-verification:** Yes — fourth pass. History: initial (gaps_found 5/7) → re-verify after 01-06 (human_needed 7/7) → UAT (4 pass / 1 issue) + 01-07 gap closure → re-verify (gaps_found 6/7, fix correct but undeployed) → this pass (deploy confirmed, passed 7/7).
 
 ## Goal Achievement
 
@@ -32,38 +27,55 @@ re_verification:
 
 | # | Truth | Status | Evidence |
 |---|-------|--------|----------|
-| 1 | Visitor sees name, senior React Native/Web3 role, and ex-MetaMask hook above the fold at danielcross.dev over HTTPS | ✓ VERIFIED | `curl -sI https://danielcross.dev` → `308` → `https://www.danielcross.dev` → `200`; live HTML contains "Daniel Cross". Unaffected by outstanding gap. |
-| 2 | Visitor can read an about/experience section naming MetaMask, The App Forge, Hackberry, Yomento, BookingGo, scan a grouped skills list, and reach GitHub from the header/hero | ✓ VERIFIED | Live HTML `id="about"`, `id="skills"` present; all 5 employer names present; header GitHub link (`github.com/Daniel-Cross`) resolves 200. Unaffected. |
-| 3 | Visitor can browse 3-4 flagship projects (footballAlpha, MetaMask, Keggy) each with live and/or source links, and see a compact social proof row | ✓ VERIFIED | Live HTML: `footballalpha.org` present (resolves 200 via 308), old dead `footballalpha.app` and `apps.apple.com/app/keggy` both absent (0 occurrences). Social-proof row renders. Unaffected — this fix (01-06) is on `origin/main` (`5f1378a` is origin's HEAD) and confirmed live. |
-| 4 | Each project card shows a screenshot/still, a 2-3 sentence outcome blurb, a tech-tag row, and at least one link | ✓ VERIFIED | `curl -sI https://www.danielcross.dev/screenshots/football-alpha.png` → `200` (checked live, this pass). UAT Test 5 (human) confirms placeholders render undistorted and read as intentional. |
-| 5 | Visitor can contact Daniel directly (correct channels) and see availability for both contract and full-time engagements | ✗ FAILED | Live HTML `id="contact"` and `mailto:hello@danielcross.dev` present (correct). **But** the LinkedIn CTA in both Contact and Footer still resolves to `https://www.linkedin.com/in/danielcross` (wrong, no-hyphen handle) in production — confirmed by `curl -s https://www.danielcross.dev/ | grep -o 'linkedin.com/in/[a-zA-Z-]*'` returning only `linkedin.com/in/danielcross`. The corrected value (`.../in/daniel-cross`) exists in the local repo (`src/content/site.ts`, commit `8330674`) but that commit — along with 6 others — has never been pushed to `origin/main`, so Vercel has not rebuilt/deployed it. A hiring manager clicking "how to reach him" via LinkedIn today still lands on a stranger's profile. |
-| 6 | Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop | ✓ VERIFIED | `globals.css` dark OKLCH tokens unchanged since initial pass; no regression. |
-| 7 | Production build passes and Vitest smoke test / full suite runs green | ✓ VERIFIED | `npx vitest run` (this pass): 7 files, 20/20 tests pass. `npm run build` (this pass): exit 0, static prerender of `/` and `/_not-found`. |
+| 1 | Visitor sees name, senior React Native/Web3 role, and ex-MetaMask hook above the fold at danielcross.dev over HTTPS | ✓ VERIFIED | `curl -sI https://danielcross.dev` → `308` → `https://www.danielcross.dev` → `200`; live HTML contains "Daniel Cross"; Hero renders identity from `src/content/site.ts`. |
+| 2 | Visitor can read an about/experience section naming MetaMask, The App Forge, Hackberry, Yomento, BookingGo, scan a grouped skills list, and reach GitHub from the header/hero | ✓ VERIFIED | Live HTML `id="about"`, `id="skills"` present (regression-checked this pass); all 5 employer names present; header GitHub link (`github.com/Daniel-Cross`) resolves 200. |
+| 3 | Visitor can browse 3-4 flagship projects (footballAlpha, MetaMask, Keggy) each with live and/or source links, and see a compact social proof row | ✓ VERIFIED | Regression-checked this pass against fresh live HTML: only `footballalpha.org` present (dead `footballalpha.app` and `apps.apple.com/app/keggy` both 0 occurrences); `id="social-proof"` renders. |
+| 4 | Each project card shows a screenshot/still, a 2-3 sentence outcome blurb, a tech-tag row, and at least one link | ✓ VERIFIED | All three `/screenshots/{football-alpha,metamask,keggy}.png` return `HTTP/2 200` (re-curled this pass). UAT Test 5 (human) confirmed placeholders render undistorted and read as intentional. |
+| 5 | Visitor can contact Daniel directly (correct channels) and see availability for both contract and full-time engagements | ✓ VERIFIED | **Gap closed and independently confirmed this pass:** fresh `curl -s https://www.danielcross.dev/` shows the LinkedIn CTA now resolves to `https://www.linkedin.com/in/daniel-cross` (the user-UAT-confirmed handle) in BOTH the Contact section anchor (adjacent to `hello@danielcross.dev`) and the Footer anchor — 4 total occurrences (2 HTML anchors + 2 RSC payload), 0 occurrences of the wrong no-hyphen handle. `mailto:hello@danielcross.dev` and both availability lines (contract via The App Forge AB, full-time senior/staff crypto) present and live. |
+| 6 | Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop | ✓ VERIFIED | `globals.css` dark OKLCH tokens, 1 active accent + 1 reserved destructive (within ≤3 budget); `layout.tsx` sets `className="dark"`; unchanged since initial pass. UAT Tests 2 and 4 (human) confirmed mobile nav and anchor-scroll behavior on a real narrow viewport. |
+| 7 | Production build passes and Vitest smoke test / full suite runs green | ✓ VERIFIED | `npx vitest run` (this session): 7 test files, 20/20 tests pass. `npm run build` (this session): exit 0, Turbopack, static prerender of `/` and `/_not-found`. |
 
-**Score:** 6/7 truths verified
+**Score:** 7/7 truths verified (0 present-but-behavior-unverified)
+
+### Gap Closure Confirmation (vs. previous verification)
+
+The single gap from the previous pass (2026-07-10T08:05:00Z) is closed and independently confirmed:
+
+| Previous Gap | Closure Evidence (independently verified this pass) |
+|--------------|------------------------------------------------------|
+| LinkedIn fix committed locally but 7 commits unpushed; production still served wrong `linkedin.com/in/danielcross` | `git fetch && git rev-list --count origin/main..HEAD` = **0**; `origin/main` HEAD is `242180f` (includes fix commit `8330674`). Fresh live-HTML fetch: `linkedin.com/in/daniel-cross` present ×4 (Contact + Footer anchors), wrong no-hyphen handle present ×0. Vercel redeploy confirmed by serving the corrected content. |
+
+This was the second occurrence of the unpushed-commits deploy-gap failure mode in this phase (first: 01-06's initial pass). Both instances are now resolved; a process note for future phases: verify `origin/main..HEAD = 0` before claiming any live-site fix is deployed.
 
 ### Required Artifacts
 
 | Artifact | Expected | Status | Details |
 |----------|----------|--------|---------|
-| `src/content/site.ts` | `linkedin` field set to user-confirmed `https://www.linkedin.com/in/daniel-cross`; no stale TODO | ✓ VERIFIED (locally) / ✗ NOT DEPLOYED | File content confirmed correct via `Read`; `grep -c 'linkedin.com/in/daniel-cross'` = 1, `grep -c 'in/danielcross"'` = 0, `grep -c TODO` = 0 — all match plan 01-07's automated verify gate. Committed at `8330674`. **Not present in the deployed build** because the commit is unpushed. |
-| `public/screenshots/*.png` (3 files) | Committed PNGs, resolve live | ✓ VERIFIED | Live 200s confirmed this pass (spot check on football-alpha.png; full set confirmed unchanged from prior pass, all on pushed commit `5f1378a`). |
-| `src/content/projects.ts` | Corrected footballAlpha/Keggy links | ✓ VERIFIED | Live HTML confirms fix is deployed (on `origin/main`). |
-| `src/content/social-proof.ts` | Keggy link no longer diverges | ✓ VERIFIED | Deployed, unchanged from prior pass. Pre-existing `TODO` (Evo Nordics URL, IN-01 in 01-REVIEW.md) remains — info-level, out of scope, not a phase blocker. |
+| `src/content/site.ts` | `linkedin` set to user-confirmed `https://www.linkedin.com/in/daniel-cross`; no stale TODO | ✓ VERIFIED | File read directly: hyphenated URL present (×1), wrong handle absent (×0), no TODO. Matches 01-UAT.md's user-confirmed value. Committed (`8330674`), pushed, and now serving live. |
+| `public/screenshots/{football-alpha,metamask,keggy}.png` | Committed PNGs, resolve live | ✓ VERIFIED | All three return `HTTP/2 200` live (re-curled this pass); valid 640x400 PNGs, git-tracked. |
+| `src/components/sections/Projects.tsx` | `h-auto` aspect-ratio fix, renders cards | ✓ VERIFIED | Unchanged since prior pass; UAT Test 5 confirmed non-distortion visually. |
+| `src/content/projects.ts` | Corrected footballAlpha/Keggy links | ✓ VERIFIED | Deployed and confirmed live (only `footballalpha.org` in HTML; dead URLs absent). |
+| `src/content/social-proof.ts` | Keggy entry plain text, no divergent dead URL | ✓ VERIFIED | Deployed; pre-existing Evo Nordics TODO remains (info-level, out of scope, tracked in STATE.md). |
+| `src/content/projects.test.ts` | Anchored `^https://` regex + screenshot-existence guard | ✓ VERIFIED | Both assertions previously proven enforcing (break-then-revert); suite green this session. |
+| `src/app/globals.css` / `layout.tsx` / `next.config.ts` / README etc. | Prior-plan artifacts | ✓ VERIFIED | Untouched by 01-07; regression-checked clean. |
 
 ### Key Link Verification
 
 | From | To | Via | Status | Details |
 |------|-----|-----|--------|---------|
-| local `main` | `origin/main` | `git push` | ✗ NOT_WIRED | `git rev-list --count origin/main..HEAD` = **7** (this pass). `origin/main` HEAD is still `5f1378a`; local HEAD is `3a1377d`, including the LinkedIn fix (`8330674`), the 01-07 plan/summary, UAT record, and updated review/verification docs. This is the identical failure class the phase already surfaced once (01-06's first pass shipped a correct fix that also sat unpushed). |
-| GitHub repo `main` | Vercel production | Git integration | ✗ NOT_WIRED (for the LinkedIn fix) | Because the underlying commit was never pushed, Vercel has nothing new to build; production is still serving the pre-01-07 build for this file. |
-| `src/content/site.ts` `linkedin` field | Contact CTA / Footer CTA anchors | direct render | ⚠️ PARTIAL | Correctly wired in source (both `Contact.tsx`/`Footer.tsx` consume `site.linkedin` and render the corrected value) — wiring itself is not the defect; the defect is the missing deploy step upstream of it. |
+| local `main` | `origin/main` | `git push` | ✓ WIRED | `origin/main..HEAD` = 0; origin HEAD `242180f`. |
+| GitHub repo `main` | Vercel production | Git integration | ✓ WIRED | Redeploy completed; production serves the 01-07 content (confirmed by live LinkedIn URL check). |
+| `src/content/site.ts` `linkedin` | Contact CTA / Footer CTA anchors | direct render of `site.linkedin` | ✓ WIRED | Both anchors present in live HTML with the corrected URL. |
+| `src/content/projects.ts` screenshot field | `public/screenshots/*.png` | file existence + existence-guard test | ✓ WIRED | All three exist and serve live 200. |
+| `src/components/sections/Projects.tsx` | `projects.ts` | `projects.map` | ✓ WIRED | Renders screenshots + links from corrected data. |
 
 ### Data-Flow Trace (Level 4)
 
 | Artifact | Data Variable | Source | Produces Real Data | Status |
 |----------|---------------|--------|---------------------|--------|
-| Contact/Footer LinkedIn anchor (production) | `site.linkedin` | `src/content/site.ts` (committed, correct) → **not yet in the deployed bundle** | No — production still serves the previous, wrong string | ✗ DISCONNECTED (deploy gap, not a code gap) |
+| Contact/Footer LinkedIn anchor (production) | `site.linkedin` | `src/content/site.ts` → deployed bundle | Yes — live HTML serves the corrected, user-confirmed URL | ✓ FLOWING |
+| `Projects.tsx` (production) | `projects` | Static typed array + committed image assets | Yes — text renders, screenshots serve 200 via `next/image` | ✓ FLOWING |
+| `SocialProof.tsx` (production) | `socialProof` | Static typed array | Yes — no dead hrefs remain | ✓ FLOWING |
 
 ### Behavioral Spot-Checks
 
@@ -71,53 +83,46 @@ re_verification:
 |----------|---------|--------|--------|
 | Full test suite passes | `npx vitest run` | 7 files / 20 tests passed | ✓ PASS |
 | Production build succeeds | `npm run build` | Exit 0, static prerender of `/` | ✓ PASS |
-| Local repo ahead of origin | `git rev-list --count origin/main..HEAD` | `7` | ✗ FAIL (deploy gap) |
-| Live LinkedIn URL check | `curl -s https://www.danielcross.dev/ \| grep -o 'linkedin.com/in/[a-zA-Z-]*'` | `linkedin.com/in/danielcross` (wrong, only match) | ✗ FAIL |
-| Live screenshots resolve | `curl -sI https://www.danielcross.dev/screenshots/football-alpha.png` | `HTTP/2 200` | ✓ PASS |
-| Live footballAlpha link correct | grep live HTML for `footballalpha.org` | Present | ✓ PASS |
+| Local main fully pushed | `git fetch && git rev-list --count origin/main..HEAD` | `0` | ✓ PASS |
+| Live LinkedIn URL correct | fresh live-HTML grep for `linkedin.com/in/[a-zA-Z-]*` | Only `linkedin.com/in/daniel-cross` (×4); wrong handle ×0 | ✓ PASS |
+| Live screenshots resolve | `curl -sI .../screenshots/{football-alpha,metamask,keggy}.png` | All `HTTP/2 200` | ✓ PASS |
+| Dead URLs absent from live HTML | grep for `footballalpha.app` / `apps.apple.com/app/keggy` | 0 occurrences of each | ✓ PASS |
+| All page sections live | grep for `id="about"`/`"skills"`/`"contact"`/`"social-proof"` | All present | ✓ PASS |
 
 ### Requirements Coverage
 
 | Requirement | Source Plan | Description | Status | Evidence |
 |-------------|-------------|--------------|--------|----------|
-| IDENT-01 | 01-02 | Name, role, ex-MetaMask hook above the fold | ✓ SATISFIED | Live HTML, unaffected by gap. |
-| IDENT-02 | 01-04 | About/experience names 5 real employers | ✓ SATISFIED | Live HTML, unaffected. |
-| IDENT-03 | 01-04, 01-06 | Compact social proof row | ✓ SATISFIED | Live, unaffected. |
-| IDENT-04 | 01-02/01-04 | Grouped skills list + GitHub reachable | ✓ SATISFIED | Live, unaffected. |
-| SHOW-01 | 01-03, 01-06 | 3-4 flagship projects each with live/source links | ✓ SATISFIED | Live, unaffected (fix is on `origin/main`). |
-| CONV-01 | 01-04, 01-07 | Contact + dual-path availability, correct contact channels | ✗ BLOCKED | Availability text and mailto are correct and live. The LinkedIn contact channel — the specific defect plan 01-07 was written to close under this requirement ID — is still wrong in production because the fix was never pushed/deployed. |
-| SITE-01 | 01-05 | Live at danielcross.dev over HTTPS | ✓ SATISFIED | curl-verified 308→200, valid TLS. |
-| SITE-02 | 01-01 | Dark-mode-first, ≤3 accent colors | ✓ SATISFIED | `globals.css` tokens, unchanged. |
+| IDENT-01 | 01-02 | Name, role, ex-MetaMask hook above the fold | ✓ SATISFIED | Hero + live HTML |
+| IDENT-02 | 01-04 | About/experience names 5 real employers | ✓ SATISFIED | employers.ts + live HTML |
+| IDENT-03 | 01-04, 01-06 | Compact social proof row | ✓ SATISFIED | Row renders live; no dead hrefs |
+| IDENT-04 | 01-02/01-04 | Grouped skills list (no bars) + GitHub reachable | ✓ SATISFIED | skills.ts + header GitHub link (live 200) |
+| SHOW-01 | 01-03, 01-06 | 3-4 flagship projects each with live/source links | ✓ SATISFIED | All working links deployed; anchored regex guards the class |
+| CONV-01 | 01-04, 01-07 | Contact + dual-path availability, correct contact channels | ✓ SATISFIED | mailto + availability lines live; LinkedIn CTA now resolves to the user-confirmed real profile in deployed production (gap closed this pass) |
+| SITE-01 | 01-05 | Live at danielcross.dev over HTTPS | ✓ SATISFIED | curl-verified 308→200, valid TLS |
+| SITE-02 | 01-01 | Dark-mode-first, ≤3 accent colors | ✓ SATISFIED | globals.css tokens |
 
-7 of 8 requirement IDs satisfied. CONV-01 is BLOCKED specifically on the deploy gap, not on missing/incorrect source code. No orphaned requirements — all 8 IDs declared across the phase's plans (01-01 through 01-07) match REQUIREMENTS.md's Phase 1 traceability rows.
+All 8 requirement IDs declared across the phase's plans (01-01 through 01-07) satisfied and matched against REQUIREMENTS.md's Phase 1 traceability rows. No orphaned requirements.
 
 ### Anti-Patterns Found
 
 | File | Line | Pattern | Severity | Impact |
 |------|------|---------|----------|--------|
-| `src/content/social-proof.ts` | 6 | `TODO` (Evo Nordics episode URL not sourced) | ℹ️ Info | Pre-existing, out of scope for this phase's plans, tracked in STATE.md; renders as honest plain text (no broken link). Not a blocker. |
+| `src/content/social-proof.ts` | 6 | `TODO` (Evo Nordics episode URL not sourced) | ℹ️ Info | Pre-existing, out of every phase-01 plan's scope, tracked in STATE.md blockers; renders as honest plain text (no broken link). |
 
-No `TBD`/`FIXME`/`XXX` markers found in any file touched by 01-07 (`src/content/site.ts` is clean). The debt-marker gate does not fire.
+No `TBD`/`FIXME`/`XXX` markers in any file touched this phase. The stale "unverified handle" TODO in `site.ts` was removed by 01-07.
 
 ### Human Verification Required
 
-None outstanding. All 5 items from the previous `human_needed` verification pass were resolved via `01-UAT.md`:
+None outstanding. All 5 items from the earlier `human_needed` pass were executed via `01-UAT.md` (2026-07-10): Tests 2-5 passed; Test 1 (LinkedIn URL) found the wrong handle, which was fixed by plan 01-07 and — as of this pass — confirmed deployed and correct in production.
 
-1. Mobile menu open/close — **pass**
-2. CopyEmailButton clipboard behavior — **pass**
-3. Anchor-scroll offset on mobile — **pass**
-4. Placeholder screenshots visual check — **pass**
-5. LinkedIn URL correctness — **issue found** ("its daniel-cross"), routed to gap-closure plan 01-07, which correctly fixed the source file — but the fix was never deployed (see Gaps below). This is now a structural/deploy gap, not an open human-verification item.
+Known non-blocking follow-ups carried in 01-REVIEW.md / STATE.md (not phase must-haves): MobileNav Escape/outside-click dismissal (WR-01), CopyEmailButton aria-live + timer stacking (WR-02/03), explicit `scroll-padding-top` (IN-03), real product screenshots to replace placeholders, Evo Nordics episode URL (IN-01).
 
 ### Gaps Summary
 
-**One blocking gap, and it is a repeat of a failure mode this phase has already hit once.** The 01-07 gap-closure plan correctly identified and fixed the wrong LinkedIn handle in `src/content/site.ts` (commit `8330674`), and the code-level fix is fully correct — verified directly against the user-confirmed value from UAT. However, that commit and 6 others (the UAT record, the 01-07 plan/summary, the code review, and this verification's predecessor) were never pushed to `origin/main`. Vercel deploys from `origin/main`, so production has not rebuilt, and `www.danielcross.dev` today still serves the old, wrong `linkedin.com/in/danielcross` URL in both the Contact section and the Footer.
-
-This is the exact same root cause flagged and closed once already in this phase (01-06's first pass shipped a correct fix that also sat unpushed until a later pass caught it). The fix here is trivial — `git push` — but it must actually happen and be re-confirmed live before this phase can be marked `passed`.
-
-**This is not a code-quality issue and does not require a new plan/task** — no source change is needed, only pushing already-committed, already-verified work and re-confirming the live HTML.
+None. The final gap — the LinkedIn fix sitting unpushed while production served the wrong handle — is closed and independently confirmed: `origin/main..HEAD = 0`, origin HEAD `242180f`, and a fresh fetch of `https://www.danielcross.dev/` shows the Contact and Footer LinkedIn CTAs both resolving to the user-confirmed `https://www.linkedin.com/in/daniel-cross`, with zero occurrences of the old wrong handle. All 7 observable truths verified, all 8 requirement IDs satisfied, all UAT items resolved, human-verification queue empty. Phase goal achieved.
 
 ---
 
-_Verified: 2026-07-10T08:05:00Z_
+_Verified: 2026-07-10T08:20:00Z_
 _Verifier: Claude (gsd-verifier)_
