@@ -110,7 +110,9 @@ None yet.
 | 2 | Swap accent to Solana brand colours (purple #9945FF; green #14F195 live-only) | 2026-07-10 | 61b289c | — |
 | 3 | Correct footballAlpha copy — revenue-backed player exchange, real stack from regista repo | 2026-07-10 | 0a38bbe | — |
 | 4 | Purple canvas pulses; green accents for availability dot + current role border | 2026-07-10 | b6867b3 | — |
-| 5 | Enrich About section from CV — roles, dates, highlights; BookingGo → Booking.com | 2026-07-10 | 4c9a8eb | — |
+| 5 | Enrich About section from CV: roles, dates, highlights; BookingGo → Booking.com | 2026-07-10 | 4c9a8eb | — |
+| 6 | Remove all em dashes; App Forge clients; 8+ years; US-companies note | 2026-07-10 | 4ebe1c5 | — |
+| 7 | Remove social proof section | 2026-07-10 | 9605e5d | — |
 
 ## Deferred Items
 
