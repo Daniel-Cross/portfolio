@@ -107,6 +107,8 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260710-crq | Live Solana network hero canvas (spec: docs/superpowers/specs/2026-07-10-live-solana-network-canvas-design.md) | 2026-07-10 | 192a26e | [260710-crq-live-solana-network-hero-canvas-per-docs](./quick/260710-crq-live-solana-network-hero-canvas-per-docs/) |
+| 2 | Swap accent to Solana brand colours (purple #9945FF; green #14F195 live-only) | 2026-07-10 | 61b289c | — |
+| 3 | Correct footballAlpha copy — revenue-backed player exchange, real stack from regista repo | 2026-07-10 | 0a38bbe | — |
 
 ## Deferred Items
 
