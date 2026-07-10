@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Visitor can contact Daniel directly and see availability for both contract and full-time engagements
   5. Site renders dark-mode-first with a restrained palette (≤3 accent colors) and is responsive across mobile and desktop
 
-**Plans**: 6/6 plans complete
+**Plans**: 7/7 plans complete
 **Wave 1**
 
 - [x] 01-01-PLAN.md — Scaffold, Vitest harness & dark design-token system
@@ -62,7 +62,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Gap Closure** *(from 01-UAT.md — 1 of 5 tests failed: LinkedIn CTA pointed at a wrong, guessed handle)*
 
-- [ ] 01-07-PLAN.md — Correct LinkedIn CTA to the user-confirmed profile URL and drop the stale verification TODO (CONV-01)
+- [x] 01-07-PLAN.md — Correct LinkedIn CTA to the user-confirmed profile URL and drop the stale verification TODO (CONV-01)
 
 **UI hint**: yes
 
@@ -134,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Portfolio Shell, Live | 6/6 | Complete   | 2026-07-09 |
+| 1. Portfolio Shell, Live | 7/7 | Complete   | 2026-07-09 |
 | 2. Decision-Driven Case Studies | 0/TBD | Not started | - |
 | 3. Live Solana Wallet Demo | 0/TBD | Not started | - |
 | 4. Mobile Work, Made Tangible | 0/TBD | Not started | - |
