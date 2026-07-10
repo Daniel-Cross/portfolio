@@ -3,7 +3,7 @@ export type SkillGroup = {
   skills: string[]
 }
 
-// Plain grouped list — no percentage/proficiency scores (skill bars are
+// Plain grouped list: no percentage/proficiency scores (skill bars are
 // explicit Out of Scope per REQUIREMENTS.md).
 export const skillGroups: SkillGroup[] = [
   {

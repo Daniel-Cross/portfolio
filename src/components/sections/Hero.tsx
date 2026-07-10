@@ -9,7 +9,7 @@ export function Hero() {
         <SlotReadout />
       </div>
       <h1 className="text-3xl leading-tight font-semibold text-balance md:text-5xl">
-        {site.name} — {site.role}, {site.heroHook}.
+        {site.name}. {site.role}, {site.heroHook}.
       </h1>
       <p className="mt-6 max-w-xl text-base text-muted-foreground">
         {site.heroSubhead}

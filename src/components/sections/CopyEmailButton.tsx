@@ -14,7 +14,7 @@ export function CopyEmailButton() {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Clipboard write failed — fail silently, the mailto link is the
+      // Clipboard write failed; fail silently, the mailto link is the
       // guaranteed fallback (D-15).
     }
   }
