@@ -41,35 +41,35 @@
  * The site is dark-only: :root and .dark share the same token values so there
  * is never a light-mode flash, regardless of hydration timing.
  *
- * Accent budget (SITE-02): one active accent — Solana purple (#9945FF,
- * official brand) — plus Solana green (#14F195) reserved strictly for live
+ * Accent budget (SITE-02): one active accent, Solana purple (#9945FF,
+ * official brand), plus Solana green (#14F195) reserved strictly for live
  * signals (slot readout dot, canvas pulses), and a reserved destructive red
  * (defined, unused until Phase 3). Everything else is a surface/text neutral.
  */
 :root,
 .dark {
-  /* Dominant (60%) — page background, near-black with a cool tint */
+  /* Dominant (60%): page background, near-black with a cool tint */
   --background: oklch(0.16 0.01 260);
   /* Primary text/foreground */
   --foreground: oklch(0.96 0.002 260);
-  /* Secondary (30%) — header/nav, card surfaces, footer */
+  /* Secondary (30%): header/nav, card surfaces, footer */
   --card: oklch(0.22 0.012 260);
   --card-foreground: oklch(0.96 0.002 260);
   --popover: oklch(0.22 0.012 260);
   --popover-foreground: oklch(0.96 0.002 260);
-  /* Accent (10%) — Solana purple: primary CTA fill, focus rings, active indicators */
+  /* Accent (10%): Solana purple: primary CTA fill, focus rings, active indicators */
   --primary: #9945ff;
   --primary-foreground: oklch(0.96 0.002 260);
   --secondary: oklch(0.22 0.012 260);
   --secondary-foreground: oklch(0.96 0.002 260);
   --muted: oklch(0.22 0.012 260);
-  /* Muted text — body copy, blurbs, subheads */
+  /* Muted text: body copy, blurbs, subheads */
   --muted-foreground: oklch(0.65 0.01 260);
   --accent: #9945ff;
-  /* Solana green — live signals only (readout dot, canvas slot pulses) */
+  /* Solana green: live signals only (readout dot, canvas slot pulses) */
   --live: #14f195;
   --accent-foreground: oklch(0.96 0.002 260);
-  /* Destructive — reserved for Phase 3 wallet error states; not applied in Phase 1 UI */
+  /* Destructive: reserved for Phase 3 wallet error states; not applied in Phase 1 UI */
   --destructive: oklch(0.58 0.245 27);
   --border: oklch(0.96 0.002 260 / 10%);
   --input: oklch(0.96 0.002 260 / 15%);
