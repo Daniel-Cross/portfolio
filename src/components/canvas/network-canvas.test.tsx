@@ -93,3 +93,19 @@ describe("SlotReadout", () => {
     expect(container.textContent).not.toMatch(/\d{1,3}(,\d{3})+/)
   })
 })
+
+describe("NetworkCanvas", () => {
+  beforeEach(() => {
+    vi.resetModules()
+    stubFakeWebSocket()
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it("mounts without throwing when 2D context is unavailable (jsdom)", async () => {
+    const { NetworkCanvas } = await import("./NetworkCanvas")
+    expect(() => render(<NetworkCanvas />)).not.toThrow()
+  })
+})
