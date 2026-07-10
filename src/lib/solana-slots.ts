@@ -6,7 +6,9 @@
  * slot number.
  */
 
-const WS_URL = "wss://api.mainnet-beta.solana.com"
+// api.mainnet-beta.solana.com 403s any request with a browser Origin header
+// (verified 2026-07-10); publicnode serves mainnet WS to browsers keyless.
+const WS_URL = "wss://solana-rpc.publicnode.com"
 const HEARTBEAT_MS = 400
 
 type SlotState = { slot: number | null; live: boolean }
