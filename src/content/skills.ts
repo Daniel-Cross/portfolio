@@ -12,11 +12,15 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "React Native / Mobile",
-    skills: ["React Native", "Expo", "iOS", "Android"],
+    skills: ["React Native", "TypeScript", "Expo", "iOS", "Android"],
   },
   {
     label: "Frontend / Web",
     skills: ["React", "TypeScript", "JavaScript"],
+  },
+  {
+    label: "Backend",
+    skills: ["Node.js", "Express", "TypeScript", "Prisma", "SQL"],
   },
   {
     label: "AI / Tooling",

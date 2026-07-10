@@ -27,17 +27,21 @@ export const projects: Project[] = [
     links: [{ label: "App Store", href: "https://metamask.io" }],
   },
   {
-    slug: "keggy",
-    name: "Keggy",
+    slug: "safe-haven",
+    name: "Safe Haven",
     blurb:
-      "Keggy is a daily football-guessing game in the spirit of Wordle, featured on the Football Ramble podcast. Built the iOS app and open-sourced the underlying player and game data so other developers can build on it.",
-    tags: ["React Native", "iOS"],
-    screenshot: "/screenshots/keggy.png",
-    links: [
-      {
-        label: "View source",
-        href: "https://github.com/Daniel-Cross/keggy-data",
-      },
-    ],
+      "A school behaviour management platform: a React/TypeScript dashboard built with Vite, Zustand, and TanStack Query, paired with an Expo mobile app, sharing types through a common package and backed by Supabase auth and database.",
+    tags: ["React Native", "Expo", "React", "TypeScript", "Supabase"],
+    screenshot: "/screenshots/safe-haven.png",
+    links: [],
+  },
+  {
+    slug: "neo",
+    name: "Neo",
+    blurb:
+      "A peer-to-peer payments app on Solana built with React Native and Expo: wallet creation and import, passcode security, send and request flows, and end-to-end encrypted transaction memos.",
+    tags: ["Solana", "React Native", "Expo", "TypeScript"],
+    screenshot: "/screenshots/neo.png",
+    links: [],
   },
 ]

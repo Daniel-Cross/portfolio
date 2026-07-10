@@ -12,18 +12,19 @@ describe("projects", () => {
     expect([3, 4]).toContain(projects.length)
   })
 
-  it("includes footballAlpha, MetaMask, and Keggy", () => {
+  it("includes footballAlpha, MetaMask, Safe Haven, and Neo", () => {
     const names = projects.map((p) => p.name)
     expect(names).toEqual(
-      expect.arrayContaining(["footballAlpha", "MetaMask", "Keggy"])
+      expect.arrayContaining(["footballAlpha", "MetaMask", "Safe Haven", "Neo"])
     )
   })
 
-  it("every project has a blurb, at least one tag, and at least one valid link", () => {
+  it("every project has a blurb, at least one tag, and only valid links", () => {
     for (const project of projects) {
       expect(project.blurb.length).toBeGreaterThan(0)
       expect(project.tags.length).toBeGreaterThan(0)
-      expect(project.links.length).toBeGreaterThan(0)
+      // Links are optional (content honesty: no invented URLs), but any
+      // present link must be a labelled https URL.
       for (const link of project.links) {
         expect(link.label.length).toBeGreaterThan(0)
         expect(link.href).toMatch(/^https:\/\//)
