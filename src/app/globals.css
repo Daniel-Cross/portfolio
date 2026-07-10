@@ -89,3 +89,57 @@
     @apply bg-background font-sans text-foreground;
   }
 }
+
+/*
+ * Component Lab (quick task 260710-lkn): shared looping keyframes for the
+ * seven web ports. Every looping element carries the lab-animated class so
+ * prefers-reduced-motion can pause them all from one rule.
+ */
+@keyframes lab-pixel {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes lab-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes lab-dash {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@property --lab-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes lab-rotate {
+  from {
+    --lab-angle: 0deg;
+  }
+  to {
+    --lab-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-animated {
+    animation: none;
+  }
+}
