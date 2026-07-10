@@ -60,6 +60,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] 01-06-PLAN.md — Repair Projects proof: real screenshots, owner-confirmed working links, validating safety net (SHOW-01, IDENT-03)
 
+**Gap Closure** *(from 01-UAT.md — 1 of 5 tests failed: LinkedIn CTA pointed at a wrong, guessed handle)*
+
+- [ ] 01-07-PLAN.md — Correct LinkedIn CTA to the user-confirmed profile URL and drop the stale verification TODO (CONV-01)
+
 **UI hint**: yes
 
 ### Phase 2: Decision-Driven Case Studies
