@@ -105,6 +105,7 @@ export function ConsensusDial({
   const lastSampleRef = useRef({ clientX: 0, time: 0, velocityX: 0 })
 
   useEffect(() => {
+    if (typeof window.matchMedia !== "function") return
     setReducedMotion(
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     )

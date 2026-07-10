@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { ComponentLab } from "@/components/lab/component-lab";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
@@ -13,6 +14,7 @@ export default function Home() {
       <main id="top" className="min-h-screen">
         <Hero />
         <Projects />
+        <ComponentLab />
         <About />
         <Skills />
         <Contact />
