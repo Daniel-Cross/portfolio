@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-07-09)
 Phase: 2 — Decision-Driven Case Studies
 Plan: Not started
 Status: Ready to execute
-Last activity: 2026-07-10 — Phase 01 complete, transitioned to Phase 2
+Last activity: 2026-07-10 — Completed quick task 260710-crq: Live Solana network hero canvas
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -100,6 +100,12 @@ None yet.
 - Phase 1 (from research): Confirm footballAlpha's live URL/status before finalizing content; phrase case-study copy to age gracefully.
 - Phase 3 (from research): Highest-risk phase — run `/gsd-plan-phase --research-phase 3` for wallet-connect state machine, dedicated-RPC rate-limit handling, and recorded-demo UX before implementation.
 - Phase 1: Confirm Evo Nordics podcast episode URL before launch (src/content/social-proof.ts item currently unlinked text)
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260710-crq | Live Solana network hero canvas (spec: docs/superpowers/specs/2026-07-10-live-solana-network-canvas-design.md) | 2026-07-10 | 192a26e | [260710-crq-live-solana-network-hero-canvas-per-docs](./quick/260710-crq-live-solana-network-hero-canvas-per-docs/) |
 
 ## Deferred Items
 
