@@ -113,6 +113,8 @@ None yet.
 | 5 | Enrich About section from CV: roles, dates, highlights; BookingGo → Booking.com | 2026-07-10 | 4c9a8eb | — |
 | 6 | Remove all em dashes; App Forge clients; 8+ years; US-companies note | 2026-07-10 | 4ebe1c5 | — |
 | 7 | Remove social proof section | 2026-07-10 | 9605e5d | — |
+| 8 | Skills: Backend group + TypeScript in mobile; projects: Keggy out, Safe Haven + Neo in | 2026-07-10 | 8d5f256 | — |
+| 9 | Phone-frame mockups for project screenshots (placeholders pending real captures) | 2026-07-10 | 7a902c9 | — |
 
 ## Deferred Items
 
