@@ -1,9 +1,9 @@
 ---
-status: diagnosed
+status: resolved
 phase: 01-portfolio-shell-live
 source: [01-VERIFICATION.md]
 started: 2026-07-09T21:52:30Z
-updated: 2026-07-10T05:16:37Z
+updated: 2026-07-10T06:15:00Z
 ---
 
 ## Current Test
@@ -46,7 +46,8 @@ blocked: 0
 ## Gaps
 
 - truth: "LinkedIn CTA opens the real Daniel Cross profile"
-  status: failed
+  status: resolved
+  resolution: "Gap plan 01-07 executed: site.ts corrected to https://www.linkedin.com/in/daniel-cross, pushed and confirmed live on danielcross.dev (verified 2026-07-10, re-verification passed 7/7)"
   reason: "User reported: its daniel-cross"
   severity: major
   test: 1

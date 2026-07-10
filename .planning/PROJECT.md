@@ -12,18 +12,17 @@ A crypto hiring manager or founder lands on the site and within a minute believe
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Site live at danielcross.dev with professional-foundation design plus crypto-native touches (dark theme, subtle web3 flavor) — Validated in Phase 1: Portfolio Shell, Live
+- [x] Minimal contact/availability affordance (contract + full-time paths both supported) — Validated in Phase 1: Portfolio Shell, Live (dual-path Contact section, click-to-copy email, verified LinkedIn CTA)
 
 ### Active
 
-- [ ] Site live at danielcross.dev with professional-foundation design plus crypto-native touches (dark theme, subtle web3 flavor)
 - [ ] Live on-chain demo(s) — visitors can connect a wallet and interact with something real (e.g. Solana devnet)
-- [ ] Project showcases: MetaMask work, footballAlpha (live/nearly live — linkable), Keggy and other mobile apps
+- [ ] Project showcases: MetaMask work, footballAlpha (live/nearly live — linkable), Keggy and other mobile apps (shell shipped in Phase 1; real product screenshots and deeper proof still pending)
 - [ ] Device-frame demos for mobile work — makes React Native work tangible on the web
 - [ ] Written case studies — architecture decisions, performance wins from MetaMask/footballAlpha
-- [ ] Social proof surfaced — ex-MetaMask, podcast appearance (Evo Nordics React Native), Football Ramble mentions, App Store presence
+- [ ] Social proof surfaced — ex-MetaMask, podcast appearance (Evo Nordics React Native), Football Ramble mentions, App Store presence (row shipped in Phase 1; items not yet linked)
 - [ ] Blog / technical writing section
-- [ ] Minimal contact/availability affordance (contract + full-time paths both supported)
 
 ### Out of Scope
 
@@ -75,4 +74,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-09 after initialization*
+*Last updated: 2026-07-10 after Phase 1 completion (Portfolio Shell, Live — verified 7/7, live at danielcross.dev)*
