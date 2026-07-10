@@ -6,9 +6,12 @@ export function About() {
       <h2 className="text-2xl font-semibold md:text-3xl">About</h2>
       <p className="mt-6 max-w-xl text-base text-muted-foreground">
         Senior React Native / Web3 engineer based in Stockholm, working
-        UK/EU remote. Career spans product-led mobile teams and a run
-        shipping features to MetaMask&apos;s mobile wallet, now building
-        Solana-based crypto products.
+        UK/EU remote, with 7+ years building and scaling mobile and web
+        applications. Career spans leading frontend teams, modernising
+        legacy codebases, and shipping features to MetaMask&apos;s 30M+
+        user wallet — now building Solana-based crypto products. Focused
+        on performance, maintainable architecture, and owning features
+        end-to-end from design through release.
       </p>
       <ul className="mt-8 flex flex-col gap-4">
         {/* List is reverse-chronological: index 0 is the current role, marked live-green. */}
@@ -30,6 +33,13 @@ export function About() {
               <p className="mt-1 text-sm text-muted-foreground">
                 {employer.note}
               </p>
+            ) : null}
+            {employer.highlights ? (
+              <ul className="mt-2 flex list-disc flex-col gap-1 pl-4 text-sm text-muted-foreground">
+                {employer.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
             ) : null}
           </li>
         ))}

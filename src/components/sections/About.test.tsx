@@ -8,14 +8,14 @@ import { socialProof } from "@/content/social-proof"
 import { About } from "./About"
 
 describe("About/Skills/SocialProof content", () => {
-  it("employers includes MetaMask, The App Forge, Hackberry, Yomento, and BookingGo", () => {
+  it("employers includes MetaMask, The App Forge, Hackberry, Yomento, and Booking.com", () => {
     const names = employers.map((employer) => employer.name).join(" ")
     for (const name of [
       "MetaMask",
       "The App Forge",
       "Hackberry",
       "Yomento",
-      "BookingGo",
+      "Booking.com",
     ]) {
       expect(names).toContain(name)
     }
@@ -40,11 +40,13 @@ describe("About/Skills/SocialProof content", () => {
 describe("About", () => {
   it("renders all five employer names and has id=about", () => {
     const { container } = render(<About />)
-    const list = screen.getByRole("list")
+    // First list is the employers list; highlight bullets render nested lists.
+    const list = screen.getAllByRole("list")[0]
     for (const employer of employers) {
+      // getAllByText: a name can also appear inside highlight bullets.
       expect(
-        within(list).getByText(new RegExp(employer.name))
-      ).toBeInTheDocument()
+        within(list).getAllByText(new RegExp(employer.name)).length
+      ).toBeGreaterThan(0)
     }
     expect(container.querySelector("#about")).toBeInTheDocument()
   })
