@@ -99,6 +99,7 @@ None yet.
 
 - Phase 1 (from research): Confirm footballAlpha's live URL/status before finalizing content; phrase case-study copy to age gracefully.
 - Phase 3 (from research): Highest-risk phase — run `/gsd-plan-phase --research-phase 3` for wallet-connect state machine, dedicated-RPC rate-limit handling, and recorded-demo UX before implementation.
+- Phase 3 (verified 2026-07-10 during quick task 260710-crq): `api.mainnet-beta.solana.com` returns 403 to ANY request carrying a browser Origin header (both WS and HTTP POST) — it is unusable from browser dapps. `wss://solana-rpc.publicnode.com` and `wss://solana.drpc.org` accept browser origins keylessly. Plan Phase 3's devnet RPC choice with this in mind.
 - Phase 1: Confirm Evo Nordics podcast episode URL before launch (src/content/social-proof.ts item currently unlinked text)
 
 ### Quick Tasks Completed

@@ -32,8 +32,11 @@ readout proves it's live.
 
 ## Data flow
 
-Raw `WebSocket` → `wss://api.mainnet-beta.solana.com`, JSON-RPC `slotSubscribe`.
-No `@solana/web3.js`, no API key. Notifications update readout + enqueue pulses.
+Raw `WebSocket` → `wss://solana-rpc.publicnode.com`, JSON-RPC `slotSubscribe`.
+No `@solana/web3.js`, no API key.
+(Amended 2026-07-10: originally `wss://api.mainnet-beta.solana.com`, but that
+endpoint 403s any request with a browser Origin header — verified during
+implementation. publicnode serves mainnet WS to browsers keyless.) Notifications update readout + enqueue pulses.
 
 **Fallback:** on failure/close, retry once, then simulate a ~400 ms heartbeat —
 animation identical, but readout drops slot number and "live" label. Never fake
