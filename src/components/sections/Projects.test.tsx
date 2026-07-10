@@ -15,15 +15,19 @@ describe("Projects", () => {
     }
   })
 
-  it("renders at least one accessibly-labelled link per card", () => {
+  it("renders an accessibly-labelled link for every project link", () => {
     render(<Projects />)
     for (const project of projects) {
       const heading = screen.getByRole("heading", { name: project.name })
       const card = heading.closest("article")
       expect(card).not.toBeNull()
-      const links = within(card as HTMLElement).getAllByRole("link")
-      expect(links.length).toBeGreaterThan(0)
-      expect(links[0]).toHaveAccessibleName()
+      // Links are optional per content policy; when present they must be
+      // rendered and accessibly named.
+      const links = within(card as HTMLElement).queryAllByRole("link")
+      expect(links.length).toBe(project.links.length)
+      for (const link of links) {
+        expect(link).toHaveAccessibleName()
+      }
     }
   })
 

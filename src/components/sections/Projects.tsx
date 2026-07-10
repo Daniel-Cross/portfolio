@@ -1,7 +1,6 @@
-import Image from "next/image"
-
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
+import { PhoneFrame } from "@/components/ui/phone-frame"
 import { projects } from "@/content/projects"
 
 export function Projects() {
@@ -14,13 +13,10 @@ export function Projects() {
             key={project.slug}
             className="flex flex-col gap-6 rounded-lg border-l-4 border-accent bg-card p-6 md:flex-row md:items-center"
           >
-            <Image
+            <PhoneFrame
               src={project.screenshot}
               alt={`${project.name} screenshot`}
-              width={640}
-              height={400}
-              className="h-auto w-full shrink-0 rounded-md md:w-64"
-              {...(index === 0 ? { preload: true } : {})}
+              priority={index === 0}
             />
             <div className="flex flex-col gap-3">
               <h3 className="text-xl font-semibold">{project.name}</h3>
