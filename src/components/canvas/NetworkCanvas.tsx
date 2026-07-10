@@ -30,7 +30,7 @@ export function NetworkCanvas() {
       const ctx: CanvasRenderingContext2D = context
 
       const styles = getComputedStyle(document.documentElement)
-      const primaryColor = styles.getPropertyValue("--primary").trim()
+      const liveColor = styles.getPropertyValue("--live").trim()
       const neutralColor = styles.getPropertyValue("--muted-foreground").trim()
       const linkColor = styles.getPropertyValue("--border").trim()
 
@@ -101,7 +101,7 @@ export function NetworkCanvas() {
           ctx.fill()
         }
 
-        // Pulses: violet ripple + flash, drawn on top, fading over ~1s.
+        // Pulses: Solana-green ripple + flash, drawn on top, fading over ~1s.
         for (let i = pulses.length - 1; i >= 0; i--) {
           const pulse = pulses[i]
           const elapsed = now - pulse.startedAt
@@ -112,12 +112,12 @@ export function NetworkCanvas() {
           const node = nodes[pulse.nodeIndex]
           if (!node) continue
           const progress = elapsed / PULSE_DURATION_MS
-          ctx.strokeStyle = primaryColor
+          ctx.strokeStyle = liveColor
           ctx.globalAlpha = 1 - progress
           ctx.beginPath()
           ctx.arc(node.x, node.y, progress * LINK_DISTANCE, 0, Math.PI * 2)
           ctx.stroke()
-          ctx.fillStyle = primaryColor
+          ctx.fillStyle = liveColor
           ctx.beginPath()
           ctx.arc(node.x, node.y, 2.5, 0, Math.PI * 2)
           ctx.fill()

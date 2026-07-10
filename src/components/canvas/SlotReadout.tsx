@@ -17,7 +17,7 @@ export function SlotReadout() {
       <span
         className={cn(
           "h-1.5 w-1.5 animate-pulse rounded-full",
-          live ? "bg-primary" : "bg-muted-foreground"
+          live ? "bg-live" : "bg-muted-foreground"
         )}
         aria-hidden="true"
       />
