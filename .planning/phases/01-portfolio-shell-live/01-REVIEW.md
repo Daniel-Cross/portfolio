@@ -1,6 +1,6 @@
 ---
 phase: 01-portfolio-shell-live
-reviewed: 2026-07-09T21:04:29Z
+reviewed: 2026-07-10T05:56:10Z
 depth: standard
 files_reviewed: 28
 files_reviewed_list:
@@ -42,94 +42,132 @@ status: issues_found
 
 # Phase 01: Code Review Report
 
-**Reviewed:** 2026-07-09T21:04:29Z
+**Reviewed:** 2026-07-10T05:56:10Z
 **Depth:** standard
-**Files Reviewed:** 28
+**Files Reviewed:** 28 (24 source/test files; 3 binary PNGs and 1 .gitkeep verified for existence/validity only)
 **Status:** issues_found
-
-## Summary
-
-Fresh full review of the Phase 1 portfolio shell after gap-closure plan 01-06 executed. This supersedes the earlier 01-REVIEW.md — the prior findings (broken screenshot 404s / CR-01, aspect-ratio distortion / WR-03, link-regex precedence bug / WR-04) are confirmed fixed in the current codebase.
-
-Evidence gathered during this review:
-
-- **Tests:** `vitest run` — 7 files, 20 tests, all pass. The new screenshot-existence guard and the anchored `^https://` link regex in `src/content/projects.test.ts` are present and effective.
-- **Typecheck / lint:** `tsc --noEmit` clean; `eslint` clean.
-- **Binary assets:** all three `public/screenshots/*.png` are valid, non-empty PNGs (640x400, RGB, 4.5–5.5 KB), dimensions matching the `width={640} height={400}` props in `Projects.tsx`, and each is referenced by `src/content/projects.ts`. They are generated name-on-dark placeholder cards, not real screenshots (owner-approved fallback per 01-06 — see WR-02).
-- **Links:** `https://footballalpha.org`, `https://github.com/Daniel-Cross/keggy-data`, `https://metamask.io`, and `https://github.com/Daniel-Cross` all return HTTP 200. The LinkedIn URL could not be verified (LinkedIn returns 999 to non-browser clients) and is explicitly marked as a guess in source (WR-01).
-- **API surface:** the `preload` prop passed to `next/image` in `Projects.tsx` was verified against the installed Next 16.2.10 types — it is the current, correct API (`priority` is deprecated in favor of `preload`), so this is not a bug.
-- **Security:** no hardcoded secrets, no dangerous functions, no injection surfaces (static content, no user input other than a clipboard write of a constant). All `target="_blank"` links carry `rel="noopener noreferrer"`. The `shadcn/tailwind.css` import in `globals.css` resolves via the package's `exports` map.
-
-No Critical issues found. Three Warnings (an unverified outbound profile URL wired into two CTAs, misleading alt text on placeholder images, and unconditional smooth-scroll that ignores reduced-motion preferences) and five Info items.
 
 ## Narrative Findings (AI reviewer)
 
+## Summary
+
+Reviewed the full Phase 01 file set: static one-page portfolio (page composition, Header/MobileNav/Footer, six section components, one client-side copy button, five typed content modules, six test files, and the placeholder screenshot assets). Cross-referenced imports against `src/components/ui/` (buttonVariants/Badge exports confirmed), `src/app/layout.tsx` (font CSS variables `--font-geist-sans`/`--font-geist-mono` are defined and applied, so the `@theme inline` references in globals.css resolve), and `node_modules`.
+
+Adversarial checks that came back clean — verified, not assumed:
+
+- **`preload` prop on `next/image`** (`Projects.tsx:23`) looked like a bug (the classic prop is `priority`), but `node_modules/next/dist/shared/lib/get-img-props.d.ts` confirms Next 16 defines `preload?: boolean` and marks `priority` as `@deprecated`. Correct usage.
+- **`@import "shadcn/tailwind.css"`** (`globals.css:3`) looked suspicious (shadcn is normally copy-in, not an npm CSS source), but the installed `shadcn@4.13.0` package exports `"./tailwind.css": "./dist/tailwind.css"`. Resolves correctly.
+- **LinkedIn handle gap-closure (01-07)** — `src/content/site.ts:18` now carries the user-confirmed hyphenated URL `https://www.linkedin.com/in/daniel-cross`; the stale verification TODO is gone; the old no-hyphen handle appears nowhere in `src/`. Gap confirmed closed.
+- **Security surface** — no secrets, no `eval`/`innerHTML`/injection vectors; every `target="_blank"` anchor (Header, MobileNav, Footer, Projects, SocialProof, Contact) carries `rel="noopener noreferrer"`; clipboard write is guarded for missing `navigator.clipboard` and wrapped in try/catch with a documented mailto fallback (D-15).
+- **Binary assets** — all three PNGs are valid 640x400 images matching the `width={640} height={400}` props in `Projects.tsx`; none are empty. They are text-on-dark placeholders, which 01-VERIFICATION.md documents as an accepted deferral (see IN-02 for the one residual defect this leaves in code).
+- **Test wiring** — `projects.test.ts`'s screenshot-existence guard resolves `public/` correctly via `import.meta.dirname`; `About.test.tsx`'s `new RegExp(employer.name)` is safe for all current names (no regex metacharacters); `Header.test.tsx`'s `getAllByRole` correctly tolerates the closed-by-default MobileNav.
+
+Remaining findings are accessibility/robustness warnings in the two interactive client components, plus content/asset info items.
+
 ## Warnings
 
-### WR-01: LinkedIn CTA points at an unverified, guessed profile URL
+### WR-01: MobileNav menu cannot be dismissed with Escape, outside click, or focus loss
 
-**File:** `src/content/site.ts:21` (consumed by `src/components/layout/Footer.tsx:16` and `src/components/sections/Contact.tsx:31`)
-**Issue:** The in-source TODO (`site.ts:11-13`) admits `https://www.linkedin.com/in/danielcross` is a guessed canonical-shape URL "pending confirmation of the real handle." "Daniel Cross" is a common name; short LinkedIn vanity URLs like `/in/danielcross` are frequently already claimed by someone else. This URL is wired into two of the site's primary conversion CTAs (Footer and the Contact section's filled-button LinkedIn link). If the handle is wrong, hiring managers are sent to a stranger's profile — the single worst failure mode for this site's stated purpose. The URL cannot be verified programmatically (LinkedIn returns HTTP 999 to non-browser clients), so this must be human-verified before launch.
-**Fix:** Owner opens their own LinkedIn profile, copies the exact public vanity URL, and replaces the value in `site.ts`. Until verified, this should be treated as a launch blocker in the phase checklist even though it cannot be caught by CI.
+**File:** `src/components/layout/MobileNav.tsx:18-63`
+**Issue:** The open menu only closes via the toggle button or clicking a menu link. There is no `Escape` handler, no outside-click/blur dismissal, and no focus management (focus is not moved into the menu on open nor returned to the toggle on close). A keyboard user can Tab straight past the open overlay and leave it stranded over the page content; the `aria-expanded` state is correct but there is no `aria-controls` linking the button to the panel it toggles. This is the primary mobile navigation for the site's target audience (hiring managers on phones), so a stuck overlay is a real robustness defect, not a style nit.
+**Fix:** Add a keydown handler and `aria-controls`:
 
-### WR-02: Placeholder images are announced to users as real screenshots
-
-**File:** `src/components/sections/Projects.tsx:19` (assets: `public/screenshots/football-alpha.png`, `metamask.png`, `keggy.png`)
-**Issue:** All three PNGs are generated placeholder cards (project name in muted text on a flat dark fill — owner-approved fallback per 01-06-SUMMARY, real screenshots deferred). But the rendered `alt` is `` `${project.name} screenshot` ``, so screen-reader users are told they are looking at an app screenshot when the image contains only the project name. There is also no marker in `src/content/projects.ts` distinguishing placeholder from real assets, so nothing tracks the deferred swap at the code level — the site's flagship "proof through demos" section silently ships with non-proof imagery.
-**Fix:** Until real screenshots land, make the alt text honest and add a tracking marker:
 ```tsx
-// Projects.tsx — until real screenshots replace the placeholders:
-alt={`${project.name} placeholder image`}
+<button
+  type="button"
+  onClick={() => setOpen((prev) => !prev)}
+  aria-label={open ? "Close menu" : "Open menu"}
+  aria-expanded={open}
+  aria-controls="mobile-nav"
+  ...
+/>
+{open && (
+  <nav
+    id="mobile-nav"
+    aria-label="Mobile"
+    onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
+    ...
+  >
 ```
-and add a `// TODO: replace placeholder PNGs with real app screenshots (deferred from 01-06)` note in `src/content/projects.ts` so the deferral is discoverable where the paths live.
 
-### WR-03: Unconditional `scroll-behavior: smooth` ignores prefers-reduced-motion
+and register a document-level `Escape` listener (`useEffect` with `keydown`) while `open` is true so Escape works regardless of where focus sits. Outside-click dismissal via a `pointerdown` listener on `document` is a small addition worth making at the same time.
 
-**File:** `src/app/globals.css:82`
-**Issue:** `html { scroll-behavior: smooth }` is applied unconditionally. Every anchor navigation (header nav, mobile nav, both hero CTAs, the `#top` logo link) triggers an animated full-page scroll even for users who have set `prefers-reduced-motion: reduce` — a vestibular-disorder accessibility issue (WCAG 2.3.3). For a site whose visitors are evaluated-by-first-impression hiring managers, motion-preference respect is also a signal of frontend craft.
-**Fix:**
-```css
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+### WR-02: Copy-email confirmation is invisible to screen readers
+
+**File:** `src/components/sections/CopyEmailButton.tsx:22-30`
+**Issue:** On success the button's text swaps from the email address to "Copied!" with no `aria-live` region, so assistive technology announces nothing — a screen-reader user activates the button and gets zero feedback that the copy happened. The swap also removes the email address from the button's accessible name for 2 seconds, so the control transiently loses its identity.
+**Fix:** Announce the state change politely and keep a stable accessible name:
+
+```tsx
+<button
+  type="button"
+  onClick={handleClick}
+  aria-label={`Copy ${site.email} to clipboard`}
+  className="..."
+>
+  {copied ? "Copied!" : site.email}
+</button>
+<span aria-live="polite" className="sr-only">
+  {copied ? "Email copied to clipboard" : ""}
+</span>
+```
+
+### WR-03: CopyEmailButton timers stack across clicks and survive unmount
+
+**File:** `src/components/sections/CopyEmailButton.tsx:10-20`
+**Issue:** Each click schedules a new 2-second `setTimeout` without clearing the previous one. Click at t=0s and again at t=1.9s: the first timer fires at t=2.0s and flips the label back to the email address 0.1s into the second confirmation — the "Copied!" feedback visibly cuts out early. The timeout is also never cleared on unmount (harmless no-op setState in React 19, but still a dangling timer).
+**Fix:** Hold the timer in a ref, clear before rescheduling, and clean up on unmount:
+
+```tsx
+const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+
+async function handleClick() {
+  if (!navigator.clipboard) return
+  try {
+    await navigator.clipboard.writeText(site.email)
+    setCopied(true)
+    clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => setCopied(false), 2000)
+  } catch { /* mailto fallback (D-15) */ }
 }
+
+useEffect(() => () => clearTimeout(timerRef.current), [])
 ```
 
 ## Info
 
-### IN-01: CopyEmailButton — stacked timeouts, no unmount cleanup, no screen-reader announcement
+### IN-01: Launch-blocking TODO — Evo Nordics episode URL unconfirmed, all social-proof items unlinked
 
-**File:** `src/components/sections/CopyEmailButton.tsx:14-15, 22-29`
-**Issue:** (a) Rapid re-clicks stack `setTimeout`s: a second click within 2s schedules a second reset while the first timer is still pending, so the fresh "Copied!" state is cleared early by the stale timer. (b) The timer is never cleared on unmount (harmless no-op setState in React 19, but untidy). (c) The label swap to "Copied!" is purely visual — no `aria-live`/`role="status"`, so screen-reader users get no confirmation that the copy succeeded.
-**Fix:** Keep the timeout id in a ref; `clearTimeout` before scheduling and in a `useEffect` cleanup. Render the status in an element with `role="status"` (or add a visually-hidden `aria-live="polite"` region).
+**File:** `src/content/social-proof.ts:6-12`
+**Issue:** The file carries a `TODO: confirm the Evo Nordics episode URL before launch`, and all three current items omit `href` — every item renders through the `<span>` (unlinked) branch of `SocialProof.tsx:23`. "Social proof" without a single verifiable link is weaker proof. Tracked here so the TODO does not silently ride into launch.
+**Fix:** Source the Evo Nordics episode URL and the Football Ramble reference, populate `href` on those items, and delete the TODO.
 
-### IN-02: MobileNav lacks Escape-to-close, aria-controls, and outside-click dismissal
+### IN-02: Alt text calls placeholder images "screenshot"
 
-**File:** `src/components/layout/MobileNav.tsx:23-36`
-**Issue:** The disclosure button has `aria-expanded` but no `aria-controls` linking it to the panel; the open panel cannot be dismissed with Escape or by tapping outside — only by re-tapping the toggle or choosing a link. Acceptable for a simple disclosure nav, but below the a11y bar the rest of the markup aims for.
-**Fix:** Add `id` on the `<nav>` + `aria-controls` on the button; add a `keydown` handler (or document listener while open) closing on `Escape`.
+**File:** `src/components/sections/Projects.tsx:19` (assets: `public/screenshots/*.png`)
+**Issue:** `alt={`${project.name} screenshot`}` while the committed PNGs are neutral name-on-card placeholders (documented deferral per 01-VERIFICATION.md). Until real captures land, the alt text asserts something the image is not — a small honesty gap given the project's content-honesty constraint, and a stale-content trap if real screenshots slip.
+**Fix:** Use `alt={project.name}` (or `${project.name} preview`) now, or make the alt text part of the "replace placeholders" task so it cannot be forgotten.
 
-### IN-03: Anchor targets sit flush against the sticky header on mobile
+### IN-03: Anchor scroll offset works only because section padding coincidentally equals header height
 
-**File:** `src/components/sections/*.tsx` section elements (e.g. `Projects.tsx:9`, `About.tsx:5`, `Contact.tsx:10`); `src/app/globals.css`
-**Issue:** The sticky header is `h-16` (64px) and sections use `py-16` (64px top padding) on mobile, so after anchor navigation a section heading lands exactly at the header's bottom edge with zero gap — content isn't hidden, but only because the padding happens to equal the header height. Any future padding or header-height change will clip headings.
-**Fix:** Add `scroll-mt-16` (or a global `scroll-padding-top: 4rem` on `html`) so anchor positioning is decoupled from section padding.
+**File:** `src/components/layout/Header.tsx:14`, `src/app/globals.css:80-83`, section elements in `src/components/sections/*.tsx`
+**Issue:** The header is `sticky top-0` at `h-16` (64px). Anchor navigation (`#about`, `#projects`, `#contact`) scrolls each section's top edge under the header; content is only visible because every section happens to use `py-16` (64px) top padding. Change either value independently and section headings will be clipped under the sticky header.
+**Fix:** Make the offset explicit: add `scroll-padding-top: 4rem;` to the `html` rule in `globals.css` (or `scroll-mt-16` on each section), decoupling scroll behavior from section padding.
 
-### IN-04: Launch-verification TODOs live only as code comments; all social-proof items unlinked
+### IN-04: Obsolete `.gitkeep` in a now-populated directory
 
-**File:** `src/content/site.ts:11-13`, `src/content/social-proof.ts:6-7`
-**Issue:** Two TODO comments track unresolved pre-launch facts (profile URLs, Evo Nordics episode URL). All three `socialProof` entries currently render as plain text with no `href`, so the "Social proof" section makes claims a visitor cannot verify with one click. Fine as interim state, but these TODOs are invisible to the roadmap unless copied into phase tracking.
-**Fix:** Mirror both TODOs into the phase/milestone checklist; add the podcast/episode URLs when confirmed so at least one social-proof item is clickable.
+**File:** `public/screenshots/.gitkeep`
+**Issue:** The `.gitkeep` was needed when the directory was empty; three tracked PNGs now keep the directory alive, leaving the file as dead weight.
+**Fix:** Delete `public/screenshots/.gitkeep`.
 
-### IN-05: Dead `--font-heading` design token
+### IN-05: Inconsistent terminal punctuation in the Contact availability list
 
-**File:** `src/app/globals.css:12`
-**Issue:** `--font-heading: var(--font-geist-sans)` is defined in `@theme inline` but no `font-heading` utility is used anywhere in the codebase; it aliases the already-default sans font.
-**Fix:** Remove the token, or start using `font-heading` on headings if a distinct heading face is planned.
+**File:** `src/components/sections/Contact.tsx:16-17`
+**Issue:** "Contract — via The App Forge AB (outside IR35, UK/EU remote)" has no closing period; "Full-time — open to senior/staff crypto roles." does. A copy-polish nit on the highest-stakes section of the page.
+**Fix:** Pick one convention (drop the period from line 17 or add one to line 16).
 
 ---
 
-_Reviewed: 2026-07-09T21:04:29Z_
+_Reviewed: 2026-07-10T05:56:10Z_
 _Reviewer: Claude (gsd-code-reviewer)_
 _Depth: standard_
