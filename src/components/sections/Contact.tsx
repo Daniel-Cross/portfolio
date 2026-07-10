@@ -9,7 +9,11 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-3xl px-6 py-16 md:py-24">
       <h2 className="text-2xl font-semibold md:text-3xl">Get in touch</h2>
-      <p className="mt-6 max-w-xl text-base text-muted-foreground">
+      <p className="mt-6 flex max-w-xl items-center gap-2 text-base text-muted-foreground">
+        <span
+          className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-live"
+          aria-hidden="true"
+        />
         Open to both contract and full-time crypto engineering roles.
       </p>
       <ul className="mt-4 flex flex-col gap-1 text-base text-muted-foreground">

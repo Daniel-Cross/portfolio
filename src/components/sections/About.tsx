@@ -11,8 +11,12 @@ export function About() {
         Solana-based crypto products.
       </p>
       <ul className="mt-8 flex flex-col gap-4">
-        {employers.map((employer) => (
-          <li key={employer.name} className="border-l-4 border-accent pl-4">
+        {/* List is reverse-chronological: index 0 is the current role, marked live-green. */}
+        {employers.map((employer, index) => (
+          <li
+            key={employer.name}
+            className={`border-l-4 pl-4 ${index === 0 ? "border-live" : "border-accent"}`}
+          >
             <p className="font-semibold text-foreground">
               {employer.name}
               {employer.role ? (
