@@ -8,9 +8,6 @@ export type Site = {
   email: string
 }
 
-// TODO: verify these profile URLs before launch. GitHub is inferred from the
-// git config username (Daniel-Cross); LinkedIn uses the canonical profile-URL
-// shape pending confirmation of the real handle.
 export const site: Site = {
   name: "Daniel Cross",
   role: "Senior React Native / Web3 Engineer",
@@ -18,6 +15,6 @@ export const site: Site = {
   heroSubhead:
     "Shipped features to a 30M+ user wallet at MetaMask; now lead engineer on a Solana prediction market.",
   github: "https://github.com/Daniel-Cross",
-  linkedin: "https://www.linkedin.com/in/danielcross",
+  linkedin: "https://www.linkedin.com/in/daniel-cross",
   email: "hello@danielcross.dev",
 }
