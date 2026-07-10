@@ -9,7 +9,7 @@ export const employers: Employer[] = [
   {
     name: "The App Forge AB",
     role: "Senior React Native Engineer (contract)",
-    note: "Current — building footballAlpha, a Solana-based prediction market.",
+    note: "Current — building footballAlpha, a revenue-backed football player exchange on Solana.",
   },
   {
     name: "MetaMask",

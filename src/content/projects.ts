@@ -12,8 +12,8 @@ export const projects: Project[] = [
     slug: "football-alpha",
     name: "footballAlpha",
     blurb:
-      "Lead engineer on footballAlpha, a Solana-based subjective opinion prediction market where players stake on live football moments instead of static odds. Built the cross-platform React Native/Expo app end-to-end, including wallet connectivity, stablecoin payments, and on-chain market settlement.",
-    tags: ["Solana", "React Native", "Expo"],
+      "Lead engineer on footballAlpha, a revenue-backed football player exchange on Solana — fans buy shares in real footballers, earn cash dividends when they perform, and sell as their value rises. Building the platform end-to-end: Anchor (Rust) programs with an SPL mint per player and USDC settlement, a Next.js web app, NestJS services, and Privy-embedded wallets that keep the chain invisible to users.",
+    tags: ["Solana", "Rust", "Anchor", "Next.js", "NestJS"],
     screenshot: "/screenshots/football-alpha.png",
     links: [{ label: "Live app", href: "https://footballalpha.org" }],
   },
