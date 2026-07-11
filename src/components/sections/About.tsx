@@ -5,9 +5,8 @@ export function About() {
     <section id="about" className="mx-auto max-w-3xl px-6 py-16 md:py-24">
       <h2 className="text-2xl font-semibold md:text-3xl">About</h2>
       <p className="mt-6 max-w-xl text-base text-muted-foreground">
-        Senior React Native / Web3 engineer based in Stockholm, working
-        UK/EU remote, with 8+ years building and scaling mobile and web
-        applications. Career spans leading frontend teams, modernising
+        Lead mobile engineer based in Stockholm, working UK/EU remote,
+        with 8+ years building and scaling mobile and web applications. Career spans leading frontend teams, modernising
         legacy codebases, and shipping features to MetaMask&apos;s 30M+
         user wallet. Now building Solana-based crypto products, focused
         on performance, maintainable architecture, and owning features

@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Daniel Cross | Senior React Native / Web3 Engineer",
+  title: "Daniel Cross | Lead Mobile Engineer",
   description:
-    "Ex-MetaMask engineer building on Solana. React Native, Web3, and shipped products, from a 30M+ user wallet to a Solana-based football player exchange.",
+    "Ex-MetaMask lead mobile engineer building on Solana. React Native, Web3, and shipped products, from a 30M+ user wallet to live Solana apps.",
 };
 
 export default function RootLayout({

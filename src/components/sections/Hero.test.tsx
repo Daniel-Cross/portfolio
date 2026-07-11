@@ -7,7 +7,7 @@ describe("Hero", () => {
   it("renders name, role, and the ex-MetaMask hook above the fold", () => {
     render(<Hero />)
     expect(screen.getByText(/Daniel Cross/)).toBeInTheDocument()
-    expect(screen.getByText(/Senior React Native/)).toBeInTheDocument()
+    expect(screen.getByText(/Lead Mobile Engineer/)).toBeInTheDocument()
     expect(screen.getByText(/ex-MetaMask/)).toBeInTheDocument()
   })
 
