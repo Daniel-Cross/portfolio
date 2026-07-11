@@ -1,7 +1,5 @@
-import { AnimatedDashedGradientLine } from "@/components/lab/animated-dashed-gradient-line"
 import { AnimatedGradientPill } from "@/components/lab/animated-gradient-pill"
 import { ConsensusDial } from "@/components/lab/consensus-dial"
-import { CrtStaticOverlay } from "@/components/lab/crt-static-overlay"
 import { GlassControl } from "@/components/lab/glass-control"
 import { LoopingGradientText } from "@/components/lab/looping-gradient-text"
 import { PixelLoader } from "@/components/lab/pixel-loader"
@@ -33,19 +31,9 @@ const TILES: LabTile[] = [
     node: <LoopingGradientText />,
   },
   {
-    name: "CRT Static Overlay",
-    description: "Canvas-drawn CRT static noise.",
-    node: <CrtStaticOverlay />,
-  },
-  {
     name: "Glass Control",
     description: "A frosted-glass control surface.",
     node: <GlassControl />,
-  },
-  {
-    name: "Animated Dashed Gradient Line",
-    description: "A dashed connector with a sweeping gradient highlight.",
-    node: <AnimatedDashedGradientLine />,
   },
   {
     name: "Animated Gradient Pill",

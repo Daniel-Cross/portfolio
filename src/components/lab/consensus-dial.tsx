@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 
+import { fm } from "./fm-palette"
+
 // Web port of factmachine-monorepo apps/mobile/components/consensus-dial/
 // (consensus-dial.tsx, dial-model.ts, use-consensus-dial.ts,
 // consensus-dial-marker.tsx, consensus-dial-readout.tsx,
@@ -185,7 +187,7 @@ export function ConsensusDial({
   )
 
   const roundedValue = Math.round(displayValue)
-  const numberColor = touched ? "var(--primary)" : "var(--muted-foreground)"
+  const numberColor = touched ? fm.accent : "var(--muted-foreground)"
   const stripTransition =
     !dragging && !reducedMotion
       ? `transform ${SETTLE_MS}ms ${SETTLE_EASING}`
@@ -243,7 +245,7 @@ export function ConsensusDial({
                   height,
                   marginTop: -height / 2,
                   opacity,
-                  backgroundColor: "var(--primary)",
+                  backgroundColor: fm.accent,
                 }}
               />
             )
@@ -257,7 +259,7 @@ export function ConsensusDial({
             height: CARET_HEIGHT,
             marginLeft: -CARET_WIDTH / 2,
             marginTop: -CARET_HEIGHT / 2,
-            backgroundColor: "var(--primary)",
+            backgroundColor: fm.accent,
           }}
         />
         <div
@@ -269,7 +271,7 @@ export function ConsensusDial({
             marginTop: -(CARET_HEIGHT / 2 + TRIANGLE_GAP + TRIANGLE_HEIGHT),
             borderLeft: `${TRIANGLE_WIDTH / 2}px solid transparent`,
             borderRight: `${TRIANGLE_WIDTH / 2}px solid transparent`,
-            borderTop: `${TRIANGLE_HEIGHT}px solid var(--primary)`,
+            borderTop: `${TRIANGLE_HEIGHT}px solid ${fm.accent}`,
           }}
         />
 

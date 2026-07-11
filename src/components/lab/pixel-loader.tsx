@@ -1,5 +1,7 @@
 "use client"
 
+import { fm } from "./fm-palette"
+
 // Web port of factmachine-monorepo apps/mobile/components/PixelLoader.tsx.
 // The diagonal brightness wave is reproduced with a negative animation-delay
 // per cell instead of a shared Reanimated phase value.
@@ -28,7 +30,7 @@ export function PixelLoader() {
                 style={{
                   width: CELL_SIZE,
                   height: CELL_SIZE,
-                  backgroundColor: "var(--primary)",
+                  backgroundColor: fm.accent,
                   animation: `lab-pixel ${CYCLE_MS}ms linear infinite`,
                   animationDelay: `${delayMs}ms`,
                 }}

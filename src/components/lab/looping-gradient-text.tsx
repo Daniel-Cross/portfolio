@@ -1,5 +1,7 @@
 "use client"
 
+import { fm } from "./fm-palette"
+
 // Web port of factmachine-monorepo apps/mobile/components/LoopingGradientText.tsx.
 // Reproduced with a background-clip: text shimmer instead of a masked-view
 // plus measurement layer, since the layout here is fixed.
@@ -10,8 +12,7 @@ export function LoopingGradientText() {
     <span
       className="lab-animated inline-block text-4xl font-semibold"
       style={{
-        backgroundImage:
-          "linear-gradient(90deg, var(--muted-foreground) 0%, var(--muted-foreground) 40%, var(--primary) 50%, var(--muted-foreground) 60%, var(--muted-foreground) 100%)",
+        backgroundImage: `linear-gradient(90deg, ${fm.shimmerBase} 0%, ${fm.shimmerBase} 40%, ${fm.shimmerHighlight} 50%, ${fm.shimmerBase} 60%, ${fm.shimmerBase} 100%)`,
         backgroundSize: "300% 100%",
         WebkitBackgroundClip: "text",
         backgroundClip: "text",

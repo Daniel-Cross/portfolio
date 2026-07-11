@@ -8,14 +8,12 @@ const TILE_NAMES = [
   "Consensus Dial",
   "Pixel Loader",
   "Looping Gradient Text",
-  "CRT Static Overlay",
   "Glass Control",
-  "Animated Dashed Gradient Line",
   "Animated Gradient Pill",
 ]
 
 describe("ComponentLab", () => {
-  it("renders all 7 lab component names as headings", () => {
+  it("renders all 5 lab component names as headings", () => {
     render(<ComponentLab />)
     for (const name of TILE_NAMES) {
       expect(screen.getByRole("heading", { name })).toBeInTheDocument()
