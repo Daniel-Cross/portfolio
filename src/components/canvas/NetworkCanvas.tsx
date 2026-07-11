@@ -111,7 +111,10 @@ export function NetworkCanvas() {
           }
           const node = nodes[pulse.nodeIndex]
           if (!node) continue
-          const progress = elapsed / PULSE_DURATION_MS
+          // A pulse pushed between frames can carry a startedAt a few ms
+          // ahead of this frame's rAF timestamp; unclamped that makes the
+          // arc radius negative, which throws and kills the loop.
+          const progress = Math.max(0, Math.min(elapsed / PULSE_DURATION_MS, 1))
           ctx.strokeStyle = primaryColor
           ctx.globalAlpha = 1 - progress
           ctx.beginPath()
@@ -135,8 +138,9 @@ export function NetworkCanvas() {
           if (node.y < 0) node.y += height
           if (node.y > height) node.y -= height
         }
-        drawFrame(now)
+        // Schedule before drawing so a draw error can never end the loop.
         frameId = requestAnimationFrame(step)
+        drawFrame(now)
       }
 
       if (reducedMotion) {
