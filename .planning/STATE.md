@@ -116,6 +116,8 @@ None yet.
 | 8 | Skills: Backend group + TypeScript in mobile; projects: Keggy out, Safe Haven + Neo in | 2026-07-10 | 8d5f256 | — |
 | 9 | Phone-frame mockups for project screenshots (placeholders pending real captures) | 2026-07-10 | 7a902c9 | — |
 | 260710-lkn | Component Lab: web ports of 7 Fact Machine mobile components | 2026-07-10 | 0da33f6 | [260710-lkn-component-lab-web-ports-of-7-fact-machin](./quick/260710-lkn-component-lab-web-ports-of-7-fact-machin/) |
+| 10 | Lab: original Fact Machine palette; removed dashed line and CRT tiles | 2026-07-11 | 81331ca | — |
+| 11 | Fix: canvas pulse loop died on negative arc radius race | 2026-07-11 | 02384f7 | — |
 
 ## Deferred Items
 
