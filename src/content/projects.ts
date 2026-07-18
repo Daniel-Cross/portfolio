@@ -46,8 +46,14 @@ export const projects: Project[] = [
     blurb:
       "A school behaviour management platform: a React/TypeScript dashboard built with Vite, Zustand, and TanStack Query, paired with an Expo mobile app, sharing types through a common package and backed by Supabase auth and database.",
     tags: ["React Native", "Expo", "React", "TypeScript", "Supabase"],
-    screenshot: "/screenshots/safe-haven.png",
-    links: [],
+    screenshot: "/screenshots/safe-haven-splash.png",
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/haven-software/id6449934429",
+      },
+      { label: "Website", href: "https://www.safehaven.dev" },
+    ],
   },
   {
     slug: "neo",
@@ -55,7 +61,7 @@ export const projects: Project[] = [
     blurb:
       "A peer-to-peer payments app on Solana built with React Native and Expo: wallet creation and import, passcode security, send and request flows, and end-to-end encrypted transaction memos.",
     tags: ["Solana", "React Native", "Expo", "TypeScript"],
-    screenshot: "/screenshots/neo.png",
+    screenshot: "/screenshots/neo-splash.png",
     links: [],
   },
 ];
