@@ -41,40 +41,6 @@ export function FactMachineShowcase() {
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <div className="rounded-lg bg-card p-6">
           <img
-            src="/factmachine/factmachine-wordmark-debossed-1600.webp"
-            alt="Debossed wordmark"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto w-full"
-          />
-          <p className="mt-3 text-sm text-muted-foreground">
-            Debossed wordmark
-          </p>
-        </div>
-        <div className="rounded-lg bg-card p-6">
-          <img
-            src="/factmachine/factmachine-logo-drafting-lines.svg"
-            alt="Logo drafting geometry"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto w-full max-w-[240px]"
-          />
-          <p className="mt-3 text-sm text-muted-foreground">
-            Logo drafting geometry
-          </p>
-        </div>
-        <div className="rounded-lg bg-card p-6">
-          <img
-            src="/factmachine/FactMachine.svg"
-            alt="Logomark"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto w-full max-w-[240px]"
-          />
-          <p className="mt-3 text-sm text-muted-foreground">Logomark</p>
-        </div>
-        <div className="rounded-lg bg-card p-6">
-          <img
             src="/factmachine/app-dock-1600.webp"
             alt="App dock"
             loading="lazy"
