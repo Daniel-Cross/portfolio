@@ -6,7 +6,7 @@ current_phase: 2
 current_phase_name: Decision-Driven Case Studies
 status: executing
 stopped_at: "Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed"
-last_updated: "2026-07-18T08:45:47.473Z"
+last_updated: "2026-07-18T14:42:58.980Z"
 last_activity: 2026-07-10
 last_activity_desc: "Completed quick task 260710-crq: Live Solana network hero canvas"
 progress:
@@ -132,6 +132,7 @@ None yet.
 | 24 | MetaMask card: real App Store homescreen crop replaces placeholder (metamask-home.png) | 2026-07-18 | 400b284 | — |
 | 25 | PhoneFrame widened from w-44/w-52 to 390px to match LiveAppFrame across all project cards | 2026-07-18 | 0cbb378 | — |
 | 26 | Ahlsell project card added: App Store home screen crop, blurb, store link; projects.test.ts unstaled | 2026-07-18 | 039c7ef | — |
+| 27 | Safe Haven and Neo cards: local splash screens replace placeholders; Haven App Store and safehaven.dev links added | 2026-07-18 | 6ddf58b | — |
 
 ## Deferred Items
 
