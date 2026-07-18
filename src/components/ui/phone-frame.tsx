@@ -13,7 +13,7 @@ export function PhoneFrame({
   priority?: boolean
 }) {
   return (
-    <div className="relative mx-auto w-44 shrink-0 md:w-52">
+    <div className="relative mx-auto w-[390px] max-w-full shrink-0 md:mx-0">
       <div className="rounded-[2.2rem] border border-border bg-black p-2 shadow-lg">
         <div className="relative overflow-hidden rounded-[1.7rem]">
           <Image
