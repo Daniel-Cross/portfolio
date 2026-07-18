@@ -6,7 +6,7 @@ current_phase: 2
 current_phase_name: Decision-Driven Case Studies
 status: executing
 stopped_at: "Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed"
-last_updated: "2026-07-18T06:37:50.149Z"
+last_updated: "2026-07-18T06:39:13.143Z"
 last_activity: 2026-07-10
 last_activity_desc: "Completed quick task 260710-crq: Live Solana network hero canvas"
 progress:
@@ -125,6 +125,7 @@ None yet.
 | 17 | Showcase: iPhone mock first and larger, all tile captions removed | 2026-07-18 | 13cad2b | — |
 | 18 | Showcase media full-bleed: hero and app dock edge to edge, mock in full-width band, 3-col video grid | 2026-07-18 | 16a353b | — |
 | 19 | Motion gallery cut to buy modal clip; five unused mp4s deleted (34MB freed) | 2026-07-18 | ea7fa81 | — |
+| 20 | Removed last motion video (buy modal) from showcase | 2026-07-18 | e689535 | — |
 
 ## Deferred Items
 
