@@ -38,19 +38,6 @@ export function FactMachineShowcase() {
           className="h-auto w-full"
         />
       </div>
-
-      <div className="mt-6 bg-card py-8">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          className="mx-auto w-full max-w-md px-6"
-        >
-          <source src="/factmachine/motion/modal-animation.mp4" type="video/mp4" />
-        </video>
-      </div>
     </section>
   );
 }
