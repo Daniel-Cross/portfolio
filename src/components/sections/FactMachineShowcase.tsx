@@ -20,14 +20,9 @@ export function FactMachineShowcase() {
             decoding="async"
             className="mx-auto w-full max-w-2xl px-6"
           />
-          <img
-            src="/factmachine/factmachine-flow.png"
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto hidden w-full max-w-2xl px-6 lg:block"
-          />
+          <div className="hidden w-full px-6 lg:block">
+            <div className="mx-auto aspect-square w-full max-w-2xl rounded-xl bg-[linear-gradient(180deg,#FE9227_6%,#EA4D5F_48%,#327CEB_108%)]" />
+          </div>
         </div>
       </div>
 
