@@ -1,14 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-const MOTION_CLIPS = [
-  "motion/alpha-delay.mp4",
-  "motion/alpha-select.mp4",
-  "motion/door-brothers.mp4",
-  "motion/market-launch.mp4",
-  "motion/modal-animation.mp4",
-  "motion/prize-pool-terminal.mp4",
-];
-
 export function FactMachineShowcase() {
   return (
     <section id="fact-machine" className="py-16 md:py-24">
@@ -48,24 +39,17 @@ export function FactMachineShowcase() {
         />
       </div>
 
-      <div className="mx-auto max-w-3xl px-6">
-        <h3 className="mt-10 text-lg font-semibold">Motion</h3>
-      </div>
-      <div className="mt-6 grid gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3">
-        {MOTION_CLIPS.map((clip) => (
-          <div key={clip} className="overflow-hidden rounded-lg bg-card">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              className="h-auto w-full"
-            >
-              <source src={`/factmachine/${clip}`} type="video/mp4" />
-            </video>
-          </div>
-        ))}
+      <div className="mt-6 bg-card py-8">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="mx-auto w-full max-w-md px-6"
+        >
+          <source src="/factmachine/motion/modal-animation.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
   );
