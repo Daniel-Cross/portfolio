@@ -23,7 +23,7 @@ export const projects: Project[] = [
     blurb:
       "Shipped features to MetaMask's mobile wallet, the self-custody wallet trusted by 30M+ users to move billions of dollars in crypto. Worked on the React Native app powering everyday wallet interactions: sending, swapping, and connecting to dapps.",
     tags: ["React Native", "Web3", "Wallet"],
-    screenshot: "/screenshots/metamask.png",
+    screenshot: "/screenshots/metamask-home.png",
     links: [{ label: "App Store", href: "https://metamask.io" }],
   },
   {
