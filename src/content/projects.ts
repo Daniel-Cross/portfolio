@@ -1,21 +1,21 @@
 export type Project = {
-  slug: string
-  name: string
-  blurb: string
-  tags: string[]
-  screenshot: string
-  links: { label: string; href: string }[]
-}
+  slug: string;
+  name: string;
+  blurb: string;
+  tags: string[];
+  screenshot: string;
+  links: { label: string; href: string }[];
+};
 
 export const projects: Project[] = [
   {
     slug: "football-alpha",
-    name: "footballAlpha",
+    name: "Football Alpha",
     blurb:
-      "Lead engineer on footballAlpha, a revenue-backed football player exchange on Solana where fans buy shares in real footballers, earn cash dividends when they perform, and sell as their value rises. Building the platform end-to-end: Anchor (Rust) programs with an SPL mint per player and USDC settlement, a Next.js web app, NestJS services, and Privy-embedded wallets that keep the chain invisible to users.",
+      "Founder and creator of Football Alpha, a revenue-backed football player exchange on Solana where fans buy shares in real footballers, earn cash dividends when they perform, and sell as their value rises. Building the platform end-to-end: Anchor (Rust) programs with an SPL mint per player and USDC settlement, a Next.js web app, NestJS services, and Privy-embedded wallets that keep the chain invisible to users.",
     tags: ["Solana", "Rust", "Anchor", "Next.js", "NestJS"],
     screenshot: "/screenshots/football-alpha.png",
-    links: [{ label: "Live app", href: "https://footballalpha.org" }],
+    links: [{ label: "Open full app", href: "https://www.footballalpha.org" }],
   },
   {
     slug: "metamask",
@@ -44,4 +44,4 @@ export const projects: Project[] = [
     screenshot: "/screenshots/neo.png",
     links: [],
   },
-]
+];
