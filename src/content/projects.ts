@@ -27,6 +27,20 @@ export const projects: Project[] = [
     links: [{ label: "App Store", href: "https://metamask.io" }],
   },
   {
+    slug: "ahlsell",
+    name: "Ahlsell",
+    blurb:
+      "Tech lead (via Hackberry) on the React Native app for Ahlsell, the Nordics' leading distributor of plumbing, electrical, and tool supplies. The app is a webshop in your pocket: product search, barcode scanning, order lists, and checkout for tradespeople on site, shipped to the App Store and Google Play across Sweden, Norway, and Finland.",
+    tags: ["React Native", "Expo", "TypeScript"],
+    screenshot: "/screenshots/ahlsell.png",
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/se/app/ahlsell/id1617272826",
+      },
+    ],
+  },
+  {
     slug: "safe-haven",
     name: "Safe Haven",
     blurb:

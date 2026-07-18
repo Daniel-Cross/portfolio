@@ -8,14 +8,20 @@ import { projects } from "./projects"
 const publicDir = path.resolve(import.meta.dirname, "../../public")
 
 describe("projects", () => {
-  it("contains 3 or 4 entries", () => {
-    expect([3, 4]).toContain(projects.length)
+  it("contains 5 entries", () => {
+    expect(projects.length).toBe(5)
   })
 
-  it("includes footballAlpha, MetaMask, Safe Haven, and Neo", () => {
+  it("includes Football Alpha, MetaMask, Ahlsell, Safe Haven, and Neo", () => {
     const names = projects.map((p) => p.name)
     expect(names).toEqual(
-      expect.arrayContaining(["footballAlpha", "MetaMask", "Safe Haven", "Neo"])
+      expect.arrayContaining([
+        "Football Alpha",
+        "MetaMask",
+        "Ahlsell",
+        "Safe Haven",
+        "Neo",
+      ])
     )
   })
 
