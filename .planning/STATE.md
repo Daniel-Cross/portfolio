@@ -6,7 +6,7 @@ current_phase: 2
 current_phase_name: Decision-Driven Case Studies
 status: executing
 stopped_at: "Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed"
-last_updated: "2026-07-18T06:14:24.264Z"
+last_updated: "2026-07-18T06:32:10.856Z"
 last_activity: 2026-07-10
 last_activity_desc: "Completed quick task 260710-crq: Live Solana network hero canvas"
 progress:
@@ -121,6 +121,7 @@ None yet.
 | 12 | Headline role copy: lead mobile engineer, no attribution | 2026-07-11 | 17aa009 | — |
 | 260718-b7j | Embed live footballAlpha web app in an iPhone bezel iframe (LiveAppFrame) | 2026-07-18 | 944a598 | [260718-b7j-embed-the-live-footballalpha-web-app-in-](./quick/260718-b7j-embed-the-live-footballalpha-web-app-in-/) |
 | 260718-bic | Copy Fact Machine brand/motion assets from designer's site; FactMachineShowcase section with credit | 2026-07-18 | f34d425 | [260718-bic-copy-fact-machine-design-assets-into-the](./quick/260718-bic-copy-fact-machine-design-assets-into-the/) |
+| 16 | Showcase trim: removed logomark, wordmark, drafting geometry tiles and their asset files | 2026-07-18 | 4a60918 | — |
 
 ## Deferred Items
 
