@@ -11,48 +11,47 @@ const MOTION_CLIPS = [
 
 export function FactMachineShowcase() {
   return (
-    <section
-      id="fact-machine"
-      className="mx-auto max-w-3xl px-6 py-16 md:py-24"
-    >
-      <h2 className="text-2xl font-semibold md:text-3xl">Fact Machine</h2>
-      <p className="mt-2 text-muted-foreground">
-        Brand identity and motion design for Fact Machine, the Solana
-        prediction-market product the owner leads.
-      </p>
+    <section id="fact-machine" className="py-16 md:py-24">
+      <div className="mx-auto max-w-3xl px-6">
+        <h2 className="text-2xl font-semibold md:text-3xl">Fact Machine</h2>
+        <p className="mt-2 text-muted-foreground">
+          Developed and shipped features for Fact Machine, the Solana
+          prediction-market product the owner leads.
+        </p>
+      </div>
 
-      <div className="mt-8 rounded-lg bg-card p-6">
+      <div className="mt-8 bg-card py-8">
         <img
           src="/factmachine/factmachine-iphone-mock.png"
           alt="Fact Machine interface on an iPhone"
           loading="lazy"
           decoding="async"
-          className="mx-auto w-full max-w-md"
+          className="mx-auto w-full max-w-2xl px-6"
         />
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-lg bg-card">
+      <img
+        src="/factmachine/fact-machine-hero-2026-06-29.png"
+        alt="Fact Machine brand case-study hero"
+        loading="lazy"
+        decoding="async"
+        className="mt-6 h-auto w-full"
+      />
+
+      <div className="mt-6 bg-card">
         <img
-          src="/factmachine/fact-machine-hero-2026-06-29.png"
-          alt="Fact Machine brand case-study hero"
+          src="/factmachine/app-dock-1600.webp"
+          alt="Fact Machine app dock"
           loading="lazy"
           decoding="async"
           className="h-auto w-full"
         />
       </div>
 
-      <div className="mt-6 rounded-lg bg-card p-6">
-        <img
-          src="/factmachine/app-dock-1600.webp"
-          alt="Fact Machine app dock"
-          loading="lazy"
-          decoding="async"
-          className="mx-auto w-full"
-        />
+      <div className="mx-auto max-w-3xl px-6">
+        <h3 className="mt-10 text-lg font-semibold">Motion</h3>
       </div>
-
-      <h3 className="mt-10 text-lg font-semibold">Motion</h3>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3">
         {MOTION_CLIPS.map((clip) => (
           <div key={clip} className="overflow-hidden rounded-lg bg-card">
             <video
@@ -68,19 +67,6 @@ export function FactMachineShowcase() {
           </div>
         ))}
       </div>
-
-      <p className="mt-8 text-sm text-muted-foreground">
-        Brand identity and motion design by{" "}
-        <a
-          href="https://terraform.nyc"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-foreground underline underline-offset-4 hover:text-accent"
-        >
-          Terraform
-        </a>
-        .
-      </p>
     </section>
   );
 }
