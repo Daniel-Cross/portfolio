@@ -5,16 +5,15 @@ milestone_name: milestone
 current_phase: 2
 current_phase_name: Decision-Driven Case Studies
 status: executing
-stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-07-10T06:09:41.639Z"
+stopped_at: "Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed"
+last_updated: "2026-07-18T06:14:24.264Z"
 last_activity: 2026-07-10
-last_activity_desc: Phase 01 complete, transitioned to Phase 2
+last_activity_desc: "Completed quick task 260710-crq: Live Solana network hero canvas"
 progress:
-  total_phases: 5
+  total_phases: 1
   completed_phases: 1
   total_plans: 7
   completed_plans: 7
-  percent: 20
 ---
 
 # Project State
@@ -86,6 +85,7 @@ Recent decisions affecting current work:
 - [Phase ?]: Dropped Keggy's dead App Store link per owner's Task 1 fallback; kept only the working GitHub View source link
 - [Phase ?]: Applied footballAlpha's owner-locked URL https://footballalpha.org directly in Task 3
 - [Phase 01]: LinkedIn URL corrected to user-confirmed hyphenated handle https://www.linkedin.com/in/daniel-cross
+- [Phase ?]: [Quick 260718-b7j] Special-cased footballAlpha card by slug for LiveAppFrame embed; link corrected to https://www.footballalpha.org
 
 ### Pending Todos
 
@@ -119,6 +119,7 @@ None yet.
 | 10 | Lab: original Fact Machine palette; removed dashed line and CRT tiles | 2026-07-11 | 81331ca | — |
 | 11 | Fix: canvas pulse loop died on negative arc radius race | 2026-07-11 | 02384f7 | — |
 | 12 | Headline role copy: lead mobile engineer, no attribution | 2026-07-11 | 17aa009 | — |
+| 260718-b7j | Embed live footballAlpha web app in an iPhone bezel iframe (LiveAppFrame) | 2026-07-18 | 944a598 | [260718-b7j-embed-the-live-footballalpha-web-app-in-](./quick/260718-b7j-embed-the-live-footballalpha-web-app-in-/) |
 
 ## Deferred Items
 
@@ -130,6 +131,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-10T05:48:39.946Z
-Stopped at: Completed 01-04-PLAN.md
+Last session: 2026-07-18T06:14:24.260Z
+Stopped at: Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed
 Resume file: None
