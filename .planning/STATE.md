@@ -6,7 +6,7 @@ current_phase: 2
 current_phase_name: Decision-Driven Case Studies
 status: executing
 stopped_at: "Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed"
-last_updated: "2026-07-18T07:30:15.717Z"
+last_updated: "2026-07-18T08:32:02.852Z"
 last_activity: 2026-07-10
 last_activity_desc: "Completed quick task 260710-crq: Live Solana network hero canvas"
 progress:
@@ -129,6 +129,7 @@ None yet.
 | 21 | Mock band 50/50 on lg+: burst gradient (factmachine-flow.png, downscaled to 1200px) fills right half | 2026-07-18 | 3f6c93e | — |
 | 22 | Gradient tile rebuilt as pure CSS linear-gradient matching terraform's fm-gradient-field; flow png removed | 2026-07-18 | aa513be | — |
 | 23 | Showcase top row: equal aspect-square tiles, 12px margins and gap, band wrapper dropped | 2026-07-18 | ba2bb0b | — |
+| 24 | MetaMask card: real App Store homescreen crop replaces placeholder (metamask-home.png) | 2026-07-18 | 400b284 | — |
 
 ## Deferred Items
 
