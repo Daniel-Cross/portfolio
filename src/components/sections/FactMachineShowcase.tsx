@@ -1,18 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 
-interface MotionClip {
-  file: string
-  caption: string
-}
-
-const MOTION_CLIPS: MotionClip[] = [
-  { file: "motion/alpha-delay.mp4", caption: "Alpha delay" },
-  { file: "motion/alpha-select.mp4", caption: "Alpha approval" },
-  { file: "motion/door-brothers.mp4", caption: "Door Brothers" },
-  { file: "motion/market-launch.mp4", caption: "Market launch" },
-  { file: "motion/modal-animation.mp4", caption: "Modal animation" },
-  { file: "motion/prize-pool-terminal.mp4", caption: "Prize pool terminal" },
-]
+const MOTION_CLIPS = [
+  "motion/alpha-delay.mp4",
+  "motion/alpha-select.mp4",
+  "motion/door-brothers.mp4",
+  "motion/market-launch.mp4",
+  "motion/modal-animation.mp4",
+  "motion/prize-pool-terminal.mp4",
+];
 
 export function FactMachineShowcase() {
   return (
@@ -20,15 +15,23 @@ export function FactMachineShowcase() {
       id="fact-machine"
       className="mx-auto max-w-3xl px-6 py-16 md:py-24"
     >
-      <h2 className="text-2xl font-semibold md:text-3xl">
-        Fact Machine Brand and Motion
-      </h2>
+      <h2 className="text-2xl font-semibold md:text-3xl">Fact Machine</h2>
       <p className="mt-2 text-muted-foreground">
         Brand identity and motion design for Fact Machine, the Solana
         prediction-market product the owner leads.
       </p>
 
-      <div className="mt-8 overflow-hidden rounded-lg bg-card">
+      <div className="mt-8 rounded-lg bg-card p-6">
+        <img
+          src="/factmachine/factmachine-iphone-mock.png"
+          alt="Fact Machine interface on an iPhone"
+          loading="lazy"
+          decoding="async"
+          className="mx-auto w-full max-w-md"
+        />
+      </div>
+
+      <div className="mt-6 overflow-hidden rounded-lg bg-card">
         <img
           src="/factmachine/fact-machine-hero-2026-06-29.png"
           alt="Fact Machine brand case-study hero"
@@ -38,36 +41,20 @@ export function FactMachineShowcase() {
         />
       </div>
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
-        <div className="rounded-lg bg-card p-6">
-          <img
-            src="/factmachine/app-dock-1600.webp"
-            alt="App dock"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto w-full"
-          />
-          <p className="mt-3 text-sm text-muted-foreground">App dock</p>
-        </div>
-        <div className="rounded-lg bg-card p-6">
-          <img
-            src="/factmachine/factmachine-iphone-mock.png"
-            alt="On device"
-            loading="lazy"
-            decoding="async"
-            className="mx-auto w-full"
-          />
-          <p className="mt-3 text-sm text-muted-foreground">On device</p>
-        </div>
+      <div className="mt-6 rounded-lg bg-card p-6">
+        <img
+          src="/factmachine/app-dock-1600.webp"
+          alt="Fact Machine app dock"
+          loading="lazy"
+          decoding="async"
+          className="mx-auto w-full"
+        />
       </div>
 
       <h3 className="mt-10 text-lg font-semibold">Motion</h3>
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         {MOTION_CLIPS.map((clip) => (
-          <div
-            key={clip.file}
-            className="overflow-hidden rounded-lg bg-card"
-          >
+          <div key={clip} className="overflow-hidden rounded-lg bg-card">
             <video
               autoPlay
               loop
@@ -76,14 +63,8 @@ export function FactMachineShowcase() {
               preload="metadata"
               className="h-auto w-full"
             >
-              <source
-                src={`/factmachine/${clip.file}`}
-                type="video/mp4"
-              />
+              <source src={`/factmachine/${clip}`} type="video/mp4" />
             </video>
-            <p className="p-4 text-sm text-muted-foreground">
-              {clip.caption}
-            </p>
           </div>
         ))}
       </div>
@@ -101,5 +82,5 @@ export function FactMachineShowcase() {
         .
       </p>
     </section>
-  )
+  );
 }
