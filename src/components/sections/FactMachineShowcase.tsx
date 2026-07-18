@@ -6,19 +6,29 @@ export function FactMachineShowcase() {
       <div className="mx-auto max-w-3xl px-6">
         <h2 className="text-2xl font-semibold md:text-3xl">Fact Machine</h2>
         <p className="mt-2 text-muted-foreground">
-          Developed and shipped features for Fact Machine, the Solana
-          prediction-market product the owner leads.
+          Lead mobile engineer for Fact Machine, the Solana prediction-market
+          product the owner leads.
         </p>
       </div>
 
       <div className="mt-8 bg-card py-8">
-        <img
-          src="/factmachine/factmachine-iphone-mock.png"
-          alt="Fact Machine interface on an iPhone"
-          loading="lazy"
-          decoding="async"
-          className="mx-auto w-full max-w-2xl px-6"
-        />
+        <div className="grid items-center lg:grid-cols-2">
+          <img
+            src="/factmachine/factmachine-iphone-mock.png"
+            alt="Fact Machine interface on an iPhone"
+            loading="lazy"
+            decoding="async"
+            className="mx-auto w-full max-w-2xl px-6"
+          />
+          <img
+            src="/factmachine/factmachine-flow.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            className="mx-auto hidden w-full max-w-2xl px-6 lg:block"
+          />
+        </div>
       </div>
 
       <img
