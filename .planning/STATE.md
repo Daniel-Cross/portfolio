@@ -120,6 +120,7 @@ None yet.
 | 11 | Fix: canvas pulse loop died on negative arc radius race | 2026-07-11 | 02384f7 | — |
 | 12 | Headline role copy: lead mobile engineer, no attribution | 2026-07-11 | 17aa009 | — |
 | 260718-b7j | Embed live footballAlpha web app in an iPhone bezel iframe (LiveAppFrame) | 2026-07-18 | 944a598 | [260718-b7j-embed-the-live-footballalpha-web-app-in-](./quick/260718-b7j-embed-the-live-footballalpha-web-app-in-/) |
+| 260718-bic | Copy Fact Machine brand/motion assets from designer's site; FactMachineShowcase section with credit | 2026-07-18 | f34d425 | [260718-bic-copy-fact-machine-design-assets-into-the](./quick/260718-bic-copy-fact-machine-design-assets-into-the/) |
 
 ## Deferred Items
 
@@ -132,5 +133,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-07-18T06:14:24.260Z
-Stopped at: Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed
+Stopped at: Completed quick task 260718-bic: Fact Machine showcase section
 Resume file: None
