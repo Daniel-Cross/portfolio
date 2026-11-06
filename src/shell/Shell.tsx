@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { effectiveLook, pickLook, type Look } from '@/looks/looks'
 import { createAudioContext } from '@/machine/audio'
+import { LazyBoundary } from './LazyBoundary'
 import { TopBar } from './TopBar'
 
 // the machine and the animated backgrounds are only downloaded when the visitor asks for them
@@ -45,6 +46,16 @@ export function Shell({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.dataset.theme = theme
   }, [theme])
+
+  // someone sent a loop: open on the machine so they can see it and press Play
+  useEffect(() => {
+    if (!window.location.hash.startsWith('#v1.')) return
+    const frame = requestAnimationFrame(() => {
+      setMachineWanted(true)
+      deck.current?.scrollTo({ left: deck.current.clientWidth })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   /** Browsers only allow sound that starts inside a tap, so the audio context is made here, before the machine loads. */
   const wantMachine = () => {
@@ -113,7 +124,11 @@ export function Shell({ children }: { children: ReactNode }) {
         onImmersion={() => setImmersion((on) => !on)}
         onTheme={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}
       />
-      {look !== 'clean' ? <FxCanvas look={look} beatRef={beat} /> : null}
+      {look !== 'clean' ? (
+        <LazyBoundary>
+          <FxCanvas look={look} beatRef={beat} />
+        </LazyBoundary>
+      ) : null}
       <div className="frame" aria-hidden="true" />
       <div className="tape" aria-hidden="true">
         <span>PLAY &#9654;</span>
@@ -133,15 +148,20 @@ export function Shell({ children }: { children: ReactNode }) {
         <section className="pane pane--machine" aria-label="The DC-1 drum machine">
           <h2 className="machine-title">The DC-1</h2>
           {machineWanted ? (
-            <Machine
-              audio={audio}
-              playing={playing}
-              volume={volume}
-              onPlayingChange={setPlaying}
-              onSongLook={setSongLook}
-              onBeat={onBeat}
-              registerToggle={registerToggle}
-            />
+            <LazyBoundary
+              fallback={<p className="label">Could not load the machine. Reload the page to try again.</p>}
+              onError={() => void (playWhenReady.current = false)}
+            >
+              <Machine
+                audio={audio}
+                page={page}
+                volume={volume}
+                onPlayingChange={setPlaying}
+                onSongLook={setSongLook}
+                onBeat={onBeat}
+                registerToggle={registerToggle}
+              />
+            </LazyBoundary>
           ) : null}
         </section>
       </div>

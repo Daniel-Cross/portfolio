@@ -3,8 +3,11 @@ import { beforeEach, expect, test, vi } from 'vitest'
 import type { Engine } from './engine'
 
 const triggers: number[] = []
+let running = true
+const resume = vi.fn(async () => {})
 const engine: Engine = {
-  resume: async () => {},
+  resume,
+  running: () => running,
   now: () => 0,
   setVolume() {},
   setTone() {},
@@ -19,16 +22,20 @@ vi.mock('./engine', () => ({ createEngine: () => (available ? engine : null) }))
 
 const { default: Machine } = await import('./Machine')
 
+const machine = (page: 0 | 1, onPlayingChange = vi.fn()) => (
+  <Machine audio={null} page={page} volume={0.8} onPlayingChange={onPlayingChange} onSongLook={() => {}} onBeat={() => {}} registerToggle={() => {}} />
+)
+
 const mount = () => {
   const onPlayingChange = vi.fn()
-  render(
-    <Machine audio={null} playing={false} volume={0.8} onPlayingChange={onPlayingChange} onSongLook={() => {}} onBeat={() => {}} registerToggle={() => {}} />,
-  )
-  return { onPlayingChange }
+  const view = render(machine(1, onPlayingChange))
+  return { onPlayingChange, ...view }
 }
 
 beforeEach(() => {
   available = true
+  running = true
+  resume.mockClear()
   triggers.length = 0
   window.location.hash = ''
 })
@@ -108,4 +115,35 @@ test('a broken share link falls back to the default song', () => {
   window.location.hash = '#garbage'
   mount()
   expect(screen.getByText('76 bpm')).toBeInTheDocument()
+})
+
+test('leaving the machine page closes the tray', () => {
+  const { rerender } = mount()
+  fireEvent.click(screen.getByRole('button', { name: 'G7' }))
+  expect(screen.getByText('Bar 2: pick a chord')).toBeInTheDocument()
+  rerender(machine(0))
+  expect(screen.queryByText('Bar 2: pick a chord')).toBeNull()
+})
+
+test('opening the tray moves focus into it; Escape closes it and gives focus back', () => {
+  mount()
+  const chord = screen.getByRole('button', { name: 'G7' })
+  chord.focus()
+  fireEvent.click(chord)
+  const tray = screen.getByRole('region', { name: 'Notes and chords' })
+  expect(tray.contains(document.activeElement)).toBe(true)
+  fireEvent.keyDown(document.activeElement!, { key: 'Escape' })
+  expect(screen.queryByText('Bar 2: pick a chord')).toBeNull()
+  expect(document.activeElement).toBe(screen.getByRole('button', { name: 'G7' }))
+})
+
+test('pads stay silent until sound is unlocked, and a click unlocks it', () => {
+  running = false
+  mount()
+  const kick = screen.getByRole('button', { name: 'Kick' })
+  fireEvent.pointerDown(kick)
+  expect(triggers).toEqual([])
+  fireEvent.click(kick)
+  expect(resume).toHaveBeenCalled()
+  expect(kick).toHaveAttribute('aria-pressed', 'true')
 })

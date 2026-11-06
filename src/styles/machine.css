@@ -617,8 +617,8 @@
   background: #e8501c;
 }
 
-/* phones: portrait machine at full size, tray as a sheet from the bottom */
-@media (max-width: 899px) {
+/* phones, upright or sideways: the machine at full size in one column, tray as a sheet from the bottom */
+@media (max-width: 899px), (max-height: 619px) {
   .device {
     width: 100%;
     max-width: 440px;

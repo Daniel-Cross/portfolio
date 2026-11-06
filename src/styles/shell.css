@@ -77,6 +77,7 @@ body {
 }
 
 .bar .btn {
+  white-space: nowrap;
   padding: 9px 12px;
   border-radius: 8px;
   font-size: 10.5px;
@@ -214,12 +215,13 @@ body {
     order: 7;
   }
 
+  /* hangs from the bar itself, so it sits right whatever the bar's height or look */
   .bar__more {
-    position: fixed;
+    position: absolute;
     z-index: 70;
-    top: 62px;
-    left: 8px;
-    right: 8px;
+    top: 100%;
+    left: 0;
+    right: 0;
     display: none;
     flex-wrap: wrap;
     align-items: center;
@@ -270,5 +272,24 @@ body {
 @media (max-width: 420px) {
   .bar__name {
     display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .bar .btn {
+    padding: 9px 8px;
+    font-size: 9.5px;
+  }
+}
+
+/* a phone held sideways is wide but short: the machine page scrolls there too */
+@media (max-height: 619px) {
+  .pane--machine {
+    display: block;
+    padding: 72px 18px 40px;
+  }
+
+  .machine-title {
+    text-align: center;
   }
 }

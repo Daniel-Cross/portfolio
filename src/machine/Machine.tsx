@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
 import type { Look } from '@/looks/looks'
 import { createEngine, type Engine } from './engine'
+import { machineZoom } from './fit'
 import { createSequencer } from './sequencer'
 import { decodeLoop, encodeLoop } from './share'
 import { songById, songs } from './songs'
@@ -15,7 +16,8 @@ import { Tray } from './ui/Tray'
 type Props = {
   /** an audio context the shell already unlocked inside a tap, if it has one */
   audio: AudioContext | null
-  playing: boolean
+  /** which page is on screen: 0 the CV, 1 the machine */
+  page: 0 | 1
   volume: number
   onPlayingChange(playing: boolean): void
   onSongLook(look: Look): void
@@ -34,7 +36,7 @@ function start(): MachineState {
   return loop ? reduce(base, { type: 'restore', loop }) : base
 }
 
-export default function Machine({ audio, volume, onPlayingChange, onSongLook, onBeat, registerToggle }: Props) {
+export default function Machine({ audio, page, volume, onPlayingChange, onSongLook, onBeat, registerToggle }: Props) {
   const [state, dispatch] = useReducer(reduce, undefined, start)
   const [at, setAt] = useState<{ step: number; bar: number } | null>(null)
   const [notice, setNotice] = useState<string>()
@@ -91,7 +93,11 @@ export default function Machine({ audio, volume, onPlayingChange, onSongLook, on
 
   const hear = (pad: number, bar: number, note?: number, chord = state.chords[bar]) => {
     if (!engine) return
-    void engine.resume()
+    if (!engine.running()) {
+      // not unlocked yet: ask, and stay silent rather than queue sounds that would all fire at once later
+      void engine.resume()
+      return
+    }
     engine.trigger(pad, engine.now(), { song, chord, step: at?.step ?? 0, bar, note })
   }
 
@@ -121,14 +127,40 @@ export default function Machine({ audio, volume, onPlayingChange, onSongLook, on
   // on wide screens the machine is scaled to fill the window, leaving room below for the tray
   useEffect(() => {
     const fit = () => {
-      const wide = window.innerWidth >= 900
-      const zoom = wide ? Math.min(1.8, (window.innerHeight - 200) / 640, (window.innerWidth - 110) / 860) : 1
-      document.documentElement.style.setProperty('--machine-zoom', String(zoom))
+      document.documentElement.style.setProperty('--machine-zoom', String(machineZoom(window.innerWidth, window.innerHeight)))
     }
     fit()
     window.addEventListener('resize', fit)
     return () => window.removeEventListener('resize', fit)
   }, [])
+
+  // the tray: leaving the machine page or pressing Escape closes it, and focus follows it in and back out
+  const trayRef = useRef<HTMLDivElement>(null)
+  const opener = useRef<HTMLElement | null>(null)
+  const trayOpen = state.tray !== null
+
+  useEffect(() => {
+    if (page === 0) dispatch({ type: 'closeTray' })
+  }, [page])
+
+  useEffect(() => {
+    if (!trayOpen) return
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && dispatch({ type: 'closeTray' })
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [trayOpen])
+
+  useEffect(() => {
+    if (trayOpen) {
+      if (document.activeElement instanceof HTMLElement && !trayRef.current?.contains(document.activeElement)) {
+        opener.current = document.activeElement
+      }
+      trayRef.current?.querySelector('button')?.focus()
+    } else {
+      if (opener.current?.isConnected) opener.current.focus()
+      opener.current = null
+    }
+  }, [trayOpen])
 
   const tempo = (state.bpm - TEMPO.min) / (TEMPO.max - TEMPO.min)
 
@@ -194,6 +226,11 @@ export default function Machine({ audio, volume, onPlayingChange, onSongLook, on
                     aria-pressed={state.pad === pad}
                     aria-label={name}
                     onPointerDown={() => tapPad(pad)}
+                    onClick={() => {
+                      // a click counts as a tap for unlocking sound, and reaches tools that never send pointer events
+                      void engine?.resume()
+                      dispatch({ type: 'selectPad', pad })
+                    }}
                     onKeyDown={(event) => (event.key === 'Enter' || event.key === ' ') && tapPad(pad)}
                   >
                     <b aria-hidden="true">{pad + 1}</b>
@@ -213,6 +250,7 @@ export default function Machine({ audio, volume, onPlayingChange, onSongLook, on
         </div>
       </div>
       <Tray
+        ref={trayRef}
         state={state}
         dispatch={dispatch}
         preview={(what) => ('note' in what ? hear(LEAD, at?.bar ?? 0, what.note) : hear(4, what.bar, undefined, what.chord))}

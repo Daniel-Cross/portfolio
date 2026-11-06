@@ -6,6 +6,8 @@ export type Trigger = { song: Song; chord: Chord; step: number; bar: number; not
 
 export type Engine = {
   resume(): Promise<void>
+  /** false until the browser has allowed sound, which needs a tap */
+  running(): boolean
   now(): number
   setVolume(v: number): void
   setTone(v: number): void
@@ -153,6 +155,7 @@ export function createEngine(existing?: AudioContext | null): Engine | null {
 
   return {
     resume: () => ac.resume(),
+    running: () => ac.state === 'running',
     now: () => ac.currentTime,
     setVolume: (v) => void (volume.gain.value = v),
     setTone: (v) => void (tone.frequency.value = 300 * 40 ** v),

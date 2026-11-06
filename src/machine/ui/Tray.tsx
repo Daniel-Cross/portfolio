@@ -1,3 +1,4 @@
+import type { Ref } from 'react'
 import type { Action, MachineState } from '../state'
 import { borrowedChords, chordName, inKey, keyChords, noteName, pitchName, type Chord } from '../theory'
 
@@ -6,6 +7,7 @@ type Props = {
   dispatch(action: Action): void
   /** play a note or chord so the visitor hears the choice */
   preview(what: { note: number } | { chord: Chord; bar: number }): void
+  ref?: Ref<HTMLDivElement>
 }
 
 /** white keys of one octave with the black key that follows each, if any */
@@ -85,11 +87,11 @@ function Chords({ state, dispatch, preview, bar }: Props & { bar: number }) {
 }
 
 /** The panel that slides out under the machine to pick a note for a step or a chord for a bar. */
-export function Tray(props: Props) {
+export function Tray({ ref, ...props }: Props) {
   const { state, dispatch } = props
   const tray = state.tray
   return (
-    <div className={`tray${tray ? ' is-open' : ''}`} role="region" aria-label="Notes and chords" aria-live="polite">
+    <div ref={ref} className={`tray${tray ? ' is-open' : ''}`} role="region" aria-label="Notes and chords">
       {tray?.kind === 'note' ? (
         <>
           <div className="tray__head">

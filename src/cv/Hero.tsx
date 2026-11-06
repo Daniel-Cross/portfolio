@@ -17,7 +17,6 @@ export function Hero() {
       <div className="hero__about">
         <p className="live" aria-hidden="true">
           <b>LIVE</b>
-          <span>21,304 watching now</span>
           <span>daniel cross radio, apps to relax/ship to</span>
         </p>
         <div className="photo">

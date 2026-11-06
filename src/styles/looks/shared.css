@@ -23,14 +23,6 @@ html[data-era] :is(.device, .tray) {
   box-shadow: 0 26px 60px #000b;
 }
 
-@media (max-width: 899px) {
-  html[data-era] .bar__more {
-    top: 54px;
-    left: 0;
-    right: 0;
-  }
-}
-
 /* The 90s and the 2000s are both desktops: every card is a window with a title bar. */
 html:is([data-era='e90'], [data-era='e00']) .cv {
   padding-top: 88px;

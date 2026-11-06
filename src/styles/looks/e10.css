@@ -73,6 +73,16 @@ html[data-era='e10'] .live {
   color: #b9ae9c;
 }
 
+/* the viewer count is a joke that belongs to this look, so it lives here and not in the page's text */
+html[data-era='e10'] .live::after {
+  content: '21,304 watching now';
+  order: 1;
+}
+
+html[data-era='e10'] .live span {
+  order: 2;
+}
+
 html[data-era='e10'] .live b {
   padding: 3px 8px;
   border-radius: 3px;
