@@ -1,0 +1,185 @@
+/* Rules every decade look shares. The machine keeps its own colours, so looks style the pages and the bar only. */
+html[data-era] .frame {
+  display: none;
+}
+
+html[data-era] .bar {
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0;
+}
+
+html[data-era] :is(.cv, .bar, .machine-title) {
+  color: var(--ink);
+}
+
+html[data-era] :is(.hero h1, .cv h2, .card h3, .pitch, .machine-title) {
+  font-stretch: 100%;
+  letter-spacing: 0;
+}
+
+html[data-era] :is(.device, .tray) {
+  box-shadow: 0 26px 60px #000b;
+}
+
+@media (max-width: 899px) {
+  html[data-era] .bar__more {
+    top: 54px;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* The 90s and the 2000s are both desktops: every card is a window with a title bar. */
+html:is([data-era='e90'], [data-era='e00']) .cv {
+  padding-top: 88px;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .bar {
+  gap: 6px;
+  padding: 5px 8px;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .card {
+  --ink: #000;
+  --mute: #444;
+  padding: 0 0 18px;
+  color: #000;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .card > * {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .card__head {
+  order: -1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 5px 8px;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .card__head .label {
+  margin-left: auto;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .card > p {
+  margin-top: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #000;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .label {
+  font: 12px Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .proof a {
+  font: 400 15px Tahoma, Arial, sans-serif;
+  color: #0000ee;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .proof span {
+  color: #444;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .proof li {
+  border-color: #0002;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .job > .card__head {
+  grid-column: 1 / -1;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .shots {
+  grid-row: 2 / span 3;
+  margin: 0 0 -18px;
+  background: none;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .banner {
+  height: 150px;
+  margin: 0 16px 12px;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .hero__about {
+  padding: 0 16px 16px;
+  color: #000;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .hero__about::before {
+  content: 'About Daniel';
+  display: block;
+  margin: 0 -16px 14px;
+  padding: 5px 8px;
+  font: 700 13px Tahoma, Arial, sans-serif;
+  color: #fff;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .hero .photo {
+  width: 84px;
+  height: 84px;
+  margin: 0 0 12px;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .pitch {
+  max-width: none;
+  font: 700 20px Tahoma, Arial, sans-serif;
+  color: #000;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .bio {
+  margin: 10px 0 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #000;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .hero .stripe {
+  display: none;
+}
+
+html:is([data-era='e90'], [data-era='e00']) .card__tools {
+  font-size: 12px;
+}
+
+@media (max-width: 1179px) {
+  /* stacked hero: the About window needs to be a real box, not a pass-through */
+  html:is([data-era='e90'], [data-era='e00']) .hero__about {
+    display: block;
+    margin-top: 28px;
+  }
+
+  html:is([data-era='e90'], [data-era='e00']) .hero__name {
+    display: block;
+  }
+}
+
+@media (max-width: 760px) {
+  html:is([data-era='e90'], [data-era='e00']) .shots {
+    grid-row: auto;
+    margin: 12px 0 -18px;
+  }
+}
+
+@media (min-width: 1180px) {
+  html:is([data-era='e90'], [data-era='e00']) .job:not(:first-child) .shots {
+    order: 0;
+    height: 260px;
+    margin: 12px 16px 0;
+  }
+}

@@ -1,0 +1,66 @@
+/* 1980s synth-pop: neon grid on deep purple */
+html[data-era='e80'] body {
+  background: linear-gradient(#12062e, #2a0e57 55%, #7a1e7a) fixed;
+}
+
+html[data-era='e80'] :is(.cv, .bar, .machine-title) {
+  --bg: #190a3d;
+  --ink: #f4efff;
+  --mute: #c3b3ee;
+  --hot: #ff2e93;
+  --hair: #21e6f066;
+  --raised: 6px 6px 0 #ff2e93;
+}
+
+html[data-era='e80'] :is(.hero h1, .cv h2, .card h3, .pitch, .machine-title) {
+  font-family: var(--font-audiowide), sans-serif;
+  font-weight: 400;
+}
+
+html[data-era='e80'] :is(.hero h1, .machine-title) {
+  width: max-content;
+  max-width: 100%;
+  padding-right: 0.1em;
+  font-style: italic;
+  background: linear-gradient(#21e6f0, #fff 46%, #ff2e93 54%, #ffd23f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 16px #ff2e9399);
+}
+
+html[data-era='e80'] :is(.card, .btn, .photo) {
+  border: 2px solid #21e6f0;
+  border-radius: 0;
+  background-color: #190a3dd9;
+}
+
+html[data-era='e80'] .card {
+  box-shadow: 6px 6px 0 #ff2e93;
+}
+
+html[data-era='e80'] .btn {
+  box-shadow: 4px 4px 0 #ff2e93;
+}
+
+html[data-era='e80'] .btn--primary {
+  background: #ff2e93;
+  box-shadow: 4px 4px 0 #21e6f0;
+}
+
+html[data-era='e80'] .card > p {
+  color: var(--ink);
+}
+
+html[data-era='e80'] .project--soon {
+  border-style: dashed;
+}
+
+html[data-era='e80'] .bar {
+  background: #190a3de6;
+  border-bottom: 1px solid #21e6f055;
+}
+
+html[data-era='e80'] .bar__look option {
+  background: #190a3d;
+}
