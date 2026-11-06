@@ -1,4 +1,5 @@
-export type Look = 'clean' | 'e80' | 'e90' | 'e00' | 'e10'
+/** 'c64' is the hidden look that goes with the easter egg; it is never offered in the Look menu. */
+export type Look = 'clean' | 'e80' | 'e90' | 'e00' | 'e10' | 'c64'
 
 /** The look on screen: the song's decade while immersed and playing, otherwise the visitor's pick. */
 export function effectiveLook(s: { immersion: boolean; playing: boolean; songLook: Look; picked: Look }): Look {

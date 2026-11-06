@@ -12,7 +12,7 @@ export function Hero() {
         <p className="katakana" lang="ja" aria-hidden="true">
           ダニエル・クロス
         </p>
-        <div className="stripe" aria-hidden="true" />
+        <button type="button" className="stripe stripe--secret" data-secret aria-label="Play a hidden tune" />
       </div>
       <div className="hero__about">
         <p className="live" aria-hidden="true">

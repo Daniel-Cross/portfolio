@@ -141,6 +141,8 @@ export function createEngine(existing?: AudioContext | null): Engine | null {
     } else if (kind === 'saw') {
       const body = lowpass(3600, env(time, 0.05, 0.2))
       for (const detune of [-14, 0, 14]) osc('sawtooth', hz, time, 0.22, body, detune)
+    } else if (kind === 'arp') {
+      return
     } else if (kind === 'filt') {
       // the filter opens and closes once over the four bars
       const cutoff = 450 + 2800 * (0.5 - 0.5 * Math.cos((Math.PI * 2 * (t.bar * 16 + t.step)) / 64))
@@ -150,6 +152,16 @@ export function createEngine(existing?: AudioContext | null): Engine | null {
       const body = lowpass(1500, env(time, 0.045, 0.5, out, 0.015))
       osc('sawtooth', hz, time, 0.55, body, -7)
       osc('sawtooth', hz, time, 0.55, body, 7)
+    }
+  }
+
+  /** One beat of the chord played as eight quick single notes, climbing into the next octave. */
+  function arpeggio(t: Trigger, time: number) {
+    const tones = chordTones(t.chord)
+    const each = 60 / t.song.bpm / 8
+    for (let n = 0; n < 8; n++) {
+      const midi = bassMidi(t.chord.root) + 36 + tones[n % tones.length] + (n >= tones.length ? 12 : 0)
+      osc('square', freq(midi), time + n * each, each * 0.9, env(time + n * each, 0.03, each * 0.9))
     }
   }
 
@@ -193,7 +205,8 @@ export function createEngine(existing?: AudioContext | null): Engine | null {
         const midi = bassMidi(t.chord.root) + (t.song.bassOffsets[t.step] ?? 0)
         osc(kit.bass.wave, freq(midi), time, kit.bass.decay, lowpass(kit.bass.cutoff, env(time, kit.bass.gain, kit.bass.decay)))
       } else if (pad === 4) {
-        chordTones(t.chord).forEach((tone, i) => keys(kit.keys, freq(bassMidi(t.chord.root) + 24 + tone), i, time, t))
+        if (kit.keys === 'arp') arpeggio(t, time)
+        else chordTones(t.chord).forEach((tone, i) => keys(kit.keys, freq(bassMidi(t.chord.root) + 24 + tone), i, time, t))
       } else if (pad === 5 && t.note) {
         osc(kit.lead.wave, freq(t.note), time, kit.lead.decay, lowpass(3000, env(time, kit.lead.gain, kit.lead.decay)))
       }

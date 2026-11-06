@@ -88,6 +88,13 @@ button {
   background: var(--stripe);
 }
 
+/* the easter egg switch: it must not look like a button */
+.stripe--secret {
+  display: block;
+  border-radius: 0;
+  cursor: default;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

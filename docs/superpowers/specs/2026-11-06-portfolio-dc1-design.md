@@ -130,6 +130,12 @@ Sound: everything is synthesised with the Web Audio API. No audio files. A limit
 
 Share copies a link that restores the loop. In the mockup it carries only the step patterns, tempo and song.
 
+### Easter egg (added 2026-11-06, after launch)
+
+The three-colour stripe under the name on the CV page is a hidden switch. Pressing it plays a hidden song, "Secret 64", and puts the site in a hidden look styled like a mid-80s home computer start-up screen (light blue on dark blue, blocky type, a border). Pressing it again, or pausing, puts everything back. The song and look are not on the machine's song buttons or in the Look menu.
+
+The tune is an original composition in the style of 1980s home computer game music: square-wave lead, chords played as fast arpeggios, octave-bouncing bass. It must stay original. Daniel asked for the melody from the game Lazy Jones; that melody is a copyrighted composition and is not to be transcribed or closely imitated without the composer's permission.
+
 ## Ideas tried and rejected (do not reintroduce)
 
 - A working iPhone on the page; a draggable design board on a cutting mat.

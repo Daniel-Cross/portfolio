@@ -10,6 +10,7 @@ import '@/styles/looks/e80.css'
 import '@/styles/looks/e90.css'
 import '@/styles/looks/e00.css'
 import '@/styles/looks/e10.css'
+import '@/styles/looks/c64.css'
 
 const mona = Mona_Sans({ subsets: ['latin'], axes: ['wdth'], variable: '--font-mona' })
 const martian = Martian_Mono({ subsets: ['latin'], axes: ['wdth'], variable: '--font-martian' })
