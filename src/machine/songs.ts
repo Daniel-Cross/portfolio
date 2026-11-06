@@ -186,33 +186,29 @@ export const songs: Song[] = [
   }),
 ]
 
-/**
- * The easter egg: an original tune in the style of mid-80s home computer game music.
- * It is not on the machine's song buttons; the stripe under the name starts it.
- */
 export const secretSong: Song = song({
   id: 'c64',
-  name: 'Secret 64',
+  name: 'Stardust',
   look: 'c64',
-  key: { tonic: 4, mode: 'min' },
-  bpm: 132,
+  key: { tonic: 11, mode: 'min' },
+  bpm: 148,
   swing: 0,
   tone: 1,
   echo: 0.06,
   reverb: 0.05,
   chords: [
+    { root: 11, quality: 'min' },
+    { root: 11, quality: 'min' },
     { root: 4, quality: 'min' },
-    { root: 0, quality: 'maj' },
-    { root: 2, quality: 'maj' },
-    { root: 11, quality: 'maj' },
+    { root: 11, quality: 'min' },
   ],
-  drums: [steps(0, 6, 8), BACKBEAT, OFFBEATS, EIGHTHS, BEATS],
+  drums: [BEATS, BACKBEAT, OFFBEATS, EIGHTHS, 0],
   bassOffsets: { 2: 12, 6: 12, 10: 12, 14: 12 },
   melody: [
-    bar({ 0: 76, 2: 79, 3: 83, 5: 79, 6: 81, 8: 79, 10: 76, 12: 74, 14: 76 }),
-    bar({ 0: 72, 2: 76, 3: 79, 5: 76, 6: 84, 8: 83, 10: 79, 12: 76 }),
-    bar({ 0: 74, 2: 78, 3: 81, 5: 78, 6: 86, 8: 84, 10: 81, 12: 78, 14: 81 }),
-    bar({ 0: 83, 2: 78, 3: 75, 5: 78, 6: 83, 8: 87, 10: 83, 12: 78, 14: 75 }),
+    bar({ 2: 59, 4: 62, 6: 64, 8: 66 }),
+    bar({ 2: 59, 4: 62, 6: 64, 8: 66, 10: 67, 12: 66, 14: 62 }),
+    bar({ 0: 64, 8: 62, 12: 66, 14: 59 }),
+    bar({}),
   ],
   kit: {
     kick: { from: 160, to: 50, decay: 0.14, gain: 0.9 },
@@ -220,7 +216,7 @@ export const secretSong: Song = song({
     hat: { highpass: 9000, decay: 0.03, gain: 0.14 },
     bass: { wave: 'square', cutoff: 700, decay: 0.11, gain: 0.35 },
     keys: 'arp',
-    lead: { wave: 'square', decay: 0.13, gain: 0.07 },
+    lead: { wave: 'square', decay: 0.4, gain: 0.07 },
   },
 })
 

@@ -155,7 +155,7 @@ test('the hidden tune loads and starts when asked, and stopping it brings the de
   )
   const { rerender } = render(secret(true))
   expect(onPlayingChange).toHaveBeenLastCalledWith(true)
-  expect(screen.getByText('Secret 64')).toBeInTheDocument()
+  expect(screen.getByText('Stardust')).toBeInTheDocument()
   rerender(secret(false))
   expect(onPlayingChange).toHaveBeenLastCalledWith(false)
   expect(screen.getByText('76 bpm')).toBeInTheDocument()
