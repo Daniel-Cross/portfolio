@@ -1,29 +1,24 @@
-export type SkillGroup = {
-  label: string
-  skills: string[]
-}
+export type Skill = { name: string; claim: string; tools: string }
 
-// Plain grouped list: no percentage/proficiency scores (skill bars are
-// explicit Out of Scope per REQUIREMENTS.md).
-export const skillGroups: SkillGroup[] = [
+export const skills: Skill[] = [
   {
-    label: "Web3 / Solana",
-    skills: ["Solana", "Web3", "Rust"],
+    name: 'Mobile',
+    claim: 'Apps taken from an empty repo to the App Store and Google Play, and old ones made fast and maintainable again.',
+    tools: 'React Native, Expo, TypeScript, iOS, Android',
   },
   {
-    label: "React Native / Mobile",
-    skills: ["React Native", "TypeScript", "Expo", "iOS", "Android"],
+    name: 'Crypto',
+    claim: 'Wallets, trading screens, live charts and deposits. Snaps and Solana work in MetaMask, and my own programs on Solana.',
+    tools: 'Solana, MetaMask Snaps, Rust, Anchor, embedded wallets',
   },
   {
-    label: "Frontend / Web",
-    skills: ["React", "TypeScript", "JavaScript"],
+    name: 'Shipping',
+    claim: 'Release pipelines for test and production on both stores, and performance checks that run on every pull request.',
+    tools: 'CI/CD, GitHub Actions, EAS, store releases, hotfixes',
   },
   {
-    label: "Backend",
-    skills: ["Node.js", "Express", "TypeScript", "Prisma", "SQL"],
-  },
-  {
-    label: "AI / Tooling",
-    skills: ["LLM integration"],
+    name: 'Leading',
+    claim: 'Tech lead, lead engineer and head of engineering. I set the architecture and design system, break the work down and keep delivery moving.',
+    tools: 'Architecture, design systems, planning, team leadership',
   },
 ]
