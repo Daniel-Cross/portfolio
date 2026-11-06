@@ -1,7 +1,7 @@
 import type { Look } from '@/looks/looks'
 import type { Chord, Key } from './theory'
 
-export type SongId = 'e80' | 'e90' | 'e00' | 'e10'
+export type SongId = 'e80' | 'e90' | 'e00' | 'e10' | 'c64'
 
 /** The instrument sounds a song uses. Numbers are frequencies in Hz, times in seconds, gains 0 to 1. */
 export type Kit = {
@@ -9,7 +9,8 @@ export type Kit = {
   snare: 'soft' | 'clap' | 'gated'
   hat: { highpass: number; decay: number; gain: number }
   bass: { wave: OscillatorType; cutoff: number; decay: number; gain: number }
-  keys: 'ep' | 'saw' | 'filt' | 'poly'
+  /** 'arp' plays the chord as a fast run of single notes, the way three-voice sound chips faked chords */
+  keys: 'ep' | 'saw' | 'filt' | 'poly' | 'arp'
   lead: { wave: OscillatorType; decay: number; gain: number }
   crackle?: boolean
 }
@@ -185,5 +186,39 @@ export const songs: Song[] = [
   }),
 ]
 
+export const secretSong: Song = song({
+  id: 'c64',
+  name: 'Stardust',
+  look: 'c64',
+  key: { tonic: 11, mode: 'min' },
+  bpm: 148,
+  swing: 0,
+  tone: 1,
+  echo: 0.06,
+  reverb: 0.05,
+  chords: [
+    { root: 11, quality: 'min' },
+    { root: 11, quality: 'min' },
+    { root: 4, quality: 'min' },
+    { root: 11, quality: 'min' },
+  ],
+  drums: [BEATS, BACKBEAT, OFFBEATS, EIGHTHS, 0],
+  bassOffsets: { 2: 12, 6: 12, 10: 12, 14: 12 },
+  melody: [
+    bar({ 2: 59, 4: 62, 6: 64, 8: 66 }),
+    bar({ 2: 59, 4: 62, 6: 64, 8: 66, 10: 67, 12: 66, 14: 62 }),
+    bar({ 0: 64, 8: 62, 12: 66, 14: 59 }),
+    bar({}),
+  ],
+  kit: {
+    kick: { from: 160, to: 50, decay: 0.14, gain: 0.9 },
+    snare: 'soft',
+    hat: { highpass: 9000, decay: 0.03, gain: 0.14 },
+    bass: { wave: 'square', cutoff: 700, decay: 0.11, gain: 0.35 },
+    keys: 'arp',
+    lead: { wave: 'square', decay: 0.4, gain: 0.07 },
+  },
+})
+
 export const defaultSongId: SongId = 'e10'
-export const songById = (id: SongId) => songs.find((s) => s.id === id)!
+export const songById = (id: SongId) => (id === secretSong.id ? secretSong : songs.find((s) => s.id === id)!)

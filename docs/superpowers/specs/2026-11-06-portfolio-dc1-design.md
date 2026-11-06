@@ -130,6 +130,12 @@ Sound: everything is synthesised with the Web Audio API. No audio files. A limit
 
 Share copies a link that restores the loop. In the mockup it carries only the step patterns, tempo and song.
 
+### Easter egg (added 2026-11-06, after launch)
+
+The three-colour stripe under the name on the CV page is a hidden switch. Pressing it plays a hidden song, "Stardust", and puts the site in a hidden look styled like a mid-80s home computer start-up screen (light blue on dark blue, blocky type, a border). Pressing it again, or pausing, puts everything back. The song and look are not on the machine's song buttons or in the Look menu.
+
+At Daniel's request, the tune uses David Whittaker's "Stardust" melody from Lazy Jones, later used in Zombie Nation's "Kernkraft 400". The four-bar B minor riff at 148 BPM follows [Mark7's MIDI transcription](https://files.khinsider.com/midifiles/commodore/lazy-jones/track-21-kernkraft-400-zombie-nation-.mid). Playback is a synthesised arrangement with a square-wave lead, octave-bouncing bass and steady drums; it uses no original audio recording. The backing is simplified to one chord per bar (Bm, Bm, Em, Bm), and the keys start muted to keep the riff clear. This replaces the earlier original-composition-only decision.
+
 ## Ideas tried and rejected (do not reintroduce)
 
 - A working iPhone on the page; a draggable design board on a cutting mat.

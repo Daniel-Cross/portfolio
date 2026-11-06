@@ -5,14 +5,14 @@ export function Hero() {
   return (
     <header className="hero">
       <div className="hero__name">
-        <h1 id="name">
+        <h1 id="name" data-secret>
           Daniel <br />
           Cross
         </h1>
         <p className="katakana" lang="ja" aria-hidden="true">
           ダニエル・クロス
         </p>
-        <div className="stripe" aria-hidden="true" />
+        <div className="stripe" />
       </div>
       <div className="hero__about">
         <p className="live" aria-hidden="true">

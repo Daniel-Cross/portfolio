@@ -1,7 +1,15 @@
 import { act, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 
-vi.mock('next/dynamic', () => ({ default: () => () => <div>the machine</div> }))
+// like the real machine, the stand-in reports "not playing" as soon as it appears
+vi.mock('next/dynamic', async () => {
+  const { useEffect } = await import('react')
+  const Stub = ({ onPlayingChange }: { onPlayingChange?: (playing: boolean) => void }) => {
+    useEffect(() => onPlayingChange?.(false), [onPlayingChange])
+    return <div>the machine</div>
+  }
+  return { default: () => Stub }
+})
 const { Shell } = await import('./Shell')
 
 beforeEach(() => {
@@ -27,4 +35,17 @@ test('a shared loop link opens on the machine', async () => {
   await act(() => new Promise((r) => setTimeout(r, 5)))
   expect(screen.getByText('the machine')).toBeInTheDocument()
   expect(Element.prototype.scrollTo).toHaveBeenCalled()
+})
+
+test('pressing the hidden button loads the machine', async () => {
+  render(
+    <Shell>
+      <button data-secret aria-label="Play a hidden tune" />
+    </Shell>,
+  )
+  expect(screen.queryByText('the machine')).toBeNull()
+  await act(async () => screen.getByRole('button', { name: 'Play a hidden tune' }).click())
+  // the stub stands in for both lazy parts, so the machine and the look's background may both appear
+  expect(screen.getAllByText('the machine').length).toBeGreaterThan(0)
+  expect(document.documentElement.dataset.era).toBe('c64')
 })

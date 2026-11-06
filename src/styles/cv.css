@@ -31,6 +31,26 @@
   transition-duration: 0.03s;
 }
 
+/* the name is the easter egg switch: in the clean look it glitches now and then as a hint.
+   ponytail: one fixed 11s loop with two uneven bursts, not true randomness */
+html:not([data-era]) .hero h1 {
+  cursor: pointer;
+  animation: name-glitch 11s steps(1) infinite;
+}
+
+@keyframes name-glitch {
+  0%, 100% { transform: none; text-shadow: none; clip-path: none; }
+  31% { transform: translate(-5px, 1px) skewX(-7deg); text-shadow: 5px 0 #d8412f, -5px 0 #ebc43d; }
+  32% { transform: translate(6px, -1px); text-shadow: -6px 0 #e8842a; clip-path: inset(16% 0 38% 0); }
+  33% { transform: translate(-2px, 0) skewX(4deg); text-shadow: 3px 0 #ebc43d; clip-path: inset(58% 0 6% 0); }
+  34% { transform: none; text-shadow: none; clip-path: none; }
+  78% { transform: translate(4px, 0) skewX(5deg); text-shadow: -4px 0 #d8412f, 4px 0 #e8842a; clip-path: inset(40% 0 22% 0); }
+  79% { transform: translate(-7px, 2px); text-shadow: 6px 0 #ebc43d; }
+  79.6% { transform: none; text-shadow: none; clip-path: none; }
+  84% { transform: translate(3px, -1px) skewX(-3deg); text-shadow: -3px 0 #e8842a; clip-path: inset(8% 0 62% 0); }
+  84.7% { transform: none; text-shadow: none; clip-path: none; }
+}
+
 .hero .stripe {
   width: 140px;
   margin: 30px 0 34px;

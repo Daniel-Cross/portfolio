@@ -147,3 +147,16 @@ test('pads stay silent until sound is unlocked, and a click unlocks it', () => {
   expect(resume).toHaveBeenCalled()
   expect(kick).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('the hidden tune loads and starts when asked, and stopping it brings the default song back', () => {
+  const onPlayingChange = vi.fn()
+  const secret = (on: boolean) => (
+    <Machine audio={null} page={0} secret={on} volume={0.8} onPlayingChange={onPlayingChange} onSongLook={() => {}} onBeat={() => {}} registerToggle={() => {}} />
+  )
+  const { rerender } = render(secret(true))
+  expect(onPlayingChange).toHaveBeenLastCalledWith(true)
+  expect(screen.getByText('Stardust')).toBeInTheDocument()
+  rerender(secret(false))
+  expect(onPlayingChange).toHaveBeenLastCalledWith(false)
+  expect(screen.getByText('76 bpm')).toBeInTheDocument()
+})

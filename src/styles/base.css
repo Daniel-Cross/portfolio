@@ -88,6 +88,12 @@ button {
   background: var(--stripe);
 }
 
+/* the name is the easter egg switch: a press must not select its text */
+[data-secret] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

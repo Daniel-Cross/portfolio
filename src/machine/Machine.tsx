@@ -6,7 +6,7 @@ import { createEngine, type Engine } from './engine'
 import { machineZoom } from './fit'
 import { createSequencer } from './sequencer'
 import { decodeLoop, encodeLoop } from './share'
-import { songById, songs } from './songs'
+import { defaultSongId, secretSong, songById, songs } from './songs'
 import { initialState, LEAD, leadNote, reduce, type MachineState } from './state'
 import { noteName } from './theory'
 import { Knob } from './ui/Knob'
@@ -18,6 +18,8 @@ type Props = {
   audio: AudioContext | null
   /** which page is on screen: 0 the CV, 1 the machine */
   page: 0 | 1
+  /** true while the easter egg is on: load the hidden tune and play it */
+  secret?: boolean
   volume: number
   onPlayingChange(playing: boolean): void
   onSongLook(look: Look): void
@@ -36,7 +38,7 @@ function start(): MachineState {
   return loop ? reduce(base, { type: 'restore', loop }) : base
 }
 
-export default function Machine({ audio, page, volume, onPlayingChange, onSongLook, onBeat, registerToggle }: Props) {
+export default function Machine({ audio, page, secret = false, volume, onPlayingChange, onSongLook, onBeat, registerToggle }: Props) {
   const [state, dispatch] = useReducer(reduce, undefined, start)
   const [at, setAt] = useState<{ step: number; bar: number } | null>(null)
   const [notice, setNotice] = useState<string>()
@@ -71,17 +73,32 @@ export default function Machine({ audio, page, volume, onPlayingChange, onSongLo
     return () => created.stop()
   }, [engine])
 
+  // the playing state drives the sequencer, so it stays right even when React's development mode mounts twice
+  useEffect(() => {
+    const running = sequencer.current
+    if (!running || !state.playing) return
+    running.start()
+    return () => running.stop()
+  }, [state.playing])
+
   const toggle = useCallback(() => {
     if (!engine || !sequencer.current) return
     void engine.resume()
     const playing = !live.current.state.playing
-    if (playing) sequencer.current.start()
-    else sequencer.current.stop()
     dispatch({ type: 'setPlaying', playing })
     if (!playing) setAt(null)
   }, [engine])
 
   useEffect(() => registerToggle(toggle), [registerToggle, toggle])
+
+  // the easter egg: turning it on loads the hidden tune and plays; turning it off puts the default song back
+  const wasSecret = useRef(false)
+  useEffect(() => {
+    if (secret === wasSecret.current) return
+    wasSecret.current = secret
+    dispatch({ type: 'loadSong', songId: secret ? secretSong.id : defaultSongId })
+    if (secret !== live.current.state.playing) toggle()
+  }, [secret, toggle])
   useEffect(() => onPlayingChange(state.playing), [onPlayingChange, state.playing])
   useEffect(() => onSongLook(song.look), [onSongLook, song.look])
   useEffect(() => engine?.setVolume(volume), [engine, volume])

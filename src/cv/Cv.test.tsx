@@ -27,3 +27,9 @@ test('the Work section has seven cards', () => {
   const section = screen.getByRole('region', { name: 'Work' })
   expect(within(section).getAllByRole('article')).toHaveLength(7)
 })
+
+test('the name is the switch for the hidden tune', () => {
+  render(<Cv />)
+  expect(screen.getByRole('heading', { level: 1 })).toHaveAttribute('data-secret')
+  expect(screen.queryByRole('button', { name: 'Play a hidden tune' })).toBeNull()
+})

@@ -77,6 +77,7 @@ export function TopBar(p: TopBarProps) {
               {label}
             </option>
           ))}
+          {p.look === 'c64' ? <option value="c64">Look: ????</option> : null}
         </select>
         <button className="btn bar__immersion" aria-pressed={p.immersion} onClick={p.onImmersion}>
           {p.immersion ? 'Immersion on' : 'Immersion off'}

@@ -23,13 +23,15 @@ export function Shell({ children }: { children: ReactNode }) {
   const [songLook, setSongLook] = useState<Look>('e10')
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [audio, setAudio] = useState<AudioContext | null>(null)
+  const [secret, setSecret] = useState(false)
 
   const deck = useRef<HTMLDivElement>(null)
   const toggle = useRef<(() => void) | null>(null)
   const playWhenReady = useRef(false)
   const beat = useRef(0)
 
-  const look = effectiveLook({ immersion, playing, songLook, picked })
+  // the easter egg brings its own look, whatever the immersion setting
+  const look = secret ? 'c64' : effectiveLook({ immersion, playing, songLook, picked })
 
   useEffect(() => {
     const root = document.documentElement
@@ -97,6 +99,14 @@ export function Shell({ children }: { children: ReactNode }) {
     if (now === 1) wantMachine()
   }
 
+  // stopping the music ends the easter egg; the machine also reports "not playing" when it first appears, which must not
+  const wasPlaying = useRef(false)
+  const onPlayingChange = useCallback((now: boolean) => {
+    setPlaying(now)
+    if (wasPlaying.current && !now) setSecret(false)
+    wasPlaying.current = now
+  }, [])
+
   const onBeat = useCallback(() => {
     beat.current = 1
     if (reducedMotion()) return
@@ -143,7 +153,17 @@ export function Shell({ children }: { children: ReactNode }) {
           <p><b>okan</b> hire this guy</p>
         </div>
       ) : null}
-      <div className="deck" ref={deck} onScroll={onDeckScroll}>
+      <div
+        className="deck"
+        ref={deck}
+        onScroll={onDeckScroll}
+        onClick={(event) => {
+          // the stripe under the name is the hidden switch
+          if (!(event.target instanceof Element) || !event.target.closest('[data-secret]')) return
+          wantMachine()
+          setSecret((on) => !on)
+        }}
+      >
         <section className="pane">{children}</section>
         <section className="pane pane--machine" aria-label="The DC-1 drum machine">
           <h2 className="machine-title">The DC-1</h2>
@@ -155,8 +175,9 @@ export function Shell({ children }: { children: ReactNode }) {
               <Machine
                 audio={audio}
                 page={page}
+                secret={secret}
                 volume={volume}
-                onPlayingChange={setPlaying}
+                onPlayingChange={onPlayingChange}
                 onSongLook={setSongLook}
                 onBeat={onBeat}
                 registerToggle={registerToggle}
