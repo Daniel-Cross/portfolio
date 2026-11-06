@@ -88,11 +88,10 @@ button {
   background: var(--stripe);
 }
 
-/* the easter egg switch: it must not look like a button */
-.stripe--secret {
-  display: block;
-  border-radius: 0;
-  cursor: default;
+/* the name is the easter egg switch: a press must not select its text */
+[data-secret] {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

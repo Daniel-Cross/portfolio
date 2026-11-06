@@ -28,7 +28,8 @@ test('the Work section has seven cards', () => {
   expect(within(section).getAllByRole('article')).toHaveLength(7)
 })
 
-test('the stripe under the name is a quiet button for the hidden tune', () => {
+test('the name is the switch for the hidden tune', () => {
   render(<Cv />)
-  expect(screen.getByRole('button', { name: 'Play a hidden tune' })).toHaveAttribute('data-secret')
+  expect(screen.getByRole('heading', { level: 1 })).toHaveAttribute('data-secret')
+  expect(screen.queryByRole('button', { name: 'Play a hidden tune' })).toBeNull()
 })
