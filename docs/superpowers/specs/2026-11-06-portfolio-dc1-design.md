@@ -89,7 +89,7 @@ Content rules that came out of fact-checking:
 
 ### Clean look
 
-- Dark by default following the system, with a light variant.
+- Light by default for every visitor, whatever their system setting. Dark is a variant the visitor switches to with the Light / dark button.
 - One warm surface colour with soft raised and inset shadows (neumorphism), used sparingly: cards raised, only the primary button solid orange, other buttons thin outlines.
 - A soft recessed frame around the whole window.
 - Type: Mona Sans, extended width, heavy weight, capitals for the name and headings; Mona Sans regular for body; Martian Mono, small tracked capitals, for labels and buttons. All are free on Google Fonts.

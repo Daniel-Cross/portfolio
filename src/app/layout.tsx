@@ -3,6 +3,8 @@ import { personJsonLd } from './seo'
 import '@/styles/tokens.css'
 import '@/styles/base.css'
 import '@/styles/cv.css'
+import '@/styles/shell.css'
+import '@/styles/machine.css'
 
 const mona = Mona_Sans({ subsets: ['latin'], axes: ['wdth'], variable: '--font-mona' })
 const martian = Martian_Mono({ subsets: ['latin'], axes: ['wdth'], variable: '--font-martian' })

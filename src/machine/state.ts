@@ -156,6 +156,7 @@ export function reduce(state: MachineState, action: Action): MachineState {
     case 'setPlaying':
       return { ...state, playing: action.playing }
     case 'restore':
-      return { ...state, ...action.loop, tray: null }
+      // start from the linked song's own settings, then lay the saved loop over them
+      return { ...state, ...fromSong(songById(action.loop.songId ?? state.songId)), ...action.loop, tray: null }
   }
 }

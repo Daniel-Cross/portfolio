@@ -9,9 +9,17 @@ export function Hero() {
           Daniel <br />
           Cross
         </h1>
+        <p className="katakana" lang="ja" aria-hidden="true">
+          ダニエル・クロス
+        </p>
         <div className="stripe" aria-hidden="true" />
       </div>
       <div className="hero__about">
+        <p className="live" aria-hidden="true">
+          <b>LIVE</b>
+          <span>21,304 watching now</span>
+          <span>daniel cross radio, apps to relax/ship to</span>
+        </p>
         <div className="photo">
           <Image src="/daniel.jpg" alt="Daniel Cross" fill sizes="196px" priority />
         </div>

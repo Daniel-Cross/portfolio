@@ -1,3 +1,4 @@
+import { createAudioContext } from './audio'
 import type { Song } from './songs'
 import { chordTones, freq, type Chord } from './theory'
 
@@ -20,11 +21,10 @@ export type Engine = {
 const bassMidi = (root: number) => 28 + ((((root - 28) % 12) + 12) % 12)
 
 /** Everything is synthesised: no audio files. Returns null where the browser has no Web Audio. */
-export function createEngine(): Engine | null {
-  const g = globalThis as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }
-  const Ctor = g.AudioContext ?? g.webkitAudioContext
-  if (!Ctor) return null
-  const ac = new Ctor()
+export function createEngine(existing?: AudioContext | null): Engine | null {
+  const context = existing ?? createAudioContext()
+  if (!context) return null
+  const ac: AudioContext = context
 
   // voices -> tone filter -> limiter -> volume -> speakers, with echo and reverb sends off the filter
   const volume = ac.createGain()
