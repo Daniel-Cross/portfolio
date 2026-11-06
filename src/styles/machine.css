@@ -1,0 +1,730 @@
+/* The machine keeps its own colours whatever look the site is wearing: cream plastic by day, near-black by night. */
+.device,
+.tray {
+  --m-bg: #d9d2c3;
+  --m-lift: #f5f0e4;
+  --m-shade: #ada592;
+  --m-ink: #2b2822;
+  --m-mute: #6a6457;
+  --m-hot: #e8501c;
+  --m-pad: #8e8b84;
+  --m-pad-ink: #fff;
+  --m-knob: #26241f;
+  --m-skirt: #3b3832;
+  --m-key: #efe9da;
+  --lcd-top: #b4c272;
+  --lcd-bottom: #93a455;
+  --lcd-ink: #1c2409;
+  --lcd-glow: transparent;
+  --m-raised: 4px 4px 9px var(--m-shade), -4px -4px 9px var(--m-lift);
+  --m-sunk: inset 2px 2px 5px var(--m-shade), inset -2px -2px 5px var(--m-lift);
+  --m-label: 500 9.5px var(--font-martian), ui-monospace, monospace;
+  zoom: var(--machine-zoom, 1);
+  color: var(--m-ink);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+:root[data-theme='dark'] :is(.device, .tray) {
+  --m-bg: #2b2927;
+  --m-lift: #393633;
+  --m-shade: #171615;
+  --m-ink: #ede6d8;
+  --m-mute: #a39c8e;
+  --m-pad: #4b4844;
+  --m-pad-ink: #ede6d8;
+  --m-knob: #121110;
+  --m-skirt: #1e1c1a;
+  --m-key: #d9d2c3;
+  --lcd-top: #1c1407;
+  --lcd-bottom: #0e0a03;
+  --lcd-ink: #ffb000;
+  --lcd-glow: #ffb00066;
+}
+
+.device {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 860px;
+  padding: 22px;
+  border-radius: 26px;
+  background: var(--m-bg);
+  box-shadow: 14px 14px 34px var(--m-shade), -14px -14px 34px var(--m-lift);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.device button,
+.tray button {
+  color: inherit;
+}
+
+.device__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+}
+
+.led {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #5c1a10;
+  box-shadow: var(--m-sunk);
+}
+
+.led.is-on {
+  background: #ff3b1f;
+  box-shadow: 0 0 9px #ff3b1f;
+}
+
+.device__logo {
+  font-family: var(--font-michroma), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.device__plate {
+  font: var(--m-label);
+  font-size: 8px;
+  font-stretch: 80%;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--m-mute);
+}
+
+.device__grille {
+  width: 54px;
+  height: 22px;
+  margin-left: auto;
+  border-radius: 3px;
+  background: repeating-linear-gradient(90deg, var(--m-shade) 0 3px, transparent 3px 7px);
+}
+
+.device > .stripe {
+  margin-top: -4px;
+}
+
+.device__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.device__col {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 0;
+}
+
+/* screen */
+.lcd {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 190px;
+  padding: 13px 15px;
+  border: 5px solid var(--m-knob);
+  border-radius: 8px;
+  background: linear-gradient(170deg, var(--lcd-top), var(--lcd-bottom));
+  box-shadow: inset 3px 3px 9px #0007, var(--m-raised);
+  color: var(--lcd-ink);
+  text-shadow: 0 0 9px var(--lcd-glow);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.lcd__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.lcd__title {
+  margin-top: 5px;
+  font-family: var(--font-doto), ui-monospace, monospace;
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1.05;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.lcd__hint {
+  margin-top: 3px;
+  opacity: 0.85;
+}
+
+.lcd__key {
+  margin-top: auto;
+  font-weight: 600;
+}
+
+.lcd__chords {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.lcd__chords button {
+  padding: 6px 0;
+  border: 1px solid color-mix(in srgb, var(--lcd-ink) 55%, transparent);
+  border-radius: 3px;
+  font: 900 15px var(--font-doto), ui-monospace, monospace;
+  color: var(--lcd-ink);
+  text-shadow: inherit;
+}
+
+.lcd__chords button[aria-pressed='true'] {
+  background: var(--lcd-ink);
+  color: var(--lcd-bottom);
+  text-shadow: none;
+}
+
+.lcd__chords button.is-now {
+  box-shadow: 0 3px 0 var(--lcd-ink);
+}
+
+.lcd__steps {
+  display: flex;
+  gap: 3px;
+  margin-top: 8px;
+}
+
+.lcd__steps i {
+  flex: 1;
+  height: 5px;
+  background: var(--lcd-ink);
+  opacity: 0.22;
+}
+
+.lcd__steps i.is-now {
+  opacity: 1;
+}
+
+/* song buttons */
+.songs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+
+.songs button {
+  position: relative;
+  height: 36px;
+  padding-top: 7px;
+  border-radius: 6px;
+  box-shadow: var(--m-raised);
+  font: var(--m-label);
+  font-size: 8.5px;
+  font-stretch: 80%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--m-mute);
+}
+
+.songs button::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+  background: #5c1a10;
+  translate: -50% 0;
+}
+
+.songs button[aria-pressed='true'] {
+  box-shadow: var(--m-sunk);
+  color: var(--m-ink);
+}
+
+.songs button[aria-pressed='true']::before {
+  background: #ff3b1f;
+  box-shadow: 0 0 7px #ff3b1f;
+}
+
+/* dials */
+.knobs {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 8px;
+}
+
+.knob {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  font: var(--m-label);
+  font-size: 9px;
+  font-stretch: 80%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--m-mute);
+}
+
+.knob::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from -136deg, var(--m-mute) 0 2deg, transparent 2deg 30deg);
+  mask: radial-gradient(circle, transparent 29px, #000 30px);
+  translate: -50% 0;
+}
+
+.knob__cap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border: 4px solid var(--m-skirt);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a463f, var(--m-knob) 60%);
+  box-shadow: 4px 5px 10px var(--m-shade), -3px -3px 8px var(--m-lift);
+  cursor: ns-resize;
+  touch-action: none;
+}
+
+.knob__cap::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: #f5f0e4;
+  translate: -50% 0;
+}
+
+.knob__cap--accent::after {
+  background: var(--m-hot);
+}
+
+/* step keys */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px 7px;
+}
+
+.steps button {
+  --cap: #d8412f;
+  position: relative;
+  height: 42px;
+  padding-top: 16px;
+  border-radius: 5px;
+  background: linear-gradient(#fff5, #0000 30%, #0002), var(--cap);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--cap) 60%, #000), 3px 7px 9px var(--m-shade);
+  font: 700 9px var(--font-martian), ui-monospace, monospace;
+  color: #000c;
+  transition: translate 0.05s, box-shadow 0.05s;
+}
+
+.steps button:nth-child(n + 5):nth-child(-n + 8) {
+  --cap: #e8842a;
+}
+
+.steps button:nth-child(n + 9):nth-child(-n + 12) {
+  --cap: #ebc43d;
+}
+
+.steps button:nth-child(n + 13) {
+  --cap: var(--m-key);
+}
+
+.steps button::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0005;
+  box-shadow: inset 0 1px 2px #0008;
+  translate: -50% 0;
+}
+
+.steps button[aria-pressed='true'] {
+  translate: 0 3px;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--cap) 60%, #000), 2px 3px 5px var(--m-shade);
+}
+
+.steps button[aria-pressed='true']::before {
+  background: #ff2a12;
+  box-shadow: 0 0 8px #ff2a12, 0 0 2px #fff inset;
+}
+
+.steps button.is-now {
+  filter: brightness(1.35);
+}
+
+.steps button.is-picking {
+  outline: 3px solid #fff;
+  outline-offset: 1px;
+}
+
+/* pads */
+.pads {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.pad {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 88px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: var(--m-pad);
+  box-shadow: var(--m-raised), inset 0 2px 0 #fff3, inset 0 -3px 0 #0003;
+  font: var(--m-label);
+  font-stretch: 80%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: box-shadow 0.06s, filter 0.06s;
+}
+
+.device .pad {
+  color: var(--m-pad-ink);
+}
+
+.pad b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-family: var(--font-michroma), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.pad b::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0005;
+}
+
+.pad[aria-pressed='true'] b::after {
+  background: #ff2a12;
+  box-shadow: 0 0 8px #ff2a12;
+}
+
+.pad:active,
+.pad.is-hit {
+  box-shadow: inset 3px 3px 8px #0006, inset -2px -2px 5px #fff2;
+  filter: brightness(0.93);
+}
+
+/* transport */
+.transport {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 13px;
+}
+
+.transport button {
+  height: 52px;
+  border-radius: 7px;
+  box-shadow: var(--m-raised);
+  font: var(--m-label);
+  font-size: 11.5px;
+  font-stretch: 80%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.transport button:active {
+  box-shadow: var(--m-sunk);
+}
+
+.device .transport__play {
+  background: linear-gradient(#fff3, #0000 40%), var(--m-hot);
+  box-shadow: 0 4px 0 #9c3110, 4px 8px 12px var(--m-shade);
+  color: #fff;
+}
+
+.device .transport__play[aria-pressed='true'] {
+  translate: 0 3px;
+  box-shadow: 0 1px 0 #9c3110, 2px 3px 6px var(--m-shade);
+}
+
+/* the tray slides out from under the machine */
+.tray {
+  position: relative;
+  z-index: 0;
+  width: 780px;
+  max-width: 92%;
+  max-height: 0;
+  margin-top: -18px;
+  padding: 0 20px;
+  border-radius: 0 0 22px 22px;
+  background: var(--m-bg);
+  box-shadow: 10px 14px 28px var(--m-shade), -10px 6px 24px var(--m-lift);
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.2s, padding 0.35s;
+}
+
+.tray.is-open {
+  max-height: 180px;
+  padding: 32px 20px 16px;
+  opacity: 1;
+}
+
+.tray__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tray .label {
+  color: var(--m-mute);
+  font-size: 10px;
+}
+
+.tray__head .label {
+  margin-right: auto;
+}
+
+.tray__head button,
+.tray__chord {
+  padding: 7px 10px;
+  border-radius: 6px;
+  box-shadow: var(--m-raised);
+  font: var(--m-label);
+  font-size: 10px;
+  font-stretch: 80%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tray__head button[aria-pressed='true'],
+.tray__chord[aria-pressed='true'] {
+  box-shadow: var(--m-sunk);
+  color: var(--m-hot);
+}
+
+.tray__key {
+  min-width: 74px;
+  font: 700 12px var(--font-martian), ui-monospace, monospace;
+  text-align: center;
+}
+
+.tray__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.tray__row .label {
+  width: 150px;
+}
+
+.tray__chord {
+  min-width: 58px;
+  font-size: 12px;
+  text-transform: none;
+}
+
+.piano {
+  display: flex;
+  gap: 3px;
+  height: 84px;
+}
+
+.piano__slot {
+  position: relative;
+  flex: 1;
+}
+
+.piano__white {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 5px;
+  border-radius: 0 0 5px 5px;
+  background: #efe9da;
+  box-shadow: 0 3px 0 #9d9686;
+  font: 600 8.5px var(--font-martian), ui-monospace, monospace;
+}
+
+.tray .piano__white {
+  color: #444;
+}
+
+.piano__white i {
+  width: 5px;
+  height: 5px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: #e8501c;
+}
+
+.piano__white.is-on {
+  background: #e8501c;
+  box-shadow: 0 1px 0 #9c3110;
+  translate: 0 2px;
+}
+
+.piano__white.is-on i {
+  background: #fff;
+}
+
+.piano__black {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: -34%;
+  width: 64%;
+  height: 58%;
+  border-radius: 0 0 4px 4px;
+  background: #1b1a18;
+  box-shadow: 0 3px 0 #000;
+}
+
+.piano__black.is-on {
+  background: #e8501c;
+}
+
+/* phones, upright or sideways: the machine at full size in one column, tray as a sheet from the bottom */
+@media (max-width: 899px), (max-height: 619px) {
+  .device {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 14px;
+    border-radius: 22px;
+    touch-action: pan-y;
+  }
+
+  .device__cols {
+    display: contents;
+  }
+
+  .device__col {
+    display: contents;
+  }
+
+  .device__grille {
+    display: none;
+  }
+
+  .lcd {
+    flex: none;
+    min-height: 170px;
+  }
+
+  .lcd__title {
+    font-size: 29px;
+  }
+
+  .lcd__chords button {
+    padding: 9px 0;
+  }
+
+  .steps {
+    gap: 8px 6px;
+  }
+
+  .steps button {
+    height: 46px;
+  }
+
+  .pad {
+    height: 74px;
+  }
+
+  .transport button {
+    height: 50px;
+  }
+
+  .tray {
+    position: fixed;
+    z-index: 60;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 14px 20px 22px;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -12px 40px #000a;
+    opacity: 1;
+    translate: 0 105%;
+    transition: translate 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+
+  .tray.is-open {
+    max-height: none;
+    padding: 14px 20px 22px;
+    translate: 0 0;
+  }
+
+  .tray__head {
+    flex-wrap: wrap;
+  }
+
+  .tray__head .label {
+    width: 100%;
+    margin: 0;
+  }
+
+  .tray__head button {
+    flex: 1;
+    padding: 10px 12px;
+  }
+
+  .tray__row .label {
+    width: 100%;
+  }
+
+  /* six chords fit one row, so the sheet stays short */
+  .tray__chord {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 2px;
+  }
+
+  .piano {
+    height: 110px;
+    gap: 4px;
+  }
+
+  /* one octave at a time; the Octave buttons move it */
+  .piano__slot:nth-child(n + 8) {
+    display: none;
+  }
+}

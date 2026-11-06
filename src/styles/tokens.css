@@ -1,0 +1,28 @@
+/* Clean look tokens. Light is the default; dark applies only when the visitor picks it. */
+:root {
+  --bg: #d9d2c3;
+  --lift: #f5f0e4;
+  --shade: #ada592;
+  --ink: #2b2822;
+  --mute: #6a6457;
+  --hot: #e8501c;
+  --stripe: linear-gradient(#d8412f 0 3px, transparent 3px 4px, #e8842a 4px 7px, transparent 7px 8px, #ebc43d 8px 11px);
+
+  --raised: 7px 7px 16px var(--shade), -7px -7px 16px var(--lift);
+  --raised-s: 4px 4px 9px var(--shade), -4px -4px 9px var(--lift);
+  --sunk: inset 4px 4px 9px var(--shade), inset -4px -4px 9px var(--lift);
+  --sunk-s: inset 2px 2px 5px var(--shade), inset -2px -2px 5px var(--lift);
+  --hair: color-mix(in srgb, var(--ink) 12%, transparent);
+
+  --f-display: var(--font-mona), system-ui, sans-serif;
+  --f-body: var(--font-mona), system-ui, sans-serif;
+  --f-label: var(--font-martian), ui-monospace, monospace;
+}
+
+:root[data-theme='dark'] {
+  --bg: #2b2927;
+  --lift: #393633;
+  --shade: #171615;
+  --ink: #ede6d8;
+  --mute: #a39c8e;
+}

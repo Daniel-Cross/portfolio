@@ -1,0 +1,295 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* the two pages sit side by side and snap */
+.deck {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.deck::-webkit-scrollbar {
+  display: none;
+}
+
+.pane {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.pane--machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: safe center;
+  padding: 72px 18px 24px;
+}
+
+.machine-title {
+  margin-bottom: 14px;
+  font-family: var(--f-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* top bar */
+.bar {
+  position: fixed;
+  z-index: 30;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  border-radius: 30px 30px 0 0;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.bar__name {
+  margin-right: auto;
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.bar .btn {
+  white-space: nowrap;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 10.5px;
+}
+
+.bar__more {
+  display: contents;
+}
+
+.bar__menu {
+  display: none;
+}
+
+/* on wide screens the volume sits between Play and the page switch */
+.bar__play { order: 1; }
+.bar__volume { order: 2; }
+.bar__go { order: 3; }
+.bar__look { order: 4; }
+.bar__immersion { order: 5; }
+.bar__theme { order: 6; }
+
+.bar__play::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #5c1a10;
+}
+
+.bar__play[aria-pressed='true']::before {
+  background: #ff3b1f;
+  box-shadow: 0 0 8px #ff3b1f;
+}
+
+.bar__volume {
+  width: 96px;
+  accent-color: var(--hot);
+  cursor: pointer;
+}
+
+.bar__look {
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.bar__look option {
+  background: #222;
+  color: #fff;
+  text-transform: none;
+}
+
+.bar__immersion[aria-pressed='true'] {
+  color: var(--hot);
+}
+
+/* a soft recessed frame around the window, clean look only */
+.frame {
+  position: fixed;
+  z-index: 35;
+  inset: 0;
+  border: 16px solid var(--bg);
+  pointer-events: none;
+  transition: border-color 0.3s;
+}
+
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  box-shadow: inset 8px 8px 18px var(--shade), inset -8px -8px 18px var(--lift), 0 0 0 34px var(--bg);
+  transition: box-shadow 0.3s;
+}
+
+/* background canvas for the decade looks */
+.fx {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* pieces that only exist in one look; each look's stylesheet switches its own on */
+.katakana,
+.live,
+.tape,
+.chat {
+  display: none;
+}
+
+/* the look wipes in from the left */
+::view-transition-old(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: wipe 0.75s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+@keyframes wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* phones and small tablets: the last group of controls folds into a menu */
+@media (max-width: 899px) {
+  .bar {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .bar__go {
+    flex: 1;
+  }
+
+  .bar__menu {
+    display: inline-block;
+    order: 7;
+  }
+
+  /* hangs from the bar itself, so it sits right whatever the bar's height or look */
+  .bar__more {
+    position: absolute;
+    z-index: 70;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 14px;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+    border-radius: 0 0 16px 16px;
+    background: var(--bg);
+    box-shadow: 0 18px 30px #0008;
+  }
+
+  .bar__more.is-open {
+    display: flex;
+  }
+
+  .bar__more .bar__volume {
+    flex: 1 0 100%;
+  }
+
+  .bar__more .btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .frame {
+    border-width: 8px;
+  }
+
+  .frame::after {
+    border-radius: 20px;
+  }
+
+  .cv {
+    padding: 96px 22px 110px;
+  }
+
+  /* the machine page scrolls and the machine is never shrunk */
+  .pane--machine {
+    display: block;
+    padding: 72px 18px 40px;
+  }
+
+  .machine-title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .bar__name {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .bar .btn {
+    padding: 9px 8px;
+    font-size: 9.5px;
+  }
+}
+
+/* a phone held sideways is wide but short: the machine page scrolls there too */
+@media (max-height: 619px) {
+  .pane--machine {
+    display: block;
+    padding: 72px 18px 40px;
+  }
+
+  .machine-title {
+    text-align: center;
+  }
+}

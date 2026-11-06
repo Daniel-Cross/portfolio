@@ -1,0 +1,270 @@
+/* 2010s lo-fi: a late-night study stream */
+html[data-era='e10'] body {
+  background: radial-gradient(55% 45% at 82% 8%, #f2a65a3d, transparent 70%), #141428;
+}
+
+/* film grain and faint scan lines over everything */
+html[data-era='e10'] body::after {
+  content: '';
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  background:
+    repeating-linear-gradient(transparent 0 2px, #0000002e 2px 3px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+html[data-era='e10'] :is(.cv, .bar, .machine-title) {
+  --bg: #141428;
+  --ink: #ebdcc3;
+  --mute: #b9ae9c;
+  --hot: #f2a65a;
+  --hair: #ffffff22;
+  font-family: var(--font-zen), system-ui, sans-serif;
+}
+
+html[data-era='e10'] :is(.hero h1, .machine-title) {
+  font-family: var(--font-zen), sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #ebdcc3;
+  text-shadow: -2px 0 #d9777f, 2px 0 #3c6e71, 0 0 26px #f2a65a73;
+  animation: vhs 3s steps(1) infinite;
+}
+
+html[data-era='e10'] .hero h1 {
+  font-size: clamp(46px, 11vw, 96px);
+}
+
+@keyframes vhs {
+  0%, 100% { translate: 0 0; }
+  47% { translate: 1px 0; }
+  50% { translate: -2px 1px; }
+  53% { translate: 0 0; }
+}
+
+html[data-era='e10'] .katakana {
+  display: block;
+  margin-top: 12px;
+  font: 500 14px var(--font-zen), sans-serif;
+  letter-spacing: 0.5em;
+  color: #d9777f;
+}
+
+html[data-era='e10'] .hero .stripe {
+  width: 120px;
+  height: 2px;
+  background: #f2a65a;
+  box-shadow: 0 0 12px #f2a65a;
+}
+
+html[data-era='e10'] .live {
+  order: -2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  font: 12px system-ui, sans-serif;
+  color: #b9ae9c;
+}
+
+/* the viewer count is a joke that belongs to this look, so it lives here and not in the page's text */
+html[data-era='e10'] .live::after {
+  content: '21,304 watching now';
+  order: 1;
+}
+
+html[data-era='e10'] .live span {
+  order: 2;
+}
+
+html[data-era='e10'] .live b {
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: #e53935;
+  color: #fff;
+  animation: blink 2s steps(2) infinite;
+}
+
+html[data-era='e10'] .pitch {
+  max-width: 26ch;
+  font-family: var(--font-zen), sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 3.6vw, 26px);
+  text-transform: lowercase;
+}
+
+html[data-era='e10'] .cv h2 {
+  font-family: var(--font-zen), sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: lowercase;
+}
+
+html[data-era='e10'] .cv h2::before {
+  content: '\266A';
+}
+
+/* cards are pages from a notebook */
+html[data-era='e10'] .card {
+  --ink: #2b2850;
+  --mute: #5e5a78;
+  border: 0;
+  border-radius: 3px;
+  background: repeating-linear-gradient(transparent 0 27px, #3c6e7138 27px 28px), #ebdcc3;
+  box-shadow: 0 14px 34px #000a;
+  color: #2b2850;
+  rotate: -0.5deg;
+}
+
+html[data-era='e10'] .card:nth-of-type(even) {
+  rotate: 0.6deg;
+}
+
+html[data-era='e10'] .card h3 {
+  font-family: var(--font-caveat), cursive;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  text-transform: none;
+}
+
+html[data-era='e10'] .card > p {
+  color: #2b2850;
+}
+
+html[data-era='e10'] .label {
+  font-family: var(--font-vt323), ui-monospace, monospace;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+html[data-era='e10'] .role {
+  color: #b8454e;
+}
+
+html[data-era='e10'] .proof a:hover {
+  color: #b8454e;
+}
+
+html[data-era='e10'] .btn {
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  background: none;
+  font: 700 12px system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+html[data-era='e10'] .btn--primary {
+  border-color: #d9777f;
+  background: #d9777f;
+  box-shadow: none;
+  color: #141428;
+}
+
+html[data-era='e10'] .bar {
+  border-bottom: 1px solid #ffffff14;
+  background: #141428ee;
+}
+
+/* the photo frame becomes a window onto a rainy evening, with a cat on the sill */
+html[data-era='e10'] .photo {
+  width: 190px;
+  height: 136px;
+  border: 9px solid #0b0b16;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(105deg, transparent 0 9px, #ffffff2b 9px 10px) 0 0 / 40px 40px,
+    radial-gradient(2px 2px at 30px 96px, #f2a65a, transparent) 0 0 / 46px 136px,
+    linear-gradient(#27496b, #3c6e71 55%, #f2a65a 130%);
+  box-shadow: 0 0 50px #f2a65a2e;
+  overflow: visible;
+  animation: rain 0.5s linear infinite;
+}
+
+html[data-era='e10'] .photo img {
+  display: none;
+}
+
+@keyframes rain {
+  to { background-position: -11px 40px, 0 0, 0 0; }
+}
+
+html[data-era='e10'] .photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#0b0b16, #0b0b16) center / 7px 100% no-repeat,
+    linear-gradient(#0b0b16, #0b0b16) center / 100% 7px no-repeat;
+}
+
+html[data-era='e10'] .photo::after {
+  content: '\1F408';
+  position: absolute;
+  right: 6px;
+  bottom: -9px;
+  font-size: 30px;
+  filter: brightness(0);
+}
+
+/* tape overlay in the corners, and a chat box on the CV page */
+html[data-era='e10'] .tape {
+  display: block;
+  position: fixed;
+  z-index: 41;
+  inset: 68px 18px 14px;
+  font: 24px var(--font-vt323), ui-monospace, monospace;
+  color: #ebdcc3;
+  text-shadow: 2px 0 #d9777f, -2px 0 #3c6e71;
+  pointer-events: none;
+}
+
+html[data-era='e10'] .tape span {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+html[data-era='e10'] .tape span + span {
+  top: auto;
+  bottom: 0;
+}
+
+html[data-era='e10'] .chat {
+  display: block;
+  position: fixed;
+  z-index: 28;
+  right: 18px;
+  bottom: 18px;
+  width: 232px;
+  padding: 10px 12px;
+  border: 1px solid #ffffff1f;
+  border-radius: 4px;
+  background: #0d0d1ad9;
+  font: 12px/1.5 system-ui, sans-serif;
+  color: #ebdcc3;
+}
+
+html[data-era='e10'] .chat b {
+  margin-right: 6px;
+  color: #d9777f;
+}
+
+@media (max-width: 1249px) {
+  html[data-era='e10'] .chat {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  html[data-era='e10'] .tape {
+    display: none;
+  }
+}
