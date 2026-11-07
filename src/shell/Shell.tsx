@@ -158,8 +158,9 @@ export function Shell({ children }: { children: ReactNode }) {
         ref={deck}
         onScroll={onDeckScroll}
         onClick={(event) => {
-          // the stripe under the name is the hidden switch
+          // the name is the hidden switch, but only on the default look
           if (!(event.target instanceof Element) || !event.target.closest('[data-secret]')) return
+          if (!secret && look !== 'clean') return
           wantMachine()
           setSecret((on) => !on)
         }}
@@ -179,6 +180,7 @@ export function Shell({ children }: { children: ReactNode }) {
                 volume={volume}
                 onPlayingChange={onPlayingChange}
                 onSongLook={setSongLook}
+                onPickSong={() => setSecret(false)}
                 onBeat={onBeat}
                 registerToggle={registerToggle}
               />

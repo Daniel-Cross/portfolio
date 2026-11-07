@@ -160,3 +160,30 @@ test('the hidden tune loads and starts when asked, and stopping it brings the de
   expect(onPlayingChange).toHaveBeenLastCalledWith(false)
   expect(screen.getByText('76 bpm')).toBeInTheDocument()
 })
+
+test('pressing a preset while the hidden tune plays leaves the egg and keeps the preset', () => {
+  const onPickSong = vi.fn()
+  const onSongLook = vi.fn()
+  const view = (on: boolean) => (
+    <Machine audio={null} page={1} secret={on} volume={0.8} onPlayingChange={() => {}} onSongLook={onSongLook} onPickSong={onPickSong} onBeat={() => {}} registerToggle={() => {}} />
+  )
+  const { rerender } = render(view(true))
+  expect(onSongLook).toHaveBeenLastCalledWith('c64')
+  fireEvent.click(screen.getByRole('button', { name: '80s Synth' }))
+  expect(onPickSong).toHaveBeenCalled()
+  rerender(view(false))
+  expect(screen.getByRole('button', { name: '80s Synth' })).toHaveAttribute('aria-pressed', 'true')
+  expect(onSongLook).toHaveBeenLastCalledWith('e80')
+})
+
+test('editing the loop unhighlights the preset and reports no look', () => {
+  const onSongLook = vi.fn()
+  render(<Machine audio={null} page={1} volume={0.8} onPlayingChange={() => {}} onSongLook={onSongLook} onBeat={() => {}} registerToggle={() => {}} />)
+  const preset = screen.getByRole('button', { name: '10s Lo-fi' })
+  expect(preset).toHaveAttribute('aria-pressed', 'true')
+  fireEvent.click(screen.getByRole('button', { name: /^Step 2\b/ }))
+  expect(preset).toHaveAttribute('aria-pressed', 'false')
+  expect(onSongLook).toHaveBeenLastCalledWith('clean')
+  fireEvent.click(screen.getByRole('button', { name: 'Play' }))
+  expect(screen.getByText('Your loop')).toBeInTheDocument()
+})

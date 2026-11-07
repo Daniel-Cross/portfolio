@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 import { songById } from './songs'
-import { initialState, leadNote, reduce } from './state'
+import { initialState, isCustom, leadNote, reduce } from './state'
 
 test('tapping a step toggles a drum hit', () => {
   const s = reduce(initialState('e10'), { type: 'tapStep', step: 1 })
@@ -83,4 +83,15 @@ test('clearing the Lead pad also forgets placed notes', () => {
   s = reduce(s, { type: 'clearPad' })
   expect(s.patterns[5]).toBe(0)
   expect(s.notes[0]).toBeNull()
+})
+
+test('a loop is custom once its notes differ from the loaded song', () => {
+  const song = songById('e10')
+  const s = initialState('e10')
+  expect(isCustom(s, song)).toBe(false)
+  expect(isCustom(reduce(s, { type: 'tapStep', step: 1 }), song)).toBe(true)
+  expect(isCustom(reduce(s, { type: 'shiftKey', by: 1 }), song)).toBe(true)
+  expect(isCustom(reduce(s, { type: 'toggleMode' }), song)).toBe(true)
+  expect(isCustom(reduce(s, { type: 'setKnob', knob: 'bpm', value: 99 }), song)).toBe(false)
+  expect(isCustom(reduce(reduce(s, { type: 'tapStep', step: 1 }), { type: 'loadSong', songId: 'e10' }), song)).toBe(false)
 })

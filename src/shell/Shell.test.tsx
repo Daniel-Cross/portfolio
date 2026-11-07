@@ -49,3 +49,19 @@ test('pressing the hidden button loads the machine', async () => {
   expect(screen.getAllByText('the machine').length).toBeGreaterThan(0)
   expect(document.documentElement.dataset.era).toBe('c64')
 })
+
+test('the hidden button does nothing outside the clean look', async () => {
+  render(
+    <Shell>
+      <button data-secret aria-label="Play a hidden tune" />
+    </Shell>,
+  )
+  await act(async () => {
+    const look = screen.getByRole('combobox', { name: 'Look of the site' }) as HTMLSelectElement
+    look.value = 'e80'
+    look.dispatchEvent(new Event('change', { bubbles: true }))
+  })
+  await act(async () => screen.getByRole('button', { name: 'Play a hidden tune' }).click())
+  // the look's background stub also says 'the machine', so the era is the thing to check
+  expect(document.documentElement.dataset.era).toBe('e80')
+})

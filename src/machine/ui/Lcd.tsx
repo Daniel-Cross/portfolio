@@ -1,4 +1,4 @@
-import { LEAD, type MachineState } from '../state'
+import { isCustom, LEAD, type MachineState } from '../state'
 import type { Song } from '../songs'
 import { chordName, pitchName } from '../theory'
 
@@ -30,7 +30,7 @@ export function Lcd({ state, song, at, notice, onChord }: Props) {
         <span>{notice ?? `Pad ${state.pad + 1}, ${SOUNDS[state.pad].toLowerCase()}`}</span>
         <span>{at ? `${tempo}, bar ${at.bar + 1} of 4` : tempo}</span>
       </div>
-      <div className="lcd__title">{state.playing ? song.name : 'Press play'}</div>
+      <div className="lcd__title">{!state.playing ? 'Press play' : isCustom(state, song) ? 'Your loop' : song.name}</div>
       <div className="lcd__hint">{instruction(state)}</div>
       <div className="lcd__key">{`Key of ${pitchName(state.key.tonic)} ${state.key.mode === 'maj' ? 'major' : 'minor'}`}</div>
       <div className="lcd__chords">

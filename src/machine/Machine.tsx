@@ -7,7 +7,7 @@ import { machineZoom } from './fit'
 import { createSequencer } from './sequencer'
 import { decodeLoop, encodeLoop } from './share'
 import { defaultSongId, secretSong, songById, songs } from './songs'
-import { initialState, LEAD, leadNote, reduce, type MachineState } from './state'
+import { initialState, isCustom, LEAD, leadNote, reduce, type MachineState } from './state'
 import { noteName } from './theory'
 import { Knob } from './ui/Knob'
 import { Lcd } from './ui/Lcd'
@@ -23,6 +23,8 @@ type Props = {
   volume: number
   onPlayingChange(playing: boolean): void
   onSongLook(look: Look): void
+  /** called when the visitor presses one of the preset buttons */
+  onPickSong?(): void
   /** called on every kick drum */
   onBeat(): void
   /** hands the shell a function that starts or stops playback */
@@ -38,11 +40,12 @@ function start(): MachineState {
   return loop ? reduce(base, { type: 'restore', loop }) : base
 }
 
-export default function Machine({ audio, page, secret = false, volume, onPlayingChange, onSongLook, onBeat, registerToggle }: Props) {
+export default function Machine({ audio, page, secret = false, volume, onPlayingChange, onSongLook, onPickSong, onBeat, registerToggle }: Props) {
   const [state, dispatch] = useReducer(reduce, undefined, start)
   const [at, setAt] = useState<{ step: number; bar: number } | null>(null)
   const [notice, setNotice] = useState<string>()
   const song = songById(state.songId)
+  const custom = isCustom(state, song)
 
   // the sequencer runs outside React's render cycle, so it reads the latest state through a ref
   const live = useRef({ state, song, onBeat })
@@ -91,16 +94,18 @@ export default function Machine({ audio, page, secret = false, volume, onPlaying
 
   useEffect(() => registerToggle(toggle), [registerToggle, toggle])
 
-  // the easter egg: turning it on loads the hidden tune and plays; turning it off puts the default song back
+  // the easter egg: turning it on loads the hidden tune and plays; turning it off puts the default song back,
+  // unless a preset already took the hidden tune's place
   const wasSecret = useRef(false)
   useEffect(() => {
     if (secret === wasSecret.current) return
     wasSecret.current = secret
+    if (!secret && live.current.state.songId !== secretSong.id) return
     dispatch({ type: 'loadSong', songId: secret ? secretSong.id : defaultSongId })
     if (secret !== live.current.state.playing) toggle()
   }, [secret, toggle])
   useEffect(() => onPlayingChange(state.playing), [onPlayingChange, state.playing])
-  useEffect(() => onSongLook(song.look), [onSongLook, song.look])
+  useEffect(() => onSongLook(custom ? 'clean' : song.look), [onSongLook, custom, song.look])
   useEffect(() => engine?.setVolume(volume), [engine, volume])
   useEffect(() => engine?.setTone(state.tone), [engine, state.tone])
   useEffect(() => engine?.setEcho(state.echo), [engine, state.echo])
@@ -126,6 +131,7 @@ export default function Machine({ audio, page, secret = false, volume, onPlaying
 
   const loadSong = (id: (typeof songs)[number]['id']) => {
     dispatch({ type: 'loadSong', songId: id })
+    onPickSong?.()
     if (!state.playing) toggle()
   }
 
@@ -201,7 +207,7 @@ export default function Machine({ audio, page, secret = false, volume, onPlaying
             <Lcd state={state} song={song} at={at} notice={notice} onChord={(bar) => { dispatch({ type: 'tapChord', bar }); hear(4, bar) }} />
             <div className="songs">
               {songs.map((s) => (
-                <button key={s.id} aria-pressed={s.id === state.songId} onClick={() => loadSong(s.id)}>
+                <button key={s.id} aria-pressed={!custom && s.id === state.songId} onClick={() => loadSong(s.id)}>
                   {s.name}
                 </button>
               ))}

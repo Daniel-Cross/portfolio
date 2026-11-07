@@ -70,6 +70,17 @@ export function initialState(songId: SongId = defaultSongId): MachineState {
   return { ...fromSong(songById(songId)), pad: 0, trayOctave: 4, sevenths: false, playing: false }
 }
 
+/** True once the visitor has changed the loaded preset's notes: it is their loop now, not the song's. */
+export function isCustom(state: MachineState, song: Song): boolean {
+  return (
+    state.shift !== 0 ||
+    state.key.mode !== song.key.mode ||
+    state.notes.some((n) => n != null) ||
+    state.patterns.some((p, i) => p !== song.patterns[i]) ||
+    state.chords.some((c, i) => c.root !== song.chords[i].root || c.quality !== song.chords[i].quality)
+  )
+}
+
 /** The lead note for a step: the visitor's note if they placed one, else the song's melody moved with the key. */
 export function leadNote(state: MachineState, song: Song, step: number, bar: number): number {
   const placed = state.notes[step]
