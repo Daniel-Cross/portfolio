@@ -1,110 +1,149 @@
-/* The hidden look that goes with the easter egg: a mid-80s home computer start-up screen. */
+/* The hidden look that goes with the easter egg: the site's terminal, as if you had dropped out of the themes
+   into the DOS machine running underneath. The 'c64' id predates the look and stays to keep the code quiet. */
 html[data-era='c64'] body {
-  background: #6c5eb5;
+  background: #000;
+}
+
+/* scanlines over everything, the CRT the terminal lives in */
+html[data-era='c64'] body::after {
+  content: '';
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, #0004 2px 3px);
+  pointer-events: none;
 }
 
 html[data-era='c64'] .deck {
-  inset: 0;
-  margin: 34px;
-  height: calc(100% - 68px);
-  background: #352879;
+  background: #000;
 }
 
 html[data-era='c64'] :is(.cv, .bar, .machine-title) {
-  --bg: #352879;
-  --ink: #6c5eb5;
-  --mute: #6c5eb5;
-  --hot: #fff;
-  --hair: #6c5eb5;
-  font-family: var(--font-pixelify), ui-monospace, monospace;
+  --bg: #000;
+  --ink: #aaa;
+  --mute: #777;
+  --hot: #55ff55;
+  --hair: #555;
+  font-family: var(--font-vt323), ui-monospace, monospace;
+  font-size: 20px;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 html[data-era='c64'] .cv {
-  padding-top: 70px;
+  padding-top: 64px;
 }
 
+/* the boot log: what was on screen before the CV got typed out */
 html[data-era='c64'] .cv::before {
-  content: '**** DANIEL CROSS 64 BASIC V2 ****\A\A 64K RAM SYSTEM  38911 BASIC BYTES FREE\A\AREADY.';
+  content: 'DC-1 BIOS 1.0  (C) DANIEL CROSS, STOCKHOLM\A 640K RAM OK\A THEMES.SYS ... UNLOADED\A STARDUST.SID ... PLAYING\A \A C:\\>CD DC1\A C:\\DC1>TYPE CV.TXT';
   display: block;
   margin-bottom: 40px;
-  font: 700 18px var(--font-pixelify), ui-monospace, monospace;
-  line-height: 1.3;
+  font: 20px/1.3 var(--font-vt323), ui-monospace, monospace;
   white-space: pre-wrap;
-  color: #6c5eb5;
+  color: #55ff55;
 }
 
 html[data-era='c64'] :is(.hero h1, .cv h2, .card h3, .pitch, .machine-title) {
-  font-family: var(--font-pixelify), ui-monospace, monospace;
-  font-weight: 700;
+  font-family: var(--font-vt323), ui-monospace, monospace;
+  font-weight: 400;
   color: #fff;
+  text-shadow: 0 0 8px #fff6;
 }
 
+html[data-era='c64'] .hero h1 {
+  line-height: 0.8;
+}
+
+/* the cursor, waiting after the name */
 html[data-era='c64'] .hero h1::after {
   content: '';
   display: inline-block;
-  width: 0.55em;
-  height: 0.75em;
-  margin-left: 0.12em;
-  background: #6c5eb5;
+  width: 0.4em;
+  height: 0.62em;
+  margin-left: 0.1em;
+  background: #aaa;
   animation: blink 1s steps(2) infinite;
+}
+
+html[data-era='c64'] .cv h2 {
+  font-size: 28px;
+}
+
+/* every section is a command */
+html[data-era='c64'] .cv h2::before {
+  content: 'C:\\DC1>';
+  margin-right: 0.4em;
+  color: #55ff55;
+  text-shadow: none;
 }
 
 html[data-era='c64'] .cv h2::after {
   display: none;
 }
 
-html[data-era='c64'] :is(.card, .btn) {
-  border: 3px solid #6c5eb5;
+html[data-era='c64'] .card h3 {
+  font-size: 24px;
+}
+
+html[data-era='c64'] .pitch {
+  font-size: 26px;
+}
+
+html[data-era='c64'] :is(.card, .hero__about, .photo) {
+  border: 3px double #aaa;
   border-radius: 0;
-  background: none;
+  background: #000;
   box-shadow: none;
 }
 
 html[data-era='c64'] :is(.card > p, .bio, .proof a, .proof span, .label) {
-  font-family: var(--font-pixelify), ui-monospace, monospace;
+  font-family: var(--font-vt323), ui-monospace, monospace;
+  font-size: 20px;
   letter-spacing: 0;
-  color: #6c5eb5;
+  color: #aaa;
 }
 
 html[data-era='c64'] .label {
-  font-size: 13px;
+  color: #777;
 }
 
+html[data-era='c64'] .proof a {
+  color: #55ff55;
+}
+
+/* buttons are the selected line in a DOS menu */
 html[data-era='c64'] .btn {
-  font: 700 13px var(--font-pixelify), ui-monospace, monospace;
+  border: 0;
+  border-radius: 0;
+  font: 20px var(--font-vt323), ui-monospace, monospace;
   letter-spacing: 0;
-  color: #6c5eb5;
+  background: #aaa;
+  color: #000;
 }
 
 html[data-era='c64'] .btn--primary {
-  background: #6c5eb5;
-  color: #352879;
+  background: #55ff55;
+  color: #000;
 }
 
 html[data-era='c64'] .photo {
-  border: 3px solid #6c5eb5;
-  border-radius: 0;
-  box-shadow: none;
   image-rendering: pixelated;
 }
 
 html[data-era='c64'] .photo img {
-  filter: grayscale(1) contrast(1.6);
-  mix-blend-mode: screen;
-  opacity: 0.85;
+  filter: grayscale(1) contrast(1.5) brightness(0.9);
 }
 
+/* a row of equals signs under the name */
 html[data-era='c64'] .stripe {
-  background: #6c5eb5;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #aaa 0 10px, transparent 10px 14px);
 }
 
 html[data-era='c64'] .bar {
-  top: 34px;
-  left: 34px;
-  right: 34px;
-  border-bottom: 3px solid #6c5eb5;
-  background: #352879;
+  border-bottom: 3px double #aaa;
+  background: #000;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
@@ -115,18 +154,5 @@ html[data-era='c64'] .bar__immersion[aria-pressed='true'] {
 }
 
 html[data-era='c64'] .bar__volume {
-  accent-color: #6c5eb5;
-}
-
-@media (max-width: 899px) {
-  html[data-era='c64'] .deck {
-    margin: 14px;
-    height: calc(100% - 28px);
-  }
-
-  html[data-era='c64'] .bar {
-    top: 14px;
-    left: 14px;
-    right: 14px;
-  }
+  accent-color: #aaa;
 }
