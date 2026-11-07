@@ -1,19 +1,20 @@
 ---
-gsd_state_version: 1.0
+gsd_state_version: "1.0"
 milestone: v1.0
-milestone_name: milestone
 current_phase: 2
 current_phase_name: Decision-Driven Case Studies
 status: executing
 stopped_at: "Completed quick task 260718-b7j: LiveAppFrame footballAlpha embed"
-last_updated: "2026-07-18T14:42:58.980Z"
+last_updated: "2026-11-07T18:57:41.727Z"
 last_activity: 2026-07-10
 last_activity_desc: "Completed quick task 260710-crq: Live Solana network hero canvas"
+state_head: 75417e71dee80998118327e62b2e73b9dd8f0e80
 progress:
   total_phases: 1
   completed_phases: 1
   total_plans: 7
   completed_plans: 7
+milestone_name: milestone
 ---
 
 # Project State
@@ -30,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-07-09)
 Phase: 2 — Decision-Driven Case Studies
 Plan: Not started
 Status: Ready to execute
-Last activity: 2026-07-10 — Completed quick task 260710-crq: Live Solana network hero canvas
+Last activity: 2026-11-07 - Completed quick task 261107-rm3: easter egg fixes after launch
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -133,6 +134,7 @@ None yet.
 | 25 | PhoneFrame widened from w-44/w-52 to 390px to match LiveAppFrame across all project cards | 2026-07-18 | 0cbb378 | — |
 | 26 | Ahlsell project card added: App Store home screen crop, blurb, store link; projects.test.ts unstaled | 2026-07-18 | 039c7ef | — |
 | 27 | Safe Haven and Neo cards: local splash screens replace placeholders; Haven App Store and safehaven.dev links added | 2026-07-18 | 6ddf58b | — |
+| 261107-rm3 | Easter egg: default look only, presets leave it, custom loops keep the theme, MS-DOS terminal look | 2026-11-07 | 75417e7 | [261107-rm3-easter-egg-default-look-only-presets-lea](./quick/261107-rm3-easter-egg-default-look-only-presets-lea/) |
 
 ## Deferred Items
 
