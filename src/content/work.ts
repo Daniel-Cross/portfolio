@@ -23,7 +23,7 @@ export const work: WorkCard[] = [
       {
         label: 'Fact Machine on the App Store',
         href: 'https://apps.apple.com/us/app/thefactmachine/id6763264892',
-        note: 'The app I started and lead',
+        note: 'From empty repo to App Store release',
       },
     ],
     tint: '#FF9A02',
